@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { UserSession, signUserOut } from "blockstack";
-import { Container, Image, Menu } from "semantic-ui-react";
+
+import Header from "../Header";
 
 export default class App extends Component {
   constructor(props) {
@@ -30,30 +31,12 @@ export default class App extends Component {
   }
 
   render() {
-    const { userSession } = this;
-
     return (
-      <Menu borderless>
-        <Container text>
-          <Menu.Item>
-            <Image size="mini" src="/logo.png" />
-          </Menu.Item>
-
-          <Menu.Item header>Bookmarks</Menu.Item>
-
-          <Menu.Menu position="right">
-            {!userSession.isUserSignedIn() ? (
-              <Menu.Item as="button" onClick={this.handleSignIn}>
-                Sign In with Blockstack
-              </Menu.Item>
-            ) : (
-              <Menu.Item as="button" onClick={this.handleSignOut}>
-                Sign out
-              </Menu.Item>
-            )}
-          </Menu.Menu>
-        </Container>
-      </Menu>
+      <Header
+        isSignedIn={this.userSession.isUserSignedIn()}
+        handleSignIn={this.handleSignIn}
+        handleSignOut={this.handleSignOut}
+      />
     );
   }
 }
