@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { UserSession, signUserOut } from "blockstack";
-
-import Profile from "../Profile";
-import Signin from "../Signin";
+import { Container, Image, Menu } from "semantic-ui-react";
 
 export default class App extends Component {
   constructor(props) {
@@ -11,6 +9,14 @@ export default class App extends Component {
     this.userSession = new UserSession();
 
     this.handleSignIn = this.handleSignIn.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.userSession.isSignInPending()) {
+      this.userSession.handlePendingSignIn().then(userData => {
+        window.location = window.location.origin;
+      });
+    }
   }
 
   handleSignIn(e) {
@@ -27,26 +33,27 @@ export default class App extends Component {
     const { userSession } = this;
 
     return (
-      <div className="site-wrapper">
-        <div className="site-wrapper-inner">
-          {!userSession.isUserSignedIn() ? (
-            <Signin handleSignIn={this.handleSignIn} />
-          ) : (
-            <Profile
-              handleSignOut={this.handleSignOut}
-              userSession={userSession}
-            />
-          )}
-        </div>
-      </div>
-    );
-  }
+      <Menu borderless>
+        <Container text>
+          <Menu.Item>
+            <Image size="mini" src="/logo.png" />
+          </Menu.Item>
 
-  componentWillMount() {
-    if (this.userSession.isSignInPending()) {
-      this.userSession.handlePendingSignIn().then(userData => {
-        window.location = window.location.origin;
-      });
-    }
+          <Menu.Item header>Bookmarks</Menu.Item>
+
+          <Menu.Menu position="right">
+            {!userSession.isUserSignedIn() ? (
+              <Menu.Item as="button" onClick={this.handleSignIn}>
+                Sign In with Blockstack
+              </Menu.Item>
+            ) : (
+              <Menu.Item as="button" onClick={this.handleSignOut}>
+                Sign out
+              </Menu.Item>
+            )}
+          </Menu.Menu>
+        </Container>
+      </Menu>
+    );
   }
 }
