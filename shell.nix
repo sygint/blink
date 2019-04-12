@@ -1,0 +1,1 @@
+/etc/nixos/shell-configuration-node.nix
