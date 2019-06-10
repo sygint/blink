@@ -4,7 +4,7 @@ import { UserSession, signUserOut } from "blockstack";
 import Header from "../Header";
 import BookmarksList from "../BookmarksList";
 
-import bookmarks from "../../__mocks__/bookmarks.json";
+// import bookmarks from "../../__mocks__/bookmarks.json
 
 export default class App extends Component {
   constructor(props) {
@@ -16,7 +16,9 @@ export default class App extends Component {
   }
 
   state = {
-    bookmarks
+    bookmarks: [],
+    isLoaded: false,
+    errorMsg: null
   };
 
   componentDidMount() {
@@ -25,6 +27,17 @@ export default class App extends Component {
         window.location = window.location.origin;
       });
     }
+
+    // get bookmarks.json
+    this.userSession.getFile("bookmarks.json").then(data => {
+      try {
+        const bookmarks = JSON.parse(data);
+        this.setState({ bookmarks, isLoaded: true });
+      } catch (e) {
+        this.setState({ errorMsg: "Error parsing bookmarks from Blockstack" });
+        console.trace(e);
+      }
+    });
   }
 
   handleSignIn(e) {
@@ -38,7 +51,15 @@ export default class App extends Component {
   }
 
   renderBookmarkList() {
-    const { bookmarks } = this.state;
+    const { bookmarks, isLoaded, errorMsg } = this.state;
+
+    if (errorMsg) {
+      return errorMsg;
+    }
+
+    if (!isLoaded) {
+      return "loading...";
+    }
 
     const bookmarksList =
       !!bookmarks && Array.isArray(bookmarks) && bookmarks.length > 0 ? (
