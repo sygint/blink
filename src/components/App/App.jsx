@@ -30,13 +30,31 @@ export default class App extends Component {
     signUserOut(window.location.origin);
   }
 
+  renderBookmarkList() {
+    return (
+      <main className="main">
+        <div>bookmark list</div>
+      </main>
+    );
+  }
+
   render() {
     return (
-      <Header
-        isSignedIn={this.userSession.isUserSignedIn()}
-        handleSignIn={this.handleSignIn}
-        handleSignOut={this.handleSignOut}
-      />
+      <>
+        <Header
+          isSignedIn={this.userSession.isUserSignedIn()}
+          handleSignIn={this.handleSignIn}
+          handleSignOut={this.handleSignOut}
+        />
+
+        {!this.userSession.isUserSignedIn() ? (
+          <h1 style={{ textAlign: "center" }}>
+            Please Sign in with Blockstack
+          </h1>
+        ) : (
+          this.renderBookmarkList()
+        )}
+      </>
     );
   }
 }
