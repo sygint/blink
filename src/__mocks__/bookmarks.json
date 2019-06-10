@@ -1,0 +1,5 @@
+[
+  { "title": "Bookmark test 1", "url": "http://bookmarktest1.com", "id": 1 },
+  { "title": "Bookmark test 2", "url": "http://bookmarktest2.com", "id": 2 },
+  { "title": "Bookmark test 3", "url": "http://bookmarktest3.com", "id": 3 }
+]

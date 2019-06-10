@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { UserSession, signUserOut } from "blockstack";
 
 import Header from "../Header";
+import BookmarksList from "../BookmarksList";
+
+import bookmarks from "../../__mocks__/bookmarks.json";
 
 export default class App extends Component {
   constructor(props) {
@@ -11,6 +14,10 @@ export default class App extends Component {
 
     this.handleSignIn = this.handleSignIn.bind(this);
   }
+
+  state = {
+    bookmarks
+  };
 
   componentDidMount() {
     if (this.userSession.isSignInPending()) {
@@ -31,11 +38,16 @@ export default class App extends Component {
   }
 
   renderBookmarkList() {
-    return (
-      <main className="main">
-        <div>bookmark list</div>
-      </main>
-    );
+    const { bookmarks } = this.state;
+
+    const bookmarksList =
+      !!bookmarks && Array.isArray(bookmarks) && bookmarks.length > 0 ? (
+        <BookmarksList bookmarks={bookmarks} />
+      ) : (
+        "no bookmarks"
+      );
+
+    return <main className="main">{bookmarksList}</main>;
   }
 
   render() {
