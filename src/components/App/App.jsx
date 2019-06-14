@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import { UserSession } from "blockstack";
+import { AppConfig, UserSession } from "blockstack";
+import shortUUID from "short-uuid";
 
 import Header from "../Header";
 import BookmarksList from "../BookmarksList";
+import AddBookmarks from "../AddBookmarks";
 
-const userSession = new UserSession();
+const appConfig = new AppConfig(["store_write", "publish_data"]);
 
-// import bookmarks from "../../__mocks__/bookmarks.json
+const userSession = new UserSession({ appConfig });
 
 export default class App extends Component {
   constructor(props) {
@@ -58,6 +60,22 @@ export default class App extends Component {
     userSession.signUserOut(window.location.origin);
   }
 
+  handleAddBookmark = ({ title, url }) => {
+    const bookmark = {
+      title,
+      url,
+      id: shortUUID.uuid()
+    };
+    const { bookmarks } = this.state;
+    const newBookmarks = [...bookmarks, bookmark];
+
+    userSession
+      .putFile("bookmarks.json", JSON.stringify(newBookmarks))
+      .then(result => {
+        this.setState({ bookmarks: newBookmarks });
+      });
+  };
+
   renderBookmarkList() {
     const { bookmarks, isLoaded, errorMsg } = this.state;
 
@@ -76,7 +94,12 @@ export default class App extends Component {
         "no bookmarks"
       );
 
-    return <main className="main">{bookmarksList}</main>;
+    return (
+      <main className="main">
+        <AddBookmarks onSubmit={this.handleAddBookmark} />
+        {bookmarksList}
+      </main>
+    );
   }
 
   render() {

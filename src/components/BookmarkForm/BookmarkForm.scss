@@ -1,0 +1,26 @@
+$field-spacing: 1.25rem;
+$form-bottom-spacing: 1rem;
+
+form {
+  border-bottom: 3px solid #ccc;
+  margin-bottom: $form-bottom-spacing;
+
+  label {
+    line-height: 6rem;
+  }
+}
+
+label {
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: normal;
+  margin: 0 $field-spacing;
+
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+button[type="submit"] {
+  margin-left: $field-spacing;
+}
