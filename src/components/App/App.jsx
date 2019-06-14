@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import { UserSession, signUserOut } from "blockstack";
+import { UserSession } from "blockstack";
 
 import Header from "../Header";
 import BookmarksList from "../BookmarksList";
+
+const userSession = new UserSession();
 
 // import bookmarks from "../../__mocks__/bookmarks.json
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-
-    this.userSession = new UserSession();
-
     this.handleSignIn = this.handleSignIn.bind(this);
   }
 
@@ -21,15 +20,13 @@ export default class App extends Component {
     errorMsg: null
   };
 
-  componentDidMount() {
-    if (this.userSession.isSignInPending()) {
-      this.userSession.handlePendingSignIn().then(userData => {
-        window.location = window.location.origin;
-      });
+  async componentDidMount() {
+    if (!this.isUserSignedIn()) {
+      return false;
     }
 
     // get bookmarks.json
-    this.userSession.getFile("bookmarks.json").then(data => {
+    userSession.getFile("bookmarks.json").then(data => {
       try {
         const bookmarks = JSON.parse(data);
         this.setState({ bookmarks, isLoaded: true });
@@ -40,14 +37,25 @@ export default class App extends Component {
     });
   }
 
+  isUserSignedIn() {
+    if (userSession.isUserSignedIn()) {
+      return true;
+    } else if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn().then(function(userData) {
+        window.location = window.location.origin;
+      });
+      return false;
+    }
+  }
+
   handleSignIn(e) {
     e.preventDefault();
-    this.userSession.redirectToSignIn();
+    userSession.redirectToSignIn();
   }
 
   handleSignOut(e) {
     e.preventDefault();
-    signUserOut(window.location.origin);
+    userSession.signUserOut(window.location.origin);
   }
 
   renderBookmarkList() {
@@ -75,12 +83,12 @@ export default class App extends Component {
     return (
       <>
         <Header
-          isSignedIn={this.userSession.isUserSignedIn()}
+          isSignedIn={this.isUserSignedIn()}
           handleSignIn={this.handleSignIn}
           handleSignOut={this.handleSignOut}
         />
 
-        {!this.userSession.isUserSignedIn() ? (
+        {!this.isUserSignedIn() ? (
           <h1 style={{ textAlign: "center" }}>
             Please Sign in with Blockstack
           </h1>
