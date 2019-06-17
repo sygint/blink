@@ -31,9 +31,14 @@ export default class App extends Component {
     userSession.getFile("bookmarks.json").then(data => {
       try {
         const bookmarks = JSON.parse(data);
-        this.setState({ bookmarks, isLoaded: true });
+        this.setState({
+          bookmarks,
+          isLoaded: true
+        });
       } catch (e) {
-        this.setState({ errorMsg: "Error parsing bookmarks from Blockstack" });
+        this.setState({
+          errorMsg: "Error parsing bookmarks from Blockstack"
+        });
         console.trace(e);
       }
     });
@@ -72,7 +77,9 @@ export default class App extends Component {
     userSession
       .putFile("bookmarks.json", JSON.stringify(newBookmarks))
       .then(result => {
-        this.setState({ bookmarks: newBookmarks });
+        this.setState({
+          bookmarks: newBookmarks
+        });
       });
   };
 
