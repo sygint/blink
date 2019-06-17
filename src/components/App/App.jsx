@@ -23,6 +23,7 @@ export default class App extends Component {
 
   state = {
     isUserSignedIn: false,
+    bookmarks: undefined,
     isLoaded: false,
     errorMsg: null
   };
@@ -100,7 +101,7 @@ export default class App extends Component {
     }
 
     const bookmarksList =
-      !!bookmarks && Array.isArray(bookmarks) && bookmarks.length > 0 ? (
+      bookmarks && Array.isArray(bookmarks) && bookmarks.length > 0 ? (
         <BookmarksList bookmarks={bookmarks} />
       ) : (
         "no bookmarks"
