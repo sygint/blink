@@ -54,7 +54,7 @@ export default class App extends Component {
     if (userSession.isUserSignedIn()) {
       return true;
     } else if (userSession.isSignInPending()) {
-      userSession.handlePendingSignIn().then(function(userData) {
+      userSession.handlePendingSignIn().then(function() {
         window.location = window.location.origin;
       });
       return false;
