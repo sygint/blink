@@ -1,30 +1,24 @@
 import React from "react";
-import { Container, Menu } from "semantic-ui-react";
 
-function Header({ isSignedIn, handleSignIn, handleSignOut }) {
+export default function Header({ isSignedIn, handleSignIn, handleSignOut }) {
   return (
-    <Menu borderless>
-      <Container text>
-        {/* <Menu.Item>
-            <Image size="mini" src="/logo.png" />
-          </Menu.Item> */}
+    <nav className="navigation">
+      <div className="container">
+        <a className="navigation-title" href="https://milligram.io/">
+          <h1 className="title">Bookmarks</h1>
+        </a>
 
-        <Menu.Item header>Bookmarks</Menu.Item>
-
-        <Menu.Menu position="right">
-          {!isSignedIn ? (
-            <Menu.Item as="button" onClick={handleSignIn}>
-              Sign In with Blockstack
-            </Menu.Item>
-          ) : (
-            <Menu.Item as="button" onClick={handleSignOut}>
-              Sign out
-            </Menu.Item>
-          )}
-        </Menu.Menu>
-      </Container>
-    </Menu>
+        <ul className="navigation-list float-right">
+          <li className="navigation-item">
+            {!isSignedIn ? (
+              <button onClick={handleSignIn}>Sign in with Bockstack</button>
+            ) : (
+              <button onClick={handleSignOut}>Sign out</button>
+            )}
+          </li>
+        </ul>
+      </div>
+    </nav>
   );
 }
 
-export default Header;
