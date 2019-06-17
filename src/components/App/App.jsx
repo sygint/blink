@@ -61,13 +61,11 @@ export default class App extends Component {
     }
   }
 
-  handleSignIn(e) {
-    e.preventDefault();
+  handleSignIn() {
     userSession.redirectToSignIn();
   }
 
-  handleSignOut(e) {
-    e.preventDefault();
+  handleSignOut() {
     userSession.signUserOut(window.location.origin);
   }
 
