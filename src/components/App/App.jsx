@@ -13,11 +13,16 @@ const userSession = new UserSession({ appConfig });
 export default class App extends Component {
   constructor(props) {
     super(props);
+
+    const isUserSignedIn = this.isUserSignedIn();
+
+    this.state.isUserSignedIn = isUserSignedIn;
+
     this.handleSignIn = this.handleSignIn.bind(this);
   }
 
   state = {
-    bookmarks: [],
+    isUserSignedIn: false,
     isLoaded: false,
     errorMsg: null
   };
@@ -118,7 +123,7 @@ export default class App extends Component {
           handleSignOut={this.handleSignOut}
         />
 
-        {!this.isUserSignedIn() ? (
+        {!this.state.isUserSignedIn ? (
           <h1 style={{ textAlign: "center" }}>
             Please Sign in with Blockstack
           </h1>
