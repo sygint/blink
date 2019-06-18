@@ -17,8 +17,6 @@ export default class App extends Component {
     const isUserSignedIn = this.isUserSignedIn();
 
     this.state.isUserSignedIn = isUserSignedIn;
-
-    this.handleSignIn = this.handleSignIn.bind(this);
   }
 
   state = {
