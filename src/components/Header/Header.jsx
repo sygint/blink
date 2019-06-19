@@ -6,8 +6,8 @@ export default function Header({ isSignedIn, handleSignIn, handleSignOut }) {
   return (
     <div className="container">
       <nav className="navigation">
-        <a className="navigation-title-link" href="#">
-          <Logo class="logo header" />
+        <a className="navigation-title-link" href="/">
+          <Logo className="logo header" />
         </a>
 
         <ul className="navigation-list">
