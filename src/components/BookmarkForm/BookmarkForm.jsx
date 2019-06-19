@@ -21,24 +21,34 @@ export default function BookmarkForm({ onSubmit }) {
         onSubmit(values);
       }}
       render={({ errors, status, touched, isSubmitting }) => (
-        <Form>
-          <div>
-            <label htmlFor="title" className="form-label form-inline">
+        <Form className="form">
+          <div className="form-field">
+            <label htmlFor="title" className="form-label">
               Title:
             </label>
-            <Field type="text" name="title" />
-            {errors.title && touched.title && <div>{errors.title}</div>}
+            <Field className="form-input" type="text" name="title" />
+            {errors.title && touched.title && (
+              <div className="form-error">{errors.title}</div>
+            )}
           </div>
 
-          <label htmlFor="url" className="form-label form-inline">
-            Url:
-          </label>
-          <Field type="text" name="url" />
-          {errors.url && touched.url && <div>{errors.url}</div>}
+          <div className="form-field">
+            <label htmlFor="url" className="form-label">
+              Url:
+            </label>
+            <Field className="form-input" type="text" name="url" />
+            {errors.url && touched.url && (
+              <div className="form-error">{errors.url}</div>
+            )}
+          </div>
 
           {status && status.msg && <div>{status.msg}</div>}
 
-          <button type="submit" disabled={isSubmitting}>
+          <button
+            className="button form-submit"
+            type="submit"
+            disabled={isSubmitting}
+          >
             Submit
           </button>
         </Form>
