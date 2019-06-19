@@ -6,7 +6,7 @@ import Header from "../Header";
 import BookmarksList from "../BookmarksList";
 import AddBookmarks from "../AddBookmarks";
 
-import "./App.scss";
+import "../../assets/styles/index.scss";
 import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);

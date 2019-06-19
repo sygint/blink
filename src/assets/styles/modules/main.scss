@@ -1,0 +1,22 @@
+body {
+  height: 100vh;
+  margin: 0;
+
+  font-family: fira-sans-2, sans-serif;
+  font-size: 16px;
+  font-weight: 100;
+  font-style: normal;
+}
+
+#root {
+  height: 100%;
+}
+
+.container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 8px;
+}
