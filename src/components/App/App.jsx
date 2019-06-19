@@ -112,6 +112,12 @@ export default class App extends Component {
   }
 
   render() {
+    if (!this.isUserSignedIn()) {
+      return (
+        <button onClick={this.handleSignIn}>Sign in with Bockstack</button>
+      );
+    }
+
     return (
       <>
         <Header
