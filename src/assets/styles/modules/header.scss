@@ -1,0 +1,32 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation-title {
+  display: inline;
+}
+
+.navigation-title-link {
+  display: flex;
+  text-decoration: none;
+}
+
+.navigation-list {
+  list-style: none;
+}
+
+.navigation-item {
+  flex-grow: 2;
+}
+
+.logo.header {
+  width: auto;
+  height: 35px;
+}
+
+.button.header {
+  padding-left: 25px;
+  padding-right: 25px;
+}

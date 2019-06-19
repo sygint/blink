@@ -1,24 +1,29 @@
 import React from "react";
 
+import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
+
 export default function Header({ isSignedIn, handleSignIn, handleSignOut }) {
   return (
-    <nav className="navigation">
-      <div className="container">
-        <a className="navigation-title" href="https://milligram.io/">
-          <h1 className="title">Bookmarks</h1>
+    <div className="container">
+      <nav className="navigation">
+        <a className="navigation-title-link" href="#">
+          <Logo class="logo header" />
         </a>
 
-        <ul className="navigation-list float-right">
+        <ul className="navigation-list">
           <li className="navigation-item">
             {!isSignedIn ? (
-              <button onClick={handleSignIn}>Sign in with Bockstack</button>
+              <button className="button header" onClick={handleSignIn}>
+                Sign in with Bockstack
+              </button>
             ) : (
-              <button onClick={handleSignOut}>Sign out</button>
+              <button className="button header" onClick={handleSignOut}>
+                Sign out
+              </button>
             )}
           </li>
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }
-
