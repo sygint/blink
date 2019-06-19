@@ -120,7 +120,7 @@ export default class App extends Component {
     if (!isUserSignedIn) {
       return (
         <div className="container">
-          <Logo class="logo" />
+          <Logo className="logo large" />
           <button className="button" onClick={this.handleSignIn}>
             Sign in with Bockstack
           </button>
