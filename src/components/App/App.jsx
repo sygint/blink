@@ -6,6 +6,9 @@ import Header from "../Header";
 import BookmarksList from "../BookmarksList";
 import AddBookmarks from "../AddBookmarks";
 
+import "./App.scss";
+import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
+
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 
 const userSession = new UserSession({ appConfig });
@@ -112,16 +115,23 @@ export default class App extends Component {
   }
 
   render() {
-    if (!this.isUserSignedIn()) {
+    const isUserSignedIn = this.isUserSignedIn();
+
+    if (!isUserSignedIn) {
       return (
-        <button onClick={this.handleSignIn}>Sign in with Bockstack</button>
+        <div className="container">
+          <Logo class="logo" />
+          <button className="button" onClick={this.handleSignIn}>
+            Sign in with Bockstack
+          </button>
+        </div>
       );
     }
 
     return (
       <>
         <Header
-          isSignedIn={this.isUserSignedIn()}
+          isSignedIn={isUserSignedIn}
           handleSignIn={this.handleSignIn}
           handleSignOut={this.handleSignOut}
         />
