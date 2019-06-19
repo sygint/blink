@@ -4,7 +4,6 @@ import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
 
 export default function Header({ isSignedIn, handleSignIn, handleSignOut }) {
   return (
-    <div className="container">
       <nav className="navigation">
         <a className="navigation-title-link" href="/">
           <Logo className="logo header" />
@@ -24,6 +23,5 @@ export default function Header({ isSignedIn, handleSignIn, handleSignOut }) {
           </li>
         </ul>
       </nav>
-    </div>
   );
 }

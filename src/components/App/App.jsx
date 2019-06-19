@@ -116,34 +116,30 @@ export default class App extends Component {
 
   render() {
     const isUserSignedIn = this.isUserSignedIn();
+    let content;
 
     if (!isUserSignedIn) {
-      return (
-        <div className="container">
+      content = (
+        <>
           <Logo className="logo large" />
           <button className="button" onClick={this.handleSignIn}>
             Sign in with Bockstack
           </button>
-        </div>
+        </>
+      );
+    } else {
+      content = (
+        <>
+          <Header
+            isSignedIn={isUserSignedIn}
+            handleSignIn={this.handleSignIn}
+            handleSignOut={this.handleSignOut}
+          />
+          {this.renderBookmarkList()}
+        </>
       );
     }
 
-    return (
-      <>
-        <Header
-          isSignedIn={isUserSignedIn}
-          handleSignIn={this.handleSignIn}
-          handleSignOut={this.handleSignOut}
-        />
-
-        {!this.state.isUserSignedIn ? (
-          <h1 style={{ textAlign: "center" }}>
-            Please Sign in with Blockstack
-          </h1>
-        ) : (
-          this.renderBookmarkList()
-        )}
-      </>
-    );
+    return <div className="container">{content}</div>;
   }
 }
