@@ -1,3 +1,5 @@
+$header-height: 35px;
+
 .navigation {
   display: flex;
   justify-content: space-between;
@@ -21,9 +23,18 @@
   flex-grow: 2;
 }
 
-.logo.header {
+.logo.header,
+.logout.header {
   width: auto;
-  height: 35px;
+  height: $header-height;
+}
+
+.logo.header {
+  margin-right: 10px;
+}
+
+.logout.header {
+  fill: $brand-color;
 }
 
 .button.header {
