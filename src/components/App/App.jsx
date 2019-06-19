@@ -116,30 +116,34 @@ export default class App extends Component {
 
   render() {
     const isUserSignedIn = this.isUserSignedIn();
-    let content;
 
     if (!isUserSignedIn) {
-      content = (
+      return (
         <>
-          <Logo className="logo large" />
-          <button className="button" onClick={this.handleSignIn}>
-            Sign in with Bockstack
-          </button>
+          <div className="container full">
+            <div className="logo-container">
+              <Logo className="logo" />
+              <h1 className="logo-title">Bookmarks</h1>
+            </div>
+            <button className="button" onClick={this.handleSignIn}>
+              Sign in with Bockstack
+            </button>
+          </div>
         </>
       );
-    } else {
-      content = (
-        <>
+    }
+
+    return (
+      <>
+        <div className="container">
           <Header
             isSignedIn={isUserSignedIn}
             handleSignIn={this.handleSignIn}
             handleSignOut={this.handleSignOut}
           />
           {this.renderBookmarkList()}
-        </>
-      );
-    }
-
-    return <div className="container">{content}</div>;
+        </div>
+      </>
+    );
   }
 }

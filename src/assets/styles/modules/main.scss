@@ -14,12 +14,12 @@ body {
 
 .container {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   padding: 8px;
 }
 
 .container.full {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
 }
