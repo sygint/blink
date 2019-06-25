@@ -3,7 +3,7 @@ import React from "react";
 import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
 import { ReactComponent as LogOut } from "../../assets/images/logout.svg";
 
-export default function Header({ isSignedIn, handleSignIn, handleSignOut }) {
+export default function Header({ handleSignOut }) {
   return (
     <nav className="navigation">
       <a className="navigation-title-link" href="/">
