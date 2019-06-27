@@ -62,6 +62,14 @@ export default class App extends Component {
     }
   }
 
+  saveBookmarks(bookmarks) {
+    userSession
+      .putFile("bookmarks.json", JSON.stringify(bookmarks))
+      .then(result => {
+        this.setState({ bookmarks });
+      });
+  }
+
   handleSignIn() {
     userSession.redirectToSignIn();
   }
@@ -88,6 +96,16 @@ export default class App extends Component {
       });
   };
 
+  handleDeleteBookmark = idToDelete => {
+    const bookmarks = this.state.bookmarks.filter(
+      ({ id }) => id !== idToDelete
+    );
+
+    this.saveBookmarks(bookmarks);
+
+    this.setState({ bookmarks });
+  };
+
   renderBookmarkList() {
     const { bookmarks, isLoaded, errorMsg } = this.state;
 
@@ -101,7 +119,10 @@ export default class App extends Component {
 
     const bookmarksList =
       bookmarks && Array.isArray(bookmarks) && bookmarks.length > 0 ? (
-        <BookmarksList bookmarks={bookmarks} />
+        <BookmarksList
+          bookmarks={bookmarks}
+          onDeleteBookmark={this.handleDeleteBookmark}
+        />
       ) : (
         "no bookmarks"
       );
