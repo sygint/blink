@@ -19,7 +19,7 @@ export default function BookmarkForm({ onSubmit }) {
         onSubmit(values);
       }}
       render={({ errors, status, touched, isSubmitting }) => (
-        <Form className="form">
+        <Form className="form bookmark-form">
           <div className="form-field">
             <label htmlFor="title" className="form-label">
               Title:
