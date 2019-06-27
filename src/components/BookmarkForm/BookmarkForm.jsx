@@ -2,8 +2,6 @@ import React from "react";
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 
-import "./BookmarkForm.scss";
-
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("Required"),
   url: Yup.string().required("Required")
