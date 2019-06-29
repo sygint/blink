@@ -1,15 +1,11 @@
-.form {
+.bookmark-form {
   display: flex;
-  flex-direction: column;
-}
-
-.form-field {
-  display: flex;
-  flex-wrap: wrap;
+  border-bottom: 3px solid #ccc;
+  padding-bottom: 10px;
   margin-bottom: 10px;
 }
 
-.form-label {
+.bookmark-form_label {
   margin-right: 0;
   line-height: normal;
   width: 15%;
@@ -17,7 +13,13 @@
   font-weight: 600;
 }
 
-.form-input {
+.bookmark-form_field {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.bookmark-form_field {
   width: 85%;
   box-sizing: border-box;
 }
@@ -31,10 +33,4 @@
 
 .form-submit[type="submit"] {
   margin-left: 0;
-}
-
-.bookmark-form {
-  border-bottom: 3px solid #ccc;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
 }
