@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { AppConfig, UserSession } from "blockstack";
 import shortUUID from "short-uuid";
+import axios from "axios";
 
 import Header from "../Header";
 import BookmarksList from "../BookmarksList";
@@ -78,18 +79,26 @@ export default class App extends Component {
     userSession.signUserOut(window.location.origin);
   }
 
-  handleAddBookmark = ({ title, url }) => {
-    const bookmark = {
-      title,
-      url,
-      id: shortUUID.uuid()
-    };
+  handleAddBookmark = async ({ url }) => {
+    let bookmark = {};
+
+    try {
+      const res = await axios
+        .post(
+          "/extract", { url }
+        );
+      bookmark = res.data;
+    }
+    catch (e) {
+      console.trace('addBookmarkError:', e);
+    }
+
     const { bookmarks } = this.state;
     const newBookmarks = [...bookmarks, bookmark];
 
     userSession
       .putFile("bookmarks.json", JSON.stringify(newBookmarks))
-      .then(result => {
+      .then(() => {
         this.setState({
           bookmarks: newBookmarks
         });
