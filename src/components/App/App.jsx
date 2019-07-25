@@ -93,6 +93,8 @@ export default class App extends Component {
       console.trace('addBookmarkError:', e);
     }
 
+    bookmark.id = shortUUID.generate();
+
     const { bookmarks } = this.state;
     const newBookmarks = [...bookmarks, bookmark];
 
