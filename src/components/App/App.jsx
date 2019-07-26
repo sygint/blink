@@ -96,7 +96,7 @@ export default class App extends Component {
     bookmark.id = shortUUID.generate();
 
     const { bookmarks } = this.state;
-    const newBookmarks = [...bookmarks, bookmark];
+    const newBookmarks = [bookmark, ...bookmarks];
 
     userSession
       .putFile("bookmarks.json", JSON.stringify(newBookmarks))
