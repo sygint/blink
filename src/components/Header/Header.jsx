@@ -8,7 +8,7 @@ export default function Header({ handleSignOut }) {
     <nav className="navigation">
       <a className="navigation-title-link" href="/">
         <Logo className="logo header" />
-        <h1 className="logo-title">Bookmarks</h1>
+        <h1 className="logo-title">Blink</h1>
       </a>
 
       <ul className="navigation-list">

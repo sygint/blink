@@ -155,7 +155,7 @@ export default class App extends Component {
           <div className="container full">
             <div className="logo-container">
               <Logo className="logo" />
-              <h1 className="logo-title">Bookmarks</h1>
+              <h1 className="logo-title">Blink</h1>
             </div>
             <button className="button" onClick={this.handleSignIn}>
               Sign in with Bockstack
