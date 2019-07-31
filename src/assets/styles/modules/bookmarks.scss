@@ -23,9 +23,25 @@
 
     &_title {
         display: block;
+        margin-top: 16px;
         font-weight: 600;
         text-decoration: none;
         color: #000;
+    }
+
+    &_extras {
+        margin-top: 16px;
+    }
+
+    &_domain {
+        text-decoration: none;
+        color: #000;
+        font-weight: 100;
+    }
+
+    &_excerpt {
+        max-height: 3em;
+        overflow: hidden;
     }
 
     @include for-tablet-portrait-up {
