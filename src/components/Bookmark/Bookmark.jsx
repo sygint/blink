@@ -6,9 +6,7 @@ export default function Bookmark({ onDeleteBookmark, bookmark }) {
 
   return (
     <>
-      <a href={url} className="bookmark_img-container">
-        <img src={lead_image_url} className="bookmark_img" alt={title} />
-      </a>
+      <a href={url} className="bookmark_thumbnail" style={{backgroundImage: `url(${lead_image_url}`}} />
       <a href={url} className="bookmark_title">
         {title}
       </a>
