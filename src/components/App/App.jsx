@@ -80,31 +80,29 @@ export default class App extends Component {
   }
 
   handleAddBookmark = async ({ url }) => {
-    let bookmark = {};
-
     try {
       const res = await axios
         .post(
           "/extract", { url }
         );
-      bookmark = res.data;
+      const bookmark = res.data;
+
+      bookmark.id = shortUUID.generate();
+  
+      const { bookmarks } = this.state;
+      const newBookmarks = [bookmark, ...bookmarks];
+  
+      userSession
+        .putFile("bookmarks.json", JSON.stringify(newBookmarks))
+        .then(() => {
+          this.setState({
+            bookmarks: newBookmarks
+          });
+        });
     }
     catch (e) {
       console.trace('addBookmarkError:', e);
     }
-
-    bookmark.id = shortUUID.generate();
-
-    const { bookmarks } = this.state;
-    const newBookmarks = [bookmark, ...bookmarks];
-
-    userSession
-      .putFile("bookmarks.json", JSON.stringify(newBookmarks))
-      .then(() => {
-        this.setState({
-          bookmarks: newBookmarks
-        });
-      });
   };
 
   handleDeleteBookmark = idToDelete => {
