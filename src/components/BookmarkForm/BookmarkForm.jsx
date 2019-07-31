@@ -21,7 +21,6 @@ export default function BookmarkForm({ onSubmit }) {
             Url:
           </label>
           <Field
-            className="form-input"
             type="text"
             name="url"
             className="bookmark-form_field"
