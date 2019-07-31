@@ -1,4 +1,5 @@
 const express = require("express");
+const asyncHandler = require('express-async-handler');
 const bodyParser = require("body-parser");
 const Mercury = require("@postlight/mercury-parser");
 
@@ -7,11 +8,16 @@ const port = 4000;
 
 app.use(bodyParser.json());
 
-app.post("/extract", (req, res) => {
-  Mercury.parse(req.body.url).then(result => {
-    res.send(result);
-  });
-});
+app.post("/extract", asyncHandler(async (req, res) => {
+  try {
+    const bookmarkData = await Mercury.parse(req.body.url);
+    
+    res.send(bookmarkData);
+  }
+  catch(e) {
+    console.trace(e);
+  }
+}));
 
 app.listen(port, err => {
   if (err) throw err;
