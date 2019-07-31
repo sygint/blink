@@ -1,6 +1,6 @@
-import express from "express";
-import bodyParser from "body-parser";
-import Mercury from '@postlight/mercury-parser';
+const express = require("express");
+const bodyParser = require("body-parser");
+const Mercury = require("@postlight/mercury-parser");
 
 const app = express();
 const port = 4000;
