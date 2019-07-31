@@ -1,17 +1,17 @@
-.logo-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.logo-title {
-  margin: 0;
-  color: $brand-color;
-}
-
 .logo {
   width: 50%;
   height: auto;
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  &-title {
+    margin: 0;
+    color: $brand-color;
+  }
 }

@@ -1,39 +1,44 @@
 $header-height: 35px;
+$icon-height: $header-height - 9px;
 
 .navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.navigation-title {
-  display: inline;
-}
+  &-title {
+    display: inline;
 
-.navigation-title-link {
-  display: flex;
-  text-decoration: none;
-}
+    &-link {
+      display: flex;
+      text-decoration: none;
+    }
+  }
 
-.navigation-list {
-  list-style: none;
-}
+  &-list {
+    display: flex;
+    min-width: 60px;
+    list-style: none;
+    padding-left: 0;
+  }
 
-.navigation-item {
-  flex-grow: 2;
+  &-item {
+    height: $icon-height;
+  }
 }
 
 .header-icon {
   width: auto;
-  height: $header-height;
   cursor: pointer;
-}
 
-.header-icon:not(.logo) {
-  stroke: $brand-color;
-  padding: 0 2px;
-}
+  &:not(.logo) {
+    stroke: $brand-color;
+    padding: 0 2px;
+    height: $icon-height;
+  }
 
-.logo.header-icon {
-  margin-right: 10px;
+  &.logo {
+    height: $header-height;
+    margin-right: 10px;
+  }
 }

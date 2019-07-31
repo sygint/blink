@@ -3,25 +3,22 @@
   border-bottom: 3px solid #ccc;
   padding-bottom: 10px;
   margin-bottom: 10px;
-}
 
-.bookmark-form_label {
-  margin-right: 0;
-  line-height: normal;
-  width: 15%;
-  font-size: 1rem;
-  font-weight: 600;
-}
+  &_label {
+    margin-right: 0;
+    line-height: normal;
+    width: 15%;
+    font-size: 1rem;
+    font-weight: 600;
+  }
 
-.bookmark-form_field {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-}
-
-.bookmark-form_field {
-  width: 85%;
-  box-sizing: border-box;
+  &_field {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    width: 85%;
+    margin-bottom: 10px;
+  }
 }
 
 .form-error {
