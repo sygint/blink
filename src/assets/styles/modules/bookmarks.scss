@@ -3,8 +3,10 @@
         list-style: none;
         padding-left: 0;
 
-        &_item {
-            margin: 0 auto;
+        &_item:not(:last-child) {
+            margin: 0 auto 32px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 16px;
         }
     }
 
