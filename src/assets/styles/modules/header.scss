@@ -24,6 +24,12 @@ $icon-height: $header-height - 9px;
 
   &-item {
     height: $icon-height;
+
+    &:last-child {
+      .header-icon {
+        stroke: $secondary-color;
+      }
+    }
   }
 }
 
