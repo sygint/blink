@@ -47,13 +47,19 @@
         overflow: hidden;
     }
 
-    @include for-tablet-portrait-up {
+    @include for-phone-landscape-up {
         &-list {
-            display: grid; 
-            grid-template-columns: 1fr 1fr 1fr; 
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
             grid-template-rows: 1fr; 
             grid-column-gap: 20px;
             grid-row-gap: 20px; 
+        }
+    }
+
+    @include for-tablet-portrait-up {
+        &-list {
+            grid-template-columns: 1fr 1fr 1fr; 
         }
     }
 }
