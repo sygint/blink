@@ -30,7 +30,7 @@
     }
 
     &_extras {
-        margin-top: 16px;
+        margin: 8px 0;
     }
 
     &_domain {
@@ -41,6 +41,7 @@
 
     &_excerpt {
         max-height: 3em;
+        margin-top: 0;
         overflow: hidden;
     }
 
