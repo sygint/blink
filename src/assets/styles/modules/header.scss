@@ -23,21 +23,17 @@ $header-height: 35px;
   flex-grow: 2;
 }
 
-.logo.header,
-.logout.header {
+.header-icon {
   width: auto;
   height: $header-height;
+  cursor: pointer;
 }
 
-.logo.header {
+.header-icon:not(.logo) {
+  stroke: $brand-color;
+  padding: 0 2px;
+}
+
+.logo.header-icon {
   margin-right: 10px;
-}
-
-.logout.header {
-  fill: $brand-color;
-}
-
-.button.header {
-  padding-left: 25px;
-  padding-right: 25px;
 }
