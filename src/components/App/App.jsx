@@ -91,14 +91,8 @@ export default class App extends Component {
   
       const { bookmarks } = this.state;
       const newBookmarks = [bookmark, ...bookmarks];
-  
-      userSession
-        .putFile("bookmarks.json", JSON.stringify(newBookmarks))
-        .then(() => {
-          this.setState({
-            bookmarks: newBookmarks
-          });
-        });
+
+      this.saveBookmarks(newBookmarks);
     }
     catch (e) {
       console.trace('addBookmarkError:', e);
