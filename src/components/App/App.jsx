@@ -82,21 +82,19 @@ export default class App extends Component {
 
   handleAddBookmark = async ({ url }) => {
     try {
-      const res = await axios
-        .post(
-          "/extract", { url }
-        );
+      const res = await axios.post("/extract", {
+        url
+      });
       const bookmark = res.data;
 
       bookmark.id = shortUUID.generate();
-  
+
       const { bookmarks } = this.state;
       const newBookmarks = [bookmark, ...bookmarks];
 
       this.saveBookmarks(newBookmarks);
-    }
-    catch (e) {
-      console.trace('addBookmarkError:', e);
+    } catch (e) {
+      console.trace("addBookmarkError:", e);
     }
   };
 
