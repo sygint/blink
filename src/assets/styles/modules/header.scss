@@ -26,6 +26,10 @@ $icon-height: $header-height - 9px;
     height: $icon-height;
 
     &:last-child {
+      padding-left: 10px;
+      border-left: 1px solid $third-color;
+      margin-left: 5px;
+
       .header-icon {
         stroke: $secondary-color;
       }

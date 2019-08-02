@@ -27,6 +27,7 @@ export default class App extends Component {
     isUserSignedIn: false,
     bookmarks: undefined,
     isLoaded: false,
+    isShowingAddbookmark: false,
     errorMsg: null
   };
 
@@ -109,8 +110,16 @@ export default class App extends Component {
     this.setState({ bookmarks });
   };
 
+  handleShowAddBookmark = () => {
+    this.setState({ isShowingAddbookmark: true });
+  };
+
+  handleHideAddBookmark = () => {
+    this.setState({ isShowingAddbookmark: false });
+  };
+
   renderBookmarkList() {
-    const { bookmarks, isLoaded, errorMsg } = this.state;
+    const { bookmarks, isLoaded, isShowingAddbookmark, errorMsg } = this.state;
 
     if (errorMsg) {
       return errorMsg;
@@ -132,7 +141,12 @@ export default class App extends Component {
 
     return (
       <main className="main">
-        <AddBookmarks onSubmit={this.handleAddBookmark} />
+        {isShowingAddbookmark && (
+          <AddBookmarks
+            onSubmit={this.handleAddBookmark}
+            handleHideAddBookmarks={this.handleHideAddBookmark}
+          />
+        )}
         {bookmarksList}
       </main>
     );
@@ -164,6 +178,7 @@ export default class App extends Component {
             isSignedIn={isUserSignedIn}
             handleSignIn={this.handleSignIn}
             handleSignOut={this.handleSignOut}
+            handleShowAddBookmark={this.handleShowAddBookmark}
           />
           {this.renderBookmarkList()}
         </div>

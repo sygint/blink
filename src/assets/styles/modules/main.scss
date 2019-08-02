@@ -14,6 +14,7 @@ body {
 }
 
 .container {
+  position: relative;
   box-sizing: border-box;
   padding: 8px;
 
@@ -23,4 +24,10 @@ body {
     justify-content: space-between;
     height: 100%;
   }
+}
+
+main {
+  border-top: 1px solid $third-color;
+  padding-top: 10px;
+  margin-top: 10px;
 }
