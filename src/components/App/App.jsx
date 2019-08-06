@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { AppConfig, UserSession } from "blockstack";
-import shortUUID from "short-uuid";
+import uuid from "uuid/v4";
 import axios from "axios";
 
 import Header from "../Header";
@@ -86,8 +86,10 @@ export default class App extends Component {
         url
       });
       const bookmark = res.data;
+      const id = uuid().replace(/-/g, "");
 
-      bookmark.id = shortUUID.generate();
+      bookmark.id = id;
+      
 
       const { bookmarks } = this.state;
       const newBookmarks = [bookmark, ...bookmarks];
