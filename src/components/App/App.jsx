@@ -25,7 +25,8 @@ export default class App extends Component {
 
   state = {
     isUserSignedIn: false,
-    bookmarks: undefined,
+    bookmarkIndexes: [],
+    bookmarks: [],
     isLoaded: false,
     isShowingAddbookmark: false,
     errorMsg: null
@@ -37,20 +38,20 @@ export default class App extends Component {
     }
 
     // get bookmarks.json
-    userSession.getFile("bookmarks.json").then(data => {
-      try {
-        const bookmarks = JSON.parse(data);
-        this.setState({
-          bookmarks,
-          isLoaded: true
-        });
-      } catch (e) {
-        this.setState({
-          errorMsg: "Error parsing bookmarks from Blockstack"
-        });
-        console.trace(e);
-      }
-    });
+    try {
+      const { bookmarkIndexes, bookmarks } = await this.getBookmarks();
+
+      this.setState({
+        bookmarkIndexes,
+        bookmarks,
+        isLoaded: true
+      });
+    } catch (e) {
+      this.setState({
+        errorMsg: "Error parsing bookmarks from Blockstack"
+      });
+      console.trace(e);
+    }
   }
 
   isUserSignedIn() {
@@ -64,12 +65,100 @@ export default class App extends Component {
     }
   }
 
-  saveBookmarks(bookmarks) {
-    userSession
-      .putFile("bookmarks.json", JSON.stringify(bookmarks))
-      .then(result => {
-        this.setState({ bookmarks });
-      });
+  async getBookmarks() {
+    const bookmarkIndexesJson = await userSession.getFile(
+      "blink/bookmarks.json"
+    );
+
+    if (!bookmarkIndexesJson || bookmarkIndexesJson.length === 0) {
+      throw Error("No bookmarks");
+    }
+
+    const bookmarkIndexes = JSON.parse(bookmarkIndexesJson);
+    console.log("retrieved bookmark indexes:", bookmarkIndexes);
+
+    const bookmarkPromises = bookmarkIndexes.map(bookmarkIndex =>
+      userSession.getFile(`blink/bookmarks/${bookmarkIndex}.json`)
+    );
+    console.log("retrieved bookmark promises:", bookmarkPromises);
+
+    const bookmarksJson = await Promise.all(bookmarkPromises);
+    const bookmarks = JSON.parse(bookmarksJson);
+    console.log("retrieved bookmarks:", bookmarks);
+
+    return { bookmarkIndexes, bookmarks };
+  }
+
+  async saveBookmarkIndexes(indexes) {
+    await userSession.putFile("blink/bookmarks.json", JSON.stringify(indexes));
+  }
+
+  async addBookmark(bookmarkData) {
+    const id = uuid().replace(/-/g, "");
+
+    const {
+      author,
+      content,
+      date_published,
+      dek,
+      direction,
+      domain,
+      excerpt,
+      lead_image_url: thumbnail,
+      title,
+      url,
+      word_count: wordCount
+    } = bookmarkData;
+
+    const bookmark = {
+      url,
+      excerpt,
+      title,
+      thumbnail,
+      wordCount,
+      id
+    };
+
+    const article = {
+      author,
+      content,
+      date_published,
+      dek,
+      direction,
+      domain,
+      id
+    };
+
+    const bookmarkIndexes = [id, ...this.state.bookmarkIndexes];
+    const bookmarks = [bookmark, ...this.state.bookmarks];
+
+    await this.saveBookmarkIndexes(bookmarkIndexes);
+    await userSession.putFile(
+      `blink/bookmarks/${bookmark.id}.json`,
+      JSON.stringify(bookmarks)
+    );
+    await userSession.putFile(
+      `blink/articles/${bookmark.id}.json`,
+      JSON.stringify(article)
+    );
+
+    this.setState({ bookmarkIndexes, bookmarks });
+  }
+
+  async deleteBookmark(id) {
+    const bookmarkIndexes = this.state.bookmarkIndexes.filter(
+      ({ id: currentId }) => currentId !== id
+    );
+
+    const bookmarks = this.state.bookmarks.filter(
+      ({ id: currentId }) => currentId !== id
+    );
+
+    await this.saveBookmarkIndexes(bookmarkIndexes);
+    await userSession.deleteFile(`blink/bookmarks/${id}.json`);
+    await userSession.deleteFile(`blink/articles/${id}.json`);
+
+    this.setState({ bookmarkIndexes, bookmarks });
   }
 
   handleSignIn() {
@@ -86,28 +175,20 @@ export default class App extends Component {
         url
       });
       const bookmark = res.data;
-      const id = uuid().replace(/-/g, "");
 
-      bookmark.id = id;
-      
-
-      const { bookmarks } = this.state;
-      const newBookmarks = [bookmark, ...bookmarks];
-
-      this.saveBookmarks(newBookmarks);
+      this.addBookmark(bookmark);
+      console.log("bookmark added:", bookmark);
     } catch (e) {
       console.trace("addBookmarkError:", e);
     }
   };
 
-  handleDeleteBookmark = idToDelete => {
-    const bookmarks = this.state.bookmarks.filter(
-      ({ id }) => id !== idToDelete
+  handleDeleteBookmark = id => {
+    this.deleteBookmark(id);
+    console.log(
+      "bookmark deleted:",
+      this.state.bookmarks.find(({ id: currentId }) => currentId === id)
     );
-
-    this.saveBookmarks(bookmarks);
-
-    this.setState({ bookmarks });
   };
 
   handleShowAddBookmark = () => {

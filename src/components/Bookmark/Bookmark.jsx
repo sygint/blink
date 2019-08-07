@@ -1,13 +1,16 @@
 import React from "react";
 
 export default function Bookmark({ onDeleteBookmark, bookmark }) {
-  const { title, url, id, lead_image_url, excerpt, domain } = bookmark;
+  const { title, url, id, thumbnail, excerpt, domain } = bookmark;
   const scheme = url.substr(0, url.indexOf("://") + 3);
 
   return (
     <>
       <a href={url} className="bookmark_title">
-        <div className="bookmark_thumbnail" style={{backgroundImage: `url(${lead_image_url}`}} />
+        <div
+          className="bookmark_thumbnail"
+          style={{ backgroundImage: `url(${thumbnail}` }}
+        />
         {title}
       </a>
       <div className="bookmark_extras">
