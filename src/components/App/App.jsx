@@ -80,12 +80,16 @@ export default class App extends Component {
       "blink/bookmarks.json"
     );
 
-    if (!bookmarkIndexesJson || bookmarkIndexesJson.length === 0) {
+    if (!bookmarkIndexesJson) {
       throw Error("No bookmarks");
     }
 
     const bookmarkIndexes = JSON.parse(bookmarkIndexesJson);
     console.log("retrieved bookmark indexes:", bookmarkIndexes);
+
+    if (bookmarkIndexes.length === 0) {
+      throw Error("No bookmarks");
+    }
 
     const bookmarkPromises = bookmarkIndexes.map(bookmarkIndex =>
       userSession.getFile(`blink/bookmarks/${bookmarkIndex}.json`)
