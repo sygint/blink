@@ -197,12 +197,12 @@ export default class App extends Component {
     }
   };
 
-  handleDeleteBookmark = id => {
-    this.deleteBookmark(id);
-    console.log(
-      "bookmark deleted:",
-      this.state.bookmarks.find(({ id: currentId }) => currentId === id)
+  handleDeleteBookmark = async id => {
+    const deletedBookmark = this.state.bookmarks.find(
+      ({ id: currentId }) => currentId === id
     );
+    await this.deleteBookmark(id);
+    console.log("bookmark deleted:", deletedBookmark);
   };
 
   handleShowAddBookmark = () => {
