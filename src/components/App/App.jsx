@@ -47,10 +47,20 @@ export default class App extends Component {
         isLoaded: true
       });
     } catch (e) {
-      this.setState({
-        errorMsg: "Error parsing bookmarks from Blockstack"
-      });
-      console.trace(e);
+      switch (e.message) {
+        case "No bookmarks":
+          this.setState({
+            isLoaded: true
+          });
+          break;
+
+        default:
+          console.log(e.message);
+          console.trace(e);
+          this.setState({
+            errorMsg: "Error parsing bookmarks from Blockstack"
+          });
+      }
     }
   }
 
