@@ -161,7 +161,7 @@ export default class App extends Component {
 
   async deleteBookmark(id) {
     const bookmarkIndexes = this.state.bookmarkIndexes.filter(
-      ({ id: currentId }) => currentId !== id
+      currentId => currentId !== id
     );
 
     const bookmarks = this.state.bookmarks.filter(
