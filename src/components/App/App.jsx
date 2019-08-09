@@ -104,6 +104,7 @@ export default class App extends Component {
   }
 
   async saveBookmarkIndexes(indexes) {
+    console.log("saveBookmarkIndexes:", indexes);
     await userSession.putFile("blink/bookmarks.json", JSON.stringify(indexes));
   }
 
@@ -172,6 +173,9 @@ export default class App extends Component {
     await userSession.deleteFile(`blink/bookmarks/${id}.json`);
     await userSession.deleteFile(`blink/articles/${id}.json`);
 
+    console.log("deleted bookmarkIndex:", id);
+    console.log("remaining bookmarks:", bookmarks);
+
     this.setState({ bookmarkIndexes, bookmarks });
   }
 
@@ -190,7 +194,7 @@ export default class App extends Component {
       });
       const bookmark = res.data;
 
-      this.addBookmark(bookmark);
+      await this.addBookmark(bookmark);
       console.log("bookmark added:", bookmark);
     } catch (e) {
       console.trace("addBookmarkError:", e);
