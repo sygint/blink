@@ -56,7 +56,6 @@ export default class App extends Component {
           break;
 
         default:
-          console.log(e.message);
           console.trace(e);
           this.setState({
             errorMsg: "Error parsing bookmarks from Blockstack"
