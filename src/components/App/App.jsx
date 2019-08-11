@@ -199,6 +199,7 @@ export default class App extends Component {
     }
 
     try {
+      this.setState({ errorMsg: null });
       const res = await axios.post("/extract", {
         url
       });
@@ -208,6 +209,7 @@ export default class App extends Component {
       console.log("bookmark added:", bookmark);
     } catch (e) {
       console.trace("addBookmarkError:", e);
+      this.setState({ errorMsg: "Unknown error" });
     }
   };
 
@@ -230,10 +232,6 @@ export default class App extends Component {
   renderBookmarkList() {
     const { bookmarks, isLoaded, isShowingAddbookmark, errorMsg } = this.state;
 
-    if (errorMsg) {
-      return errorMsg;
-    }
-
     if (!isLoaded) {
       return "loading...";
     }
@@ -249,15 +247,18 @@ export default class App extends Component {
       );
 
     return (
-      <main className="main">
-        {isShowingAddbookmark && (
-          <AddBookmarks
-            onSubmit={this.handleAddBookmark}
-            handleHideAddBookmarks={this.handleHideAddBookmark}
-          />
-        )}
-        {bookmarksList}
-      </main>
+      <>
+        {errorMsg && errorMsg}
+        <main className="main">
+          {isShowingAddbookmark && (
+            <AddBookmarks
+              onSubmit={this.handleAddBookmark}
+              handleHideAddBookmarks={this.handleHideAddBookmark}
+            />
+          )}
+          {bookmarksList}
+        </main>
+      </>
     );
   }
 
