@@ -22,6 +22,7 @@
     "short-uuid": "^3.1.1"
   },
   "devDependencies": {
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
     "husky": "^3.0.3",
@@ -52,5 +53,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
