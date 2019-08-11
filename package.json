@@ -22,17 +22,35 @@
     "short-uuid": "^3.1.1"
   },
   "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "husky": "^3.0.3",
+    "lint-staged": "^9.2.1",
     "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
     "react-app-rewired": "^2.1.3"
   },
   "proxy": "http://localhost:4000",
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "plugin:prettier/recommended"
+    ]
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }
