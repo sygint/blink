@@ -4,6 +4,7 @@ import shortUUID from "short-uuid";
 import axios from "axios";
 
 import Header from "../Header";
+import Footer from "../Footer";
 import BookmarksList from "../BookmarksList";
 import AddBookmarks from "../AddBookmarks";
 
@@ -272,10 +273,11 @@ export default class App extends Component {
             <div className="logo-container">
               <Logo className="logo" />
               <h1 className="logo-title">Blink</h1>
+              <button className="button" onClick={this.handleSignIn}>
+                Sign in with Bockstack
+              </button>
             </div>
-            <button className="button" onClick={this.handleSignIn}>
-              Sign in with Bockstack
-            </button>
+            <Footer />
           </div>
         </>
       );
@@ -283,7 +285,7 @@ export default class App extends Component {
 
     return (
       <>
-        <div className="container">
+        <div className="container full">
           <Header
             isSignedIn={isUserSignedIn}
             handleSignIn={this.handleSignIn}
@@ -291,6 +293,7 @@ export default class App extends Component {
             handleShowAddBookmark={this.handleShowAddBookmark}
           />
           {this.renderBookmarkList()}
+          <Footer />
         </div>
         {/* <div>
           Icons made by{" "}
