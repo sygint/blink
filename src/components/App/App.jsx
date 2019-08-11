@@ -187,7 +187,17 @@ export default class App extends Component {
     userSession.signUserOut(window.location.origin);
   }
 
-  handleAddBookmark = async ({ url }) => {
+  handleAddBookmark = async formData => {
+    const url = formData.get("url").replace(" ", "");
+    let res;
+
+    console.log("url:", url);
+
+    if (url === "") {
+      console.log("url is empty");
+      return;
+    }
+
     try {
       const res = await axios.post("/extract", {
         url
