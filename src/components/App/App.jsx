@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { AppConfig, UserSession } from "blockstack";
-import uuid from "uuid/v4";
+import shortUUID from "short-uuid";
 import axios from "axios";
 
 import Header from "../Header";
@@ -109,7 +109,7 @@ export default class App extends Component {
   }
 
   async addBookmark(bookmarkData) {
-    const id = uuid().replace(/-/g, "");
+    const id = shortUUID.generate();
 
     const {
       author,
