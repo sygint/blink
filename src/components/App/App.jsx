@@ -213,6 +213,7 @@ export default class App extends Component {
       <>
         {errorMsg && errorMsg}
         <main className="main">
+          <h1>All bookmarks</h1>
           {isShowingAddbookmark && (
             <AddBookmarks
               onSubmit={this.handleAddBookmark}
