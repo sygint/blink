@@ -3,6 +3,7 @@ import { AppConfig, UserSession } from "blockstack";
 import shortUUID from "short-uuid";
 import axios from "axios";
 
+import bookmarksHelper from "./bookmarkHelpers";
 import Header from "../Header";
 import Footer from "../Footer";
 import BookmarksList from "../BookmarksList";
@@ -12,8 +13,9 @@ import "../../assets/styles/index.scss";
 import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
-
 const userSession = new UserSession({ appConfig });
+
+const bookmarkApi = bookmarksHelper(userSession);
 
 export default class App extends Component {
   constructor(props) {
@@ -40,10 +42,10 @@ export default class App extends Component {
 
     // get bookmarks.json
     try {
-      const { bookmarkIndexes, bookmarks } = await this.getBookmarks();
+      const { bookmarkIds, bookmarks } = await bookmarkApi.getBookmarks();
 
       this.setState({
-        bookmarkIndexes,
+        bookmarkIndexes: bookmarkIds,
         bookmarks,
         isLoaded: true
       });
@@ -73,34 +75,6 @@ export default class App extends Component {
       });
       return false;
     }
-  }
-
-  async getBookmarks() {
-    const bookmarkIndexesJson = await userSession.getFile(
-      "blink/bookmarks.json"
-    );
-
-    if (!bookmarkIndexesJson) {
-      throw Error("No bookmarks");
-    }
-
-    const bookmarkIndexes = JSON.parse(bookmarkIndexesJson);
-    console.log("retrieved bookmark indexes:", bookmarkIndexes);
-
-    if (bookmarkIndexes.length === 0) {
-      throw Error("No bookmarks");
-    }
-
-    const bookmarkPromises = bookmarkIndexes.map(bookmarkIndex =>
-      userSession.getFile(`blink/bookmarks/${bookmarkIndex}.json`)
-    );
-    console.log("retrieved bookmark promises:", bookmarkPromises);
-
-    const bookmarksJson = await Promise.all(bookmarkPromises);
-    const bookmarks = JSON.parse(bookmarksJson);
-    console.log("retrieved bookmarks:", bookmarks);
-
-    return { bookmarkIndexes, bookmarks };
   }
 
   async saveBookmarkIndexes(indexes) {
