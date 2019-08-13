@@ -28,7 +28,7 @@ export default class App extends Component {
 
   state = {
     isUserSignedIn: false,
-    bookmarkIndexes: [],
+    bookmarkIds: [],
     bookmarks: [],
     isLoaded: false,
     isShowingAddbookmark: false,
@@ -45,7 +45,7 @@ export default class App extends Component {
       const { bookmarkIds, bookmarks } = await bookmarkApi.getBookmarks();
 
       this.setState({
-        bookmarkIndexes: bookmarkIds,
+        bookmarkIds,
         bookmarks,
         isLoaded: true
       });
@@ -77,9 +77,9 @@ export default class App extends Component {
     }
   }
 
-  async saveBookmarkIndexes(indexes) {
-    console.log("saveBookmarkIndexes:", indexes);
-    await userSession.putFile("blink/bookmarks.json", JSON.stringify(indexes));
+  async saveBookmarkIds(ids) {
+    console.log("saveBookmarkIds:", ids);
+    await userSession.putFile("blink/bookmarkIds.json", JSON.stringify(ids));
   }
 
   async addBookmark(bookmarkData) {
@@ -118,10 +118,10 @@ export default class App extends Component {
       id
     };
 
-    const bookmarkIndexes = [id, ...this.state.bookmarkIndexes];
+    const bookmarkIds = [id, ...this.state.bookmarkIds];
     const bookmarks = [bookmark, ...this.state.bookmarks];
 
-    await this.saveBookmarkIndexes(bookmarkIndexes);
+    await this.saveBookmarkIds(bookmarkIds);
     await userSession.putFile(
       `blink/bookmarks/${bookmark.id}.json`,
       JSON.stringify(bookmarks)
@@ -131,11 +131,11 @@ export default class App extends Component {
       JSON.stringify(article)
     );
 
-    this.setState({ bookmarkIndexes, bookmarks });
+    this.setState({ bookmarkIds, bookmarks });
   }
 
   async deleteBookmark(id) {
-    const bookmarkIndexes = this.state.bookmarkIndexes.filter(
+    const bookmarkIds = this.state.bookmarkIds.filter(
       currentId => currentId !== id
     );
 
@@ -143,14 +143,14 @@ export default class App extends Component {
       ({ id: currentId }) => currentId !== id
     );
 
-    await this.saveBookmarkIndexes(bookmarkIndexes);
+    await this.saveBookmarkIds(bookmarkIds);
     await userSession.deleteFile(`blink/bookmarks/${id}.json`);
     await userSession.deleteFile(`blink/articles/${id}.json`);
 
     console.log("deleted bookmarkIndex:", id);
     console.log("remaining bookmarks:", bookmarks);
 
-    this.setState({ bookmarkIndexes, bookmarks });
+    this.setState({ bookmarkIds, bookmarks });
   }
 
   handleSignIn() {
