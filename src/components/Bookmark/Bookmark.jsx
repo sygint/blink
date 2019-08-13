@@ -20,8 +20,9 @@ export default function Bookmark({ onDeleteBookmark, bookmark }) {
           <a href={scheme + domain} className="bookmark_domain">
             {domain}
           </a>
-          <span>
-            <Clock size={16} /> {Math.round(wordCount / 225)} min
+          <span className="bookmark_reading-time">
+            <Clock size={16} className="bookmark_reading-time_icon" />{" "}
+            {Math.round(wordCount / 225)} min
           </span>
         </div>
         <p className="bookmark_excerpt">{excerpt}</p>

@@ -3,7 +3,7 @@
     list-style: none;
     padding-left: 0;
 
-    &_item:not(:last-child) {
+    &_item {
       margin: 0 auto 32px;
       border-bottom: 1px solid $third-color;
       padding-bottom: 16px;
@@ -35,6 +35,15 @@
     display: flex;
     justify-content: space-between;
     margin: 8px 0;
+  }
+
+  &_reading-time {
+    display: flex;
+    align-items: center;
+  }
+
+  &_reading-time_icon {
+    margin-right: 5px;
   }
 
   &_domain {
