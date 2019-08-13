@@ -1,8 +1,7 @@
 import React from "react";
 
+import { Plus as Add, LogOut } from "react-feather";
 import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
-import { ReactComponent as Add } from "../../assets/images/add.svg";
-import { ReactComponent as LogOut } from "../../assets/images/log-out.svg";
 
 export default function Header({ handleSignOut, handleShowAddBookmark }) {
   return (

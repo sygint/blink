@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ReactComponent as Close } from "../../assets/images/close.svg";
+import { X as Close } from "react-feather";
 
 export default function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
   return (
