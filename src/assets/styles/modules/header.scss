@@ -46,12 +46,6 @@ $icon-height: $header-height - 9px;
   width: auto;
   cursor: pointer;
 
-  &:not(.logo) {
-    stroke: $header-icon-color;
-    padding: 0 2px;
-    height: $icon-height;
-  }
-
   &.logo {
     height: $header-height;
     margin-right: 10px;

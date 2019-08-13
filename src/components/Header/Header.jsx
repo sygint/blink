@@ -13,10 +13,10 @@ export default function Header({ handleSignOut, handleShowAddBookmark }) {
 
       <ul className="navigation-list">
         <li className="navigation-item">
-          <Add className="header-icon" onClick={handleShowAddBookmark} />
+          <Add color="#888" onClick={handleShowAddBookmark} />
         </li>
         <li className="navigation-item">
-          <LogOut className="header-icon" onClick={handleSignOut} />
+          <LogOut color="#888" onClick={handleSignOut} />
         </li>
       </ul>
     </nav>

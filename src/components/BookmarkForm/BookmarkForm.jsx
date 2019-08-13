@@ -26,7 +26,7 @@ export default function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
         className="bookmark-form_button"
         onClick={handleHideAddBookmarks}
       >
-        <Close />
+        <Close color={"#888"} />
       </button>
     </form>
   );
