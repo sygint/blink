@@ -37,6 +37,16 @@ export default api => {
     return JSON.parse(bookmarkJson);
   }
 
+  async function getArticle(id) {
+    const articleJson = await api.getFile(`blink/articles/${id}.json`);
+
+    if (!articleJson) {
+      return null;
+    }
+
+    return JSON.parse(articleJson);
+  }
+
   async function getBookmarks() {
     const bookmarkIds = await getBookmarkIds();
 
@@ -59,6 +69,7 @@ export default api => {
     saveArticle,
     getBookmarkIds,
     getBookmark,
+    getArticle,
     getBookmarks
   };
 };
