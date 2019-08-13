@@ -30,6 +30,7 @@
   &_title {
     display: block;
     font-weight: 600;
+    text-align: justify;
     text-decoration: none;
     color: #000;
   }
@@ -59,6 +60,7 @@
     max-height: 3em;
     margin-top: 0;
     overflow: hidden;
+    text-align: justify;
   }
 
   &_actions {
@@ -76,7 +78,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr;
-      grid-column-gap: 20px;
+      grid-column-gap: 30px;
       grid-row-gap: 20px;
     }
   }
