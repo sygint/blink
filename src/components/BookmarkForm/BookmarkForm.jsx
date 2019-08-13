@@ -19,6 +19,7 @@ export default function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
             onSubmit(data);
           }
         }}
+        placeHolder="Add a website https://..."
       />
       <button
         type="submit"
