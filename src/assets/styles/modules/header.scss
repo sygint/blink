@@ -38,10 +38,6 @@ $icon-height: $header-height - 9px;
       padding-left: 10px;
       border-left: 1px solid $third-color;
       margin-left: 5px;
-
-      .header-icon {
-        stroke: $secondary-color;
-      }
     }
   }
 }
@@ -51,7 +47,7 @@ $icon-height: $header-height - 9px;
   cursor: pointer;
 
   &:not(.logo) {
-    stroke: $brand-color;
+    stroke: $header-icon-color;
     padding: 0 2px;
     height: $icon-height;
   }
