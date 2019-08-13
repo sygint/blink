@@ -117,10 +117,7 @@ export default class App extends Component {
     const bookmarks = [bookmark, ...this.state.bookmarks];
 
     await bookmarkApi.saveBookmarkIds(bookmarkIds);
-    await userSession.putFile(
-      `blink/bookmarks/${bookmark.id}.json`,
-      JSON.stringify(bookmarks)
-    );
+    await bookmarkApi.saveBookmark(bookmark);
     await userSession.putFile(
       `blink/articles/${bookmark.id}.json`,
       JSON.stringify(article)

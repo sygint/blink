@@ -3,6 +3,13 @@ export default api => {
     await api.putFile("blink/bookmarkIds.json", JSON.stringify(ids));
   }
 
+  async function saveBookmark(bookmark) {
+    await api.putFile(
+      `blink/bookmarks/${bookmark.id}.json`,
+      JSON.stringify(bookmark)
+    );
+  }
+
   async function getBookmarkIds() {
     const bookmarkIdsJson = await api.getFile(`blink/bookmarkIds.json`);
 
@@ -41,6 +48,7 @@ export default api => {
 
   return {
     saveBookmarkIds,
+    saveBookmark,
     getBookmarkIds,
     getBookmark,
     getBookmarks

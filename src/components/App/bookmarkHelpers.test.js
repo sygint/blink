@@ -92,6 +92,18 @@ describe("bookmarkHelpers", () => {
     });
   });
 
+  describe("saveBookmark()", () => {
+    it("should save bookmark", async () => {
+      await bookmarkApi.saveBookmark(mockBookmark);
+
+      expect(mockPutFile.mock.calls.length).toBe(1);
+      expect(mockPutFile).toBeCalledWith(
+        `blink/bookmarks/${mockBookmark.id}.json`,
+        mockBookmarkJson
+      );
+    });
+  });
+
   describe("getBookmarkIds()", () => {
     it("should get bookmark ids", async () => {
       const result = await bookmarkApi.getBookmarkIds();
