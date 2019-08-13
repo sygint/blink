@@ -77,11 +77,6 @@ export default class App extends Component {
     }
   }
 
-  async saveBookmarkIds(ids) {
-    console.log("saveBookmarkIds:", ids);
-    await userSession.putFile("blink/bookmarkIds.json", JSON.stringify(ids));
-  }
-
   async addBookmark(bookmarkData) {
     const id = shortUUID.generate();
 
@@ -121,7 +116,7 @@ export default class App extends Component {
     const bookmarkIds = [id, ...this.state.bookmarkIds];
     const bookmarks = [bookmark, ...this.state.bookmarks];
 
-    await this.saveBookmarkIds(bookmarkIds);
+    await bookmarkApi.saveBookmarkIds(bookmarkIds);
     await userSession.putFile(
       `blink/bookmarks/${bookmark.id}.json`,
       JSON.stringify(bookmarks)
@@ -143,7 +138,7 @@ export default class App extends Component {
       ({ id: currentId }) => currentId !== id
     );
 
-    await this.saveBookmarkIds(bookmarkIds);
+    await bookmarkApi.saveBookmarkIds(bookmarkIds);
     await userSession.deleteFile(`blink/bookmarks/${id}.json`);
     await userSession.deleteFile(`blink/articles/${id}.json`);
 
