@@ -11,6 +11,16 @@ const mockBookmark = {
   id: "1234567890"
 };
 const mockBookmarkJson = JSON.stringify(mockBookmark);
+const mockArticle = {
+  author: "Mock Author",
+  content: "mock content",
+  date_published: "mock date",
+  dek: false,
+  direction: "ltr",
+  domain: "example.com",
+  id: "1234567890"
+};
+const mockArticleJson = JSON.stringify(mockArticle);
 const mockBookmarks = [
   {
     url: "http://example.com",
@@ -100,6 +110,18 @@ describe("bookmarkHelpers", () => {
       expect(mockPutFile).toBeCalledWith(
         `blink/bookmarks/${mockBookmark.id}.json`,
         mockBookmarkJson
+      );
+    });
+  });
+
+  describe("saveArticle()", () => {
+    it("should save article", async () => {
+      await bookmarkApi.saveArticle(mockArticle);
+
+      expect(mockPutFile.mock.calls.length).toBe(1);
+      expect(mockPutFile).toBeCalledWith(
+        `blink/articles/${mockArticle.id}.json`,
+        mockArticleJson
       );
     });
   });
