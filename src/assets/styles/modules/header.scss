@@ -30,7 +30,9 @@ $icon-height: $header-height - 9px;
   }
 
   &-item {
-    height: $icon-height;
+    display: flex;
+    align-items: center;
+    height: $icon-height + 6px;
 
     &:last-child {
       padding-left: 10px;
