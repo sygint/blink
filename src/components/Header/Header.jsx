@@ -1,11 +1,17 @@
 import React from "react";
 
+import { Menu } from "react-feather";
+
 import { Plus as Add, LogOut } from "react-feather";
 import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
 
 export default function Header({ handleSignOut, handleShowAddBookmark }) {
   return (
     <nav className="navigation">
+      <div className="menu">
+        <Menu color="#888" />
+      </div>
+
       <a className="navigation-title-link" href="/">
         <Logo className="logo header-icon" />
         <h1 className="logo-title">Blink</h1>
