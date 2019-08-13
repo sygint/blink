@@ -100,6 +100,7 @@ export default class App extends Component {
       title,
       thumbnail,
       wordCount,
+      domain,
       id
     };
 
@@ -109,7 +110,6 @@ export default class App extends Component {
       date_published,
       dek,
       direction,
-      domain,
       id
     };
 
