@@ -4,6 +4,9 @@
     padding-left: 0;
 
     &_item {
+      position: relative;
+      height: 460px;
+
       margin: 0 auto 32px;
       border-bottom: 1px solid $third-color;
       padding-bottom: 16px;
@@ -56,6 +59,16 @@
     max-height: 3em;
     margin-top: 0;
     overflow: hidden;
+  }
+
+  &_actions {
+    position: absolute;
+    right: 0;
+    bottom: 20px;
+  }
+
+  &_icon {
+    cursor: pointer;
   }
 
   @include for-phone-landscape-up {

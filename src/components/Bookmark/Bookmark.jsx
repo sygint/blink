@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Clock } from "react-feather";
+import { Clock, Trash2 } from "react-feather";
 
 export default function Bookmark({ onDeleteBookmark, bookmark }) {
   try {
@@ -26,7 +26,12 @@ export default function Bookmark({ onDeleteBookmark, bookmark }) {
           </span>
         </div>
         <p className="bookmark_excerpt">{excerpt}</p>
-        <button onClick={() => onDeleteBookmark(id)}>delete</button>
+        <div className="bookmark_actions">
+          <Trash2
+            onClick={() => onDeleteBookmark(id)}
+            className="bookmark_icon"
+          />
+        </div>
       </>
     );
   } catch (e) {
