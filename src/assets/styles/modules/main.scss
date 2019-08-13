@@ -16,7 +16,6 @@ body {
 .container {
   position: relative;
   box-sizing: border-box;
-  padding: 8px;
 
   &.full {
     display: flex;
@@ -27,8 +26,7 @@ body {
 }
 
 main {
+  padding: 10px 20px 0;
   border-top: 1px solid $third-color;
-  padding-top: 10px;
-  margin-top: 10px;
   flex-grow: 1;
 }
