@@ -1,5 +1,4 @@
-$header-height: 35px;
-$icon-height: $header-height - 9px;
+$icon-height: $head-height - 9px;
 
 .navigation {
   position: fixed;
@@ -7,6 +6,7 @@ $icon-height: $header-height - 9px;
   display: flex;
   box-sizing: border-box;
   width: 100%;
+  height: $head-height;
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
@@ -47,7 +47,7 @@ $icon-height: $header-height - 9px;
   cursor: pointer;
 
   &.logo {
-    height: $header-height;
+    height: 36px;
     margin-right: 10px;
   }
 }

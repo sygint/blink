@@ -1,12 +1,14 @@
+$spacing: 10px;
+
 .bookmark-form {
   display: flex;
   position: absolute;
   box-sizing: border-box;
   z-index: 510;
   top: 10px;
-  right: 54px;
+  right: 59px;
   left: 20px;
-  height: 44px;
+  height: $head-height - $spacing * 2;
   padding: 5px 5px 5px 15px;
   background: #eee;
   border-radius: 4px;
@@ -27,7 +29,6 @@
     flex-grow: 1;
     box-sizing: border-box;
     height: 100%;
-    margin: 0 10px 10px 0;
     font-size: 18px;
     background: none;
     border: none;
@@ -39,8 +40,6 @@
   }
 
   &_button {
-    display: flex;
-    height: 100%;
     padding: 0;
     border: 0;
     background: transparent;
