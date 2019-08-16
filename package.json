@@ -6,6 +6,8 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --coverage --watch",
+    "lint": "eslint src --fix",
+    "prettify": "prettier \"src/**/*.{js,jsx,json,scss}\" --write",
     "server": "nodemon server"
   },
   "dependencies": {
