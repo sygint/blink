@@ -61,7 +61,8 @@
     "*.{js,jsx,json}": [
       "eslint --fix",
       "prettier --write",
-      "git add"
+      "git add",
+      "jest --bail --coverage --findRelatedTests"
     ],
     "*.*css": [
       "prettier --write",
