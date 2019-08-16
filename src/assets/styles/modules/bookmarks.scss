@@ -1,42 +1,57 @@
 .bookmark {
+  @include for-phone-landscape-up {
+    &-list {
+      display: grid;
+      grid-column-gap: 30px;
+      grid-row-gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
+  }
+
+  @include for-tablet-portrait-up {
+    &-list {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
   &-list {
     list-style: none;
     padding-left: 0;
+  }
 
-    &_item {
-      position: relative;
-      height: 460px;
-
-      margin: 0 auto 32px;
-      border-bottom: 1px solid $third-color;
-      padding-bottom: 16px;
-    }
+  &-list_item {
+    border-bottom: 1px solid $third-color;
+    height: 460px;
+    margin: 0 auto 32px;
+    padding-bottom: 16px;
+    position: relative;
   }
 
   &_thumbnail {
-    display: block;
-    width: 100%;
-    height: 250px;
-    margin-bottom: 16px;
     background-position: center center;
     background-size: cover;
     border-radius: 4px;
+    display: block;
+    height: 250px;
+    margin-bottom: 16px;
+    width: 100%;
+  }
 
-    &-container {
-      display: block;
-    }
+  &_thumbnail-container {
+    display: block;
   }
 
   &_title {
-    display: -webkit-box;
+    -webkit-box-orient: vertical; /* stylelint-disable-line property-no-vendor-prefix */
+    color: #000;
+    display: -webkit-box; /* stylelint-disable-line value-no-vendor-prefix */
+    font-weight: 600;
     -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
     max-height: 4.4em;
     overflow: hidden;
-    font-weight: 600;
     text-align: justify;
     text-decoration: none;
-    color: #000;
   }
 
   &_extras {
@@ -46,8 +61,8 @@
   }
 
   &_reading-time {
-    display: flex;
     align-items: center;
+    display: flex;
   }
 
   &_reading-time_icon {
@@ -55,41 +70,25 @@
   }
 
   &_domain {
-    text-decoration: none;
     color: #000;
     font-weight: 100;
+    text-decoration: none;
   }
 
   &_excerpt {
-    max-height: 3em;
     margin-top: 0;
+    max-height: 3em;
     overflow: hidden;
     text-align: justify;
   }
 
   &_actions {
+    bottom: 10px;
     position: absolute;
     right: 0;
-    bottom: 10px;
   }
 
   &_icon {
     cursor: pointer;
-  }
-
-  @include for-phone-landscape-up {
-    &-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-      grid-column-gap: 30px;
-      grid-row-gap: 20px;
-    }
-  }
-
-  @include for-tablet-portrait-up {
-    &-list {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
   }
 }

@@ -1,56 +1,56 @@
 $spacing: 10px;
 
 .bookmark-form {
-  display: flex;
-  position: absolute;
-  box-sizing: border-box;
-  z-index: 510;
-  top: 10px;
-  right: 59px;
-  left: 20px;
-  height: $head-height - $spacing * 2;
-  padding: 5px 5px 5px 15px;
   background: #eee;
   border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  height: $head-height - $spacing * 2;
+  left: 20px;
+  padding: 5px 5px 5px 15px;
+  position: absolute;
+  right: 59px;
+  top: 10px;
+  z-index: 510;
 
   &_label {
     display: none;
-    margin-right: 10px;
-    line-height: normal;
     font-size: 1rem;
     font-weight: 600;
+    line-height: normal;
+    margin-right: 10px;
+  }
 
-    &:after {
-      content: ":";
-    }
+  &_label::after {
+    content: ":";
   }
 
   &_field {
-    flex-grow: 1;
-    box-sizing: border-box;
-    height: 100%;
-    font-size: 18px;
     background: none;
-    border: none;
+    border: 0;
+    box-sizing: border-box;
     color: darken($header-icon-color, 25);
+    flex-grow: 1;
+    font-size: 18px;
+    height: 100%;
+  }
 
-    &::placeholder {
-      color: lighten($header-icon-color, 15);
-    }
+  &_field::placeholder {
+    color: lighten($header-icon-color, 15);
   }
 
   &_button {
-    padding: 0;
-    border: 0;
     background: transparent;
+    border: 0;
+    padding: 0;
   }
 }
 
 .form-error {
-  width: 100%;
-  color: red;
-  text-align: right;
+  color: #f00;
   font-size: 0.75rem;
+  text-align: right;
+  width: 100%;
 }
 
 .form-submit[type="submit"] {

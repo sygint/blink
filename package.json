@@ -3,12 +3,46 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test --coverage --watch",
-    "lint": "eslint src --fix",
+    "lint:js": "eslint src --fix",
+    "lint:scss": "stylelint \"src/**/*.scss\" --fix; exit 0",
     "prettify": "prettier \"src/**/*.{js,jsx,json,scss}\" --write",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "start": "react-app-rewired start",
+    "test": "react-app-rewired test --coverage --watch"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.*css": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{js,jsx,json}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add",
+      "jest --bail --coverage --findRelatedTests"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "eslintConfig": {
+    "extends": [
+      "plugin:prettier/recommended"
+    ]
   },
   "dependencies": {
     "@postlight/mercury-parser": "^2.1.1",
@@ -40,40 +74,12 @@
     "lint-staged": "^9.2.1",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
-    "react-app-rewired": "^2.1.3"
+    "react-app-rewired": "^2.1.3",
+    "stylelint": "^10.1.0",
+    "stylelint-config-prettier": "^5.2.0",
+    "stylelint-config-sass-guidelines": "^6.0.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-scss": "^3.9.3"
   },
-  "proxy": "http://localhost:4000",
-  "eslintConfig": {
-    "extends": [
-      "plugin:prettier/recommended"
-    ]
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,json}": [
-      "eslint --fix",
-      "prettier --write",
-      "git add",
-      "jest --bail --coverage --findRelatedTests"
-    ],
-    "*.*css": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  }
+  "proxy": "http://localhost:4000"
 }

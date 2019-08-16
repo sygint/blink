@@ -2,14 +2,14 @@ $icon-height: $head-height - 9px;
 
 .navbar {
   &.-main {
-    display: flex;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid $third-color;
     box-sizing: border-box;
+    display: flex;
     height: $head-height;
     justify-content: space-between;
-    align-items: center;
     padding: 0 20px;
-    border-bottom: 1px solid $third-color;
-    background: #fff;
   }
 
   &_branding {
@@ -22,32 +22,32 @@ $icon-height: $head-height - 9px;
   }
 
   &_button {
-    display: flex;
-    padding: 0;
-    margin: 0;
-    border: 0;
     background: none;
+    border: 0;
     cursor: pointer;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
 
-    &:not(:first-child) {
-      align-items: center;
-      margin-left: 10px;
+  &_button:not(:first-child) {
+    align-items: center;
+    margin-left: 10px;
+  }
 
-      &:last-child::before {
-        height: 35px;
-        border-left: 1px solid $header-icon-color;
-        margin-right: 10px;
-        content: "";
-      }
-    }
+  &_button:not(:first-child):last-child::before {
+    border-left: 1px solid $header-icon-color;
+    content: "";
+    height: 35px;
+    margin-right: 10px;
   }
 }
 
 .branding {
   &_logo {
-    width: $head-logo-size;
     height: $head-logo-size;
     margin-right: 10px;
+    width: $head-logo-size;
   }
 
   &_text {

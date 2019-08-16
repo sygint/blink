@@ -1,0 +1,7 @@
+{
+  "plugins": ["stylelint-scss"],
+  "extends": ["stylelint-config-sass-guidelines", "stylelint-config-prettier"],
+  "rules": {
+    "at-rule-blacklist": ["debug"]
+  }
+}
