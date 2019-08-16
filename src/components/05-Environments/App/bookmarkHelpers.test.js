@@ -53,30 +53,23 @@ const mockGetFile = jest.fn(file => {
   switch (file) {
     case "blink/bookmarkIds.json":
       return mockBookmarkIdsJson;
-      break;
 
     case "blink/bookmarks/mock.json":
       return mockBookmarkJson;
-      break;
 
     case "blink/articles/mock.json":
       return mockArticleJson;
-      break;
 
     case "blink/bookmarks/mock1.json":
       return JSON.stringify(mockBookmarks[0]);
-      break;
 
     case "blink/bookmarks/mock2.json":
       return JSON.stringify(mockBookmarks[1]);
-      break;
 
     case "blink/bookmarks/mock3.json":
       return JSON.stringify(mockBookmarks[2]);
-      break;
 
     default:
-      console.log('unknown file:', file)
       return null;
   }
 });
