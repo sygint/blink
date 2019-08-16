@@ -7,7 +7,7 @@ import bookmarksHelper from "./bookmarkHelpers";
 import MainNavbar from "../MainNavbar";
 import Footer from "../Footer";
 import BookmarksList from "../BookmarksList";
-import AddBookmarks from "../AddBookmarks";
+import BookmarkForm from "../BookmarkForm";
 
 import "../../assets/styles/index.scss";
 import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
@@ -215,7 +215,7 @@ export default class App extends Component {
         <main className="main">
           <h1>All bookmarks</h1>
           {isShowingAddbookmark && (
-            <AddBookmarks
+            <BookmarkForm
               onSubmit={this.handleAddBookmark}
               handleHideAddBookmarks={this.handleHideAddBookmark}
             />
