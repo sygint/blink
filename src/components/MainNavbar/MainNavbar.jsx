@@ -5,7 +5,7 @@ import { Menu } from "react-feather";
 import { Plus as Add, LogOut } from "react-feather";
 import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
 
-export default function Header({ handleSignOut, handleShowAddBookmark }) {
+export default function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
   return (
     <nav className="navbar -main">
       <div className="navbar_menu">

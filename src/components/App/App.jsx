@@ -4,7 +4,7 @@ import shortUUID from "short-uuid";
 import axios from "axios";
 
 import bookmarksHelper from "./bookmarkHelpers";
-import Header from "../Header";
+import MainNavbar from "../MainNavbar";
 import Footer from "../Footer";
 import BookmarksList from "../BookmarksList";
 import AddBookmarks from "../AddBookmarks";
@@ -249,7 +249,7 @@ export default class App extends Component {
     return (
       <>
         <div className="container full">
-          <Header
+          <MainNavbar
             isSignedIn={isUserSignedIn}
             handleSignIn={this.handleSignIn}
             handleSignOut={this.handleSignOut}

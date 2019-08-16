@@ -2,23 +2,23 @@ $icon-height: $head-height - 9px;
 
 .navbar {
   &.-main {
-  position: fixed;
-  z-index: 500;
-  display: flex;
-  box-sizing: border-box;
-  width: 100%;
-  height: $head-height;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  border-bottom: 1px solid $third-color;
-  background: #fff;
+    position: fixed;
+    z-index: 500;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    height: $head-height;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid $third-color;
+    background: #fff;
   }
 
   &_branding {
-      display: flex;
-      text-decoration: none;
-    }
+    display: flex;
+    text-decoration: none;
+  }
 
   &_actions {
     display: flex;
