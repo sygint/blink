@@ -7,24 +7,27 @@ import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
 
 export default function Header({ handleSignOut, handleShowAddBookmark }) {
   return (
-    <nav className="navigation">
-      <div className="menu">
-        <Menu color="#888" />
+    <nav className="navbar -main">
+      <div className="navbar_menu">
+        <button className="navbar_button">
+          {/* onClick={handleToggleSideNav} */}
+          <Menu color="#888" size="24" />
+        </button>
       </div>
 
-      <a className="navigation-title-link" href="/">
-        <Logo className="logo header-icon" />
-        <h1 className="logo-title">Blink</h1>
+      <a className="navbar_branding" href="/">
+        <Logo className="branding_logo" />
+        <div className="branding_text">Blink</div>
       </a>
 
-      <ul className="navigation-list">
-        <li className="navigation-item">
-          <Add color="#888" onClick={handleShowAddBookmark} />
-        </li>
-        <li className="navigation-item">
-          <LogOut color="#888" onClick={handleSignOut} />
-        </li>
-      </ul>
+      <div className="navbar_actions">
+        <button className="navbar_button" onClick={handleShowAddBookmark}>
+          <Add color="#888" size="24" />
+        </button>
+        <button className="navbar_button" onClick={handleSignOut}>
+          <LogOut color="#888" size="24" />
+        </button>
+      </div>
     </nav>
   );
 }
