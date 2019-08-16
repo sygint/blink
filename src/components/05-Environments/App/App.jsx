@@ -4,13 +4,13 @@ import shortUUID from "short-uuid";
 import axios from "axios";
 
 import bookmarksHelper from "./bookmarkHelpers";
-import MainNavbar from "../MainNavbar";
-import Footer from "../Footer";
-import BookmarksList from "../BookmarksList";
-import BookmarkForm from "../BookmarkForm";
+import Masthead from "../../04-Ecosystems/Masthead";
+import Footer from "../../Footer";
+import BookmarksList from "../../BookmarksList";
+import BookmarkForm from "../../BookmarkForm";
 
-import "../../assets/styles/index.scss";
-import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
+import "../../../assets/styles/index.scss";
+import { ReactComponent as Logo } from "../../../assets/images/agenda.svg";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 const userSession = new UserSession({ appConfig });
@@ -249,7 +249,7 @@ export default class App extends Component {
     return (
       <>
         <div className="container full">
-          <MainNavbar
+          <Masthead
             isSignedIn={isUserSignedIn}
             handleSignIn={this.handleSignIn}
             handleSignOut={this.handleSignOut}
