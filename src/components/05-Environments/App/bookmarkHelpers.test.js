@@ -70,7 +70,7 @@ const mockGetFile = jest.fn(file => {
       return JSON.stringify(mockBookmarks[2]);
 
     default:
-      return null;
+      throw Error("unknown file:", file);
   }
 });
 
@@ -158,7 +158,10 @@ describe("bookmarkHelpers", () => {
       mockGetFile.mockReturnValueOnce(mockBookmarkIdsJson);
       const result = await bookmarkApi.getBookmarks();
 
-      expect(result).toEqual({ bookmarkIds: mockBookmarkIds, bookmarks: mockBookmarks });
+      expect(result).toEqual({
+        bookmarkIds: mockBookmarkIds,
+        bookmarks: mockBookmarks
+      });
     });
   });
 });
