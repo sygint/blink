@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Menu } from "react-feather";
-
-import { Plus as Add, LogOut } from "react-feather";
+import Icon from "../01-Atoms/Icon";
 import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
 
 export default function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
@@ -11,7 +9,7 @@ export default function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
       <div className="navbar_menu">
         <button className="navbar_button">
           {/* onClick={handleToggleSideNav} */}
-          <Menu color="#888" size="24" />
+          <Icon name="Menu" color="#888" size="24" />
         </button>
       </div>
 
@@ -22,10 +20,10 @@ export default function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
 
       <div className="navbar_actions">
         <button className="navbar_button" onClick={handleShowAddBookmark}>
-          <Add color="#888" size="24" />
+          <Icon name="LogOut" color="#888" size="24" />
         </button>
         <button className="navbar_button" onClick={handleSignOut}>
-          <LogOut color="#888" size="24" />
+          <Icon name="LogOut" color="#888" size="24" />
         </button>
       </div>
     </nav>
