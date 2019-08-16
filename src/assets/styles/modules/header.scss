@@ -2,11 +2,8 @@ $icon-height: $head-height - 9px;
 
 .navbar {
   &.-main {
-    position: fixed;
-    z-index: 500;
     display: flex;
     box-sizing: border-box;
-    width: 100%;
     height: $head-height;
     justify-content: space-between;
     align-items: center;
