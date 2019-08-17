@@ -1,6 +1,6 @@
 import React from "react";
 
-import IconButton from "../02-Molecules/IconButton";
+import IconButton from "../../02-Molecules/IconButton";
 import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
 
 export default function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
