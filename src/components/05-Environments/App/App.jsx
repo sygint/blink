@@ -4,6 +4,7 @@ import shortUUID from "short-uuid";
 import axios from "axios";
 
 import bookmarksHelper from "./bookmarkHelpers";
+import __mock__bookmarksHelper from "../../../__mocks__/bookmarkHelpers";
 import Masthead from "../../04-Ecosystems/Masthead";
 import Footer from "../../Footer";
 import BookmarksList from "../../BookmarksList";
@@ -15,7 +16,14 @@ import { ReactComponent as Logo } from "../../../assets/images/agenda.svg";
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 const userSession = new UserSession({ appConfig });
 
-const bookmarkApi = bookmarksHelper(userSession);
+let bookmarkApi;
+
+if (process.env.REACT_APP_OFFLINE) {
+  console.log('*** using offline mode ***');
+  bookmarkApi = __mock__bookmarksHelper();
+} else {
+  bookmarkApi = bookmarksHelper(userSession);
+}
 
 export default class App extends Component {
   constructor(props) {
@@ -27,7 +35,7 @@ export default class App extends Component {
   }
 
   state = {
-    isUserSignedIn: false,
+    isUserSignedIn: (!!process.env.REACT_APP_OFFLINE),
     bookmarkIds: [],
     bookmarks: [],
     isLoaded: false,
@@ -42,7 +50,15 @@ export default class App extends Component {
 
     // get bookmarks.json
     try {
-      const { bookmarkIds, bookmarks } = await bookmarkApi.getBookmarks();
+      const { bookmarkIds, bookmarks } =  bookmarkApi.getBookmarks();
+
+      if (process.env.REACT_APP_OFFLINE && process.env.REACT_APP_BUILD_CACHE) {
+        localStorage.setItem('blink/bookmarkIds.json', JSON.stringify(bookmarkIds));
+
+        bookmarks.forEach(bookmark => {
+          localStorage.setItem(`blink/bookmarks/${bookmark.id}.json`, JSON.stringify(bookmark));
+        });
+      }
 
       this.setState({
         bookmarkIds,
