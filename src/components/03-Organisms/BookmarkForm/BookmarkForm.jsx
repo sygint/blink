@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import React from "react";
 
 import { X as Close } from "react-feather";
@@ -26,7 +28,7 @@ export default function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
         className="bookmark-form_button"
         onClick={handleHideAddBookmarks}
       >
-        <Close color={"#888"} />
+        <Close color="#888" />
       </button>
     </form>
   );

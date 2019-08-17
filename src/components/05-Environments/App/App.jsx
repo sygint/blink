@@ -6,9 +6,9 @@ import axios from "axios";
 import bookmarksHelper from "./bookmarkHelpers";
 import __mock__bookmarksHelper from "../../../__mocks__/bookmarkHelpers";
 import Masthead from "../../04-Ecosystems/Masthead";
-import Footer from "../../Footer";
-import BookmarksList from "../../BookmarksList";
-import BookmarkForm from "../../BookmarkForm";
+import Footer from "../../03-Organisms/Footer";
+import BookmarksList from "../../04-Ecosystems/BookmarksList";
+import BookmarkForm from "../../03-Organisms/BookmarkForm";
 
 import "../../../assets/styles/index.scss";
 import { ReactComponent as Logo } from "../../../assets/images/agenda.svg";
@@ -19,7 +19,7 @@ const userSession = new UserSession({ appConfig });
 let bookmarkApi;
 
 if (process.env.REACT_APP_OFFLINE) {
-  console.log('*** using offline mode ***');
+  console.log("*** using offline mode ***");
   bookmarkApi = __mock__bookmarksHelper();
 } else {
   bookmarkApi = bookmarksHelper(userSession);
@@ -35,7 +35,7 @@ export default class App extends Component {
   }
 
   state = {
-    isUserSignedIn: (!!process.env.REACT_APP_OFFLINE),
+    isUserSignedIn: !!process.env.REACT_APP_OFFLINE,
     bookmarkIds: [],
     bookmarks: [],
     isLoaded: false,
@@ -50,13 +50,19 @@ export default class App extends Component {
 
     // get bookmarks.json
     try {
-      const { bookmarkIds, bookmarks } =  bookmarkApi.getBookmarks();
+      const { bookmarkIds, bookmarks } = bookmarkApi.getBookmarks();
 
       if (process.env.REACT_APP_OFFLINE && process.env.REACT_APP_BUILD_CACHE) {
-        localStorage.setItem('blink/bookmarkIds.json', JSON.stringify(bookmarkIds));
+        localStorage.setItem(
+          "blink/bookmarkIds.json",
+          JSON.stringify(bookmarkIds)
+        );
 
         bookmarks.forEach(bookmark => {
-          localStorage.setItem(`blink/bookmarks/${bookmark.id}.json`, JSON.stringify(bookmark));
+          localStorage.setItem(
+            `blink/bookmarks/${bookmark.id}.json`,
+            JSON.stringify(bookmark)
+          );
         });
       }
 
@@ -83,9 +89,10 @@ export default class App extends Component {
   }
 
   isUserSignedIn() {
-    if (userSession.isUserSignedIn()) {
+    if (userSession.isUserSignedIn() || process.env.REACT_APP_OFFLINE) {
       return true;
-    } else if (userSession.isSignInPending()) {
+    }
+    if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then(function() {
         window.location = window.location.origin;
       });

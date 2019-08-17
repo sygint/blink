@@ -6,11 +6,24 @@
     "node": true
   },
   "parser": "babel-eslint",
-  "extends": [
-    "airbnb",
-    "prettier"
-  ],
-  "plugins": [
-    "json-format"
-  ]
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["json-format"],
+  "rules": {
+    "react/prop-types": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "camelcase": "off",
+    "no-console": "off",
+    "react/destructuring-assignment": "off",
+    "consistent-return": "off",
+    "react/no-access-state-in-setstate": "off",
+    "react/state-in-constructor": "off",
+    "react/sort-comp": "off",
+    "class-methods-use-this": "off",
+    "no-unused-vars": "off",
+    "no-shadow": "off",
+    "react/button-has-type": "off",
+    "func-names": "off",
+    "jsx-a11y/alt-text": "off",
+    "react/prefer-stateless-function": "off"
+  }
 }

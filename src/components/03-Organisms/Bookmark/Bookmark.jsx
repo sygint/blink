@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 import React from "react";
 
 import { Clock, Trash2 } from "react-feather";
@@ -13,7 +15,9 @@ export default function Bookmark({ onDeleteBookmark, bookmark }) {
           href={url}
           className="bookmark_thumbnail"
           style={{ backgroundImage: `url(${thumbnail}` }}
-        ></a>
+        >
+          {title}
+        </a>
         <a href={url} className="bookmark_title">
           {title}
         </a>
@@ -36,7 +40,7 @@ export default function Bookmark({ onDeleteBookmark, bookmark }) {
       </>
     );
   } catch (e) {
-    console.log(e);
+    console.log(e); // eslint-disable-line no-console
     return null;
   }
 }

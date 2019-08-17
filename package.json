@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "react-app-rewired build",
-    "lint:js": "eslint src --fix",
+    "lint:js": "eslint \"src/**/*.{js,jsx}\" --fix",
     "lint:scss": "stylelint \"src/**/*.scss\" --fix; exit 0",
     "prettify": "prettier \"src/**/*.{js,jsx,json,scss}\" --write",
     "server": "nodemon server",

@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
+
 import React from "react";
 
-import Bookmark from "../Bookmark";
+import Bookmark from "../../03-Organisms/Bookmark";
 
 export default function BookmarksList({ bookmarks, onDeleteBookmark }) {
   return (

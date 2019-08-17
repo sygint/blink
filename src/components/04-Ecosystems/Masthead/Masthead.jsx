@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
+
 import React from "react";
 import styled from "styled-components";
 
-import MainNavbar from "../../MainNavbar";
+import MainNavbar from "../MainNavbar";
 
 const Header = styled.header`
   position: fixed;
