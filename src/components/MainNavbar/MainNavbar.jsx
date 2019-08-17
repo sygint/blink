@@ -1,16 +1,13 @@
 import React from "react";
 
-import Icon from "../01-Atoms/Icon";
+import IconButton from "../02-Molecules/IconButton";
 import { ReactComponent as Logo } from "../../assets/images/agenda.svg";
 
 export default function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
   return (
     <nav className="navbar -main">
       <div className="navbar_menu">
-        <button className="navbar_button">
-          {/* onClick={handleToggleSideNav} */}
-          <Icon name="Menu" color="#888" size="24" />
-        </button>
+        <IconButton icon="Menu" />
       </div>
 
       <a className="navbar_branding" href="/">
@@ -19,12 +16,8 @@ export default function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
       </a>
 
       <div className="navbar_actions">
-        <button className="navbar_button" onClick={handleShowAddBookmark}>
-          <Icon name="LogOut" color="#888" size="24" />
-        </button>
-        <button className="navbar_button" onClick={handleSignOut}>
-          <Icon name="LogOut" color="#888" size="24" />
-        </button>
+        <IconButton icon="Add" onClick={handleShowAddBookmark} />
+        <IconButton icon="LogOut" onClick={handleSignOut} />
       </div>
     </nav>
   );
