@@ -6,6 +6,7 @@ import axios from "axios";
 import bookmarksHelper from "./bookmarkHelpers";
 import __mock__bookmarksHelper from "../../../__mocks__/bookmarkHelpers";
 import Masthead from "../../04-Ecosystems/Masthead";
+import Content from "../../03-Organisms/Content";
 import Footer from "../../03-Organisms/Footer";
 import BookmarksList from "../../04-Ecosystems/BookmarksList";
 import BookmarkForm from "../../03-Organisms/BookmarkForm";
@@ -239,14 +240,16 @@ export default class App extends Component {
       <>
         {errorMsg && errorMsg}
         <main className="main">
-          <h1>All bookmarks</h1>
-          {isShowingAddbookmark && (
-            <BookmarkForm
-              onSubmit={this.handleAddBookmark}
-              handleHideAddBookmarks={this.handleHideAddBookmark}
-            />
-          )}
-          {bookmarksList}
+          <Content>
+            <h1>All bookmarks</h1>
+            {isShowingAddbookmark && (
+              <BookmarkForm
+                onSubmit={this.handleAddBookmark}
+                handleHideAddBookmarks={this.handleHideAddBookmark}
+              />
+            )}
+            {bookmarksList}
+          </Content>
         </main>
       </>
     );
