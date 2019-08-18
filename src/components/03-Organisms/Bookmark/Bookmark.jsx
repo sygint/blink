@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import React from "react";
 
 import { Clock, Trash2 } from "react-feather";

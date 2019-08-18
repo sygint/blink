@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import React from "react";
 
 import Bookmark from "../../03-Organisms/Bookmark";

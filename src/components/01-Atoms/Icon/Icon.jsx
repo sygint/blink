@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-
 import React from "react";
 import { Menu, Plus as Add, LogOut } from "react-feather";
 

@@ -23,6 +23,7 @@
     "react/button-has-type": "off",
     "func-names": "off",
     "jsx-a11y/alt-text": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "eslint-disable react/prop-types": "off"
   }
 }
