@@ -1,17 +1,17 @@
 export default () => {
-   function saveBookmarkIds(ids) {
-     localStorage.setItem("blink/bookmarkIds.json", JSON.stringify(ids));
+  function saveBookmarkIds(ids) {
+    localStorage.setItem("blink/bookmarkIds.json", JSON.stringify(ids));
   }
 
-   function saveBookmark(bookmark) {
-     localStorage.setItem(
+  function saveBookmark(bookmark) {
+    localStorage.setItem(
       `blink/bookmarks/${bookmark.id}.json`,
       JSON.stringify(bookmark)
     );
   }
 
-   function saveArticle(article) {
-     localStorage.setItem(
+  function saveArticle(article) {
+    localStorage.setItem(
       `blink/articles/${article.id}.json`,
       JSON.stringify(article)
     );
@@ -27,8 +27,8 @@ export default () => {
     return JSON.parse(bookmarkIdsJson);
   }
 
-   function getBookmark(id) {
-    const bookmarkJson =  localStorage.getItem(`blink/bookmarks/${id}.json`);
+  function getBookmark(id) {
+    const bookmarkJson = localStorage.getItem(`blink/bookmarks/${id}.json`);
 
     if (!bookmarkJson) {
       return null;
@@ -37,8 +37,8 @@ export default () => {
     return JSON.parse(bookmarkJson);
   }
 
-   function getArticle(id) {
-    const articleJson =  localStorage.getItem(`blink/articles/${id}.json`);
+  function getArticle(id) {
+    const articleJson = localStorage.getItem(`blink/articles/${id}.json`);
 
     if (!articleJson) {
       return null;
@@ -47,16 +47,14 @@ export default () => {
     return JSON.parse(articleJson);
   }
 
-   function getBookmarks() {
-    const bookmarkIds =  getBookmarkIds();
+  function getBookmarks() {
+    const bookmarkIds = getBookmarkIds();
 
     if (!bookmarkIds || bookmarkIds.length === 0) {
       return { bookmarkIds: [], bookmarks: [] };
     }
 
-    const bookmarks = bookmarkIds.map(bookmarkId =>
-      getBookmark(bookmarkId)
-    );
+    const bookmarks = bookmarkIds.map(bookmarkId => getBookmark(bookmarkId));
 
     return { bookmarkIds, bookmarks };
   }
