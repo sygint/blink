@@ -101,6 +101,7 @@ export default class App extends Component {
   }
 
   async addBookmark(bookmarkData) {
+    const { bookmarkIds: prevBookmarkIds } = this.state;
     const id = shortUUID.generate();
 
     const {
@@ -136,24 +137,24 @@ export default class App extends Component {
       id
     };
 
-    const bookmarkIds = [id, ...this.state.bookmarkIds];
-    const bookmarks = [bookmark, ...this.state.bookmarks];
+    const bookmarkIds = [id, ...prevBookmarkIds];
 
     await bookmarkApi.saveBookmarkIds(bookmarkIds);
     await bookmarkApi.saveBookmark(bookmark);
     await bookmarkApi.saveArticle(article);
 
-    this.setState({ bookmarkIds, bookmarks });
+    this.setState(prevState => ({
+      bookmarkIds,
+      bookmarks: [bookmark, ...prevState.bookmarks]
+    }));
   }
 
   async deleteBookmark(id) {
-    const bookmarkIds = this.state.bookmarkIds.filter(
-      currentId => currentId !== id
-    );
+    let { bookmarkIds, bookmarks } = this.state;
 
-    const bookmarks = this.state.bookmarks.filter(
-      ({ id: currentId }) => currentId !== id
-    );
+    bookmarkIds = bookmarkIds.filter(currentId => currentId !== id);
+
+    bookmarks = bookmarks.filter(({ id: currentId }) => currentId !== id);
 
     await bookmarkApi.saveBookmarkIds(bookmarkIds);
     await userSession.deleteFile(`blink/bookmarks/${id}.json`);
@@ -200,7 +201,9 @@ export default class App extends Component {
   };
 
   handleDeleteBookmark = async id => {
-    const deletedBookmark = this.state.bookmarks.find(
+    const { bookmarks } = this.state;
+
+    const deletedBookmark = bookmarks.find(
       ({ id: currentId }) => currentId === id
     );
     await this.deleteBookmark(id);
