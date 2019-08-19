@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Clock, Trash2 } from "react-feather";
+import Icon from "../../01-Atoms/Icon";
 
 export default function Bookmark({ onDeleteBookmark, bookmark }) {
   try {
@@ -24,13 +24,18 @@ export default function Bookmark({ onDeleteBookmark, bookmark }) {
             {domain}
           </a>
           <span className="bookmark_reading-time">
-            <Clock size={16} className="bookmark_reading-time_icon" />{" "}
+            <Icon
+              name="Clock"
+              size={16}
+              className="bookmark_reading-time_icon"
+            />
             {Math.round(wordCount / 225)} min
           </span>
         </div>
         <p className="bookmark_excerpt">{excerpt}</p>
         <div className="bookmark_actions">
-          <Trash2
+          <Icon
+            name="Trash2"
             onClick={() => onDeleteBookmark(id)}
             className="bookmark_icon"
           />
