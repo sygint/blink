@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Bookmark from "../../03-Organisms/Bookmark";
 
-export default function BookmarksList({ bookmarks, onDeleteBookmark }) {
+function BookmarksList({ bookmarks, onDeleteBookmark }) {
   return (
     <ul className="bookmark-list">
       {bookmarks.map(bookmark => {
@@ -15,3 +16,10 @@ export default function BookmarksList({ bookmarks, onDeleteBookmark }) {
     </ul>
   );
 }
+
+BookmarksList.propTypes = {
+  bookmarks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onDeleteBookmark: PropTypes.func.isRequired
+};
+
+export default BookmarksList;
