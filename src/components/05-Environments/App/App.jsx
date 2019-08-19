@@ -31,19 +31,14 @@ export default class App extends Component {
   constructor(props) {
     super(props);
 
-    const isUserSignedIn = this.isUserSignedIn();
-
-    this.state.isUserSignedIn = isUserSignedIn;
+    this.state = {
+      bookmarkIds: [],
+      bookmarks: [],
+      isLoaded: false,
+      isShowingAddbookmark: false,
+      errorMsg: null
+    };
   }
-
-  state = {
-    isUserSignedIn: !!process.env.REACT_APP_OFFLINE,
-    bookmarkIds: [],
-    bookmarks: [],
-    isLoaded: false,
-    isShowingAddbookmark: false,
-    errorMsg: null
-  };
 
   async componentDidMount() {
     if (!this.isUserSignedIn()) {
