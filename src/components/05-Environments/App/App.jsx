@@ -68,7 +68,7 @@ export default class App extends Component {
         });
       }
 
-      this.setState({
+      return this.setState({
         bookmarkIds,
         bookmarks,
         isLoaded: true
@@ -87,6 +87,7 @@ export default class App extends Component {
             errorMsg: "Error parsing bookmarks from Blockstack"
           });
       }
+      return false;
     }
   }
 
@@ -94,12 +95,15 @@ export default class App extends Component {
     if (userSession.isUserSignedIn() || process.env.REACT_APP_OFFLINE) {
       return true;
     }
+
     if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn().then(function() {
         window.location = window.location.origin;
       });
       return false;
     }
+
+    return false;
   }
 
   async addBookmark(bookmarkData) {
