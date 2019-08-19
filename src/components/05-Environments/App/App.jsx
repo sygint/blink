@@ -52,7 +52,7 @@ export default class App extends Component {
 
     // get bookmarks.json
     try {
-      const { bookmarkIds, bookmarks } = bookmarkApi.getBookmarks();
+      const { bookmarkIds, bookmarks } = await bookmarkApi.getBookmarks();
 
       if (process.env.REACT_APP_OFFLINE && process.env.REACT_APP_BUILD_CACHE) {
         localStorage.setItem(
