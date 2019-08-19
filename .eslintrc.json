@@ -15,7 +15,6 @@
     "react/no-access-state-in-setstate": "off",
     "class-methods-use-this": "off",
     "no-shadow": "off",
-    "func-names": "off",
     "jsx-a11y/alt-text": "off",
     "react/jsx-one-expression-per-line": "off",
     "eslint-disable react/prop-types": "off"

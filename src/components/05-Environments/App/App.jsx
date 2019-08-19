@@ -135,9 +135,11 @@ export default class App extends Component {
     }
 
     if (userSession.isSignInPending()) {
-      userSession.handlePendingSignIn().then(function() {
-        window.location = window.location.origin;
-      });
+      userSession
+        .handlePendingSignIn()
+        .then(function handlePendingSignInCallback() {
+          window.location = window.location.origin;
+        });
       return false;
     }
 
