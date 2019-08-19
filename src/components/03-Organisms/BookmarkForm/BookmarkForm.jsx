@@ -16,9 +16,11 @@ function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
         onKeyDown={event => {
           const data = new FormData(event.target.closest("form"));
 
-          if (event.key === "Enter") {
-            onSubmit(data);
+          if (event.key !== "Enter") {
+            return false;
           }
+
+          return onSubmit(data);
         }}
         placeholder="Add a website https://..."
       />
