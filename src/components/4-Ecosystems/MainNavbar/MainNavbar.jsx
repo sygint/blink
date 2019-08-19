@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import IconButton from "../../02-Molecules/IconButton";
+import IconButton from "../../2-Molecules/IconButton";
 import { ReactComponent as Logo } from "../../../assets/images/agenda.svg";
 
 function MainNavbar({ handleSignOut, handleShowAddBookmark }) {

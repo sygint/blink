@@ -5,12 +5,12 @@ import axios from "axios";
 
 import bookmarksHelper from "./bookmarkHelpers";
 import mockBookmarksHelper from "../../../__mocks__/bookmarkHelpers";
-import Masthead from "../../04-Ecosystems/Masthead";
-import Main from "../../04-Ecosystems/Main";
-import Content from "../../03-Organisms/Content";
-import Footer from "../../03-Organisms/Footer";
-import BookmarksList from "../../04-Ecosystems/BookmarksList";
-import BookmarkForm from "../../03-Organisms/BookmarkForm";
+import Masthead from "../../4-Ecosystems/Masthead";
+import Main from "../../4-Ecosystems/Main";
+import Content from "../../3-Organisms/Content";
+import Footer from "../../3-Organisms/Footer";
+import BookmarksList from "../../4-Ecosystems/BookmarksList";
+import BookmarkForm from "../../3-Organisms/BookmarkForm";
 
 import "../../../assets/styles/index.scss";
 import { ReactComponent as Logo } from "../../../assets/images/agenda.svg";

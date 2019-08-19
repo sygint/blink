@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Bookmark from "../../03-Organisms/Bookmark";
+import Bookmark from "../../3-Organisms/Bookmark";
 
 function BookmarksList({ bookmarks, onDeleteBookmark }) {
   return (

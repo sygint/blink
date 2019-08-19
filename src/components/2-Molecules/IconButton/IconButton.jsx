@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Icon from "../../01-Atoms/Icon";
+import Icon from "../../1-Atoms/Icon";
 
 const Button = styled.button`
   background: none;

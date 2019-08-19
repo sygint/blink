@@ -1,6 +1,6 @@
 import React from "react";
 
-import Icon from "../../01-Atoms/Icon";
+import Icon from "../../1-Atoms/Icon";
 
 export default function Bookmark({ onDeleteBookmark, bookmark }) {
   try {
