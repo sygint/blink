@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import IconButton from "../../02-Molecules/IconButton";
 import { ReactComponent as Logo } from "../../../assets/images/agenda.svg";
 
-export default function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
+function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
   return (
     <nav className="navbar -main">
       <div className="navbar_menu">
@@ -22,3 +23,10 @@ export default function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
     </nav>
   );
 }
+
+MainNavbar.propTypes = {
+  handleSignOut: PropTypes.func.isRequired,
+  handleShowAddBookmark: PropTypes.func.isRequired
+};
+
+export default MainNavbar;
