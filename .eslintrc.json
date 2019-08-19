@@ -14,7 +14,6 @@
     "no-console": "off",
     "react/no-access-state-in-setstate": "off",
     "class-methods-use-this": "off",
-    "no-unused-vars": "off",
     "no-shadow": "off",
     "react/button-has-type": "off",
     "func-names": "off",

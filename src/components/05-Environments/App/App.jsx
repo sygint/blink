@@ -88,7 +88,6 @@ export default class App extends Component {
 
   handleAddBookmark = async formData => {
     const url = formData.get("url").replace(" ", "");
-    let res;
 
     console.log("url:", url);
 
