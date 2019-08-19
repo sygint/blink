@@ -17,7 +17,7 @@ function Footer({ isUserSignedIn }) {
         </li>
         {isUserSignedIn && (
           <li>
-            Plus, X, Log-Out icons made by{" "}
+            Icons made by{" "}
             <a href="https://twitter.com/colebemis" title="Freepik">
               @colebemis
             </a>{" "}
