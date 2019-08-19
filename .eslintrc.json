@@ -11,11 +11,7 @@
   "rules": {
     "jsx-a11y/label-has-associated-control": "off",
     "no-console": "off",
-    "react/no-access-state-in-setstate": "off",
     "class-methods-use-this": "off",
-    "no-shadow": "off",
-    "jsx-a11y/alt-text": "off",
-    "react/jsx-one-expression-per-line": "off",
-    "eslint-disable react/prop-types": "off"
+    "react/jsx-one-expression-per-line": "off"
   }
 }
