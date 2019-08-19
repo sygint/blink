@@ -86,6 +86,50 @@ export default class App extends Component {
     }
   }
 
+  handleAddBookmark = async formData => {
+    const url = formData.get("url").replace(" ", "");
+    let res;
+
+    console.log("url:", url);
+
+    if (url === "") {
+      console.log("url is empty");
+      return;
+    }
+
+    try {
+      this.setState({ errorMsg: null });
+      const res = await axios.post("/extract", {
+        url
+      });
+      const bookmark = res.data;
+
+      await this.addBookmark(bookmark);
+      console.log("bookmark added:", bookmark);
+    } catch (e) {
+      console.trace("addBookmarkError:", e);
+      this.setState({ errorMsg: "Unknown error" });
+    }
+  };
+
+  handleDeleteBookmark = async id => {
+    const { bookmarks } = this.state;
+
+    const deletedBookmark = bookmarks.find(
+      ({ id: currentId }) => currentId === id
+    );
+    await this.deleteBookmark(id);
+    console.log("bookmark deleted:", deletedBookmark);
+  };
+
+  handleShowAddBookmark = () => {
+    this.setState({ isShowingAddbookmark: true });
+  };
+
+  handleHideAddBookmark = () => {
+    this.setState({ isShowingAddbookmark: false });
+  };
+
   isUserSignedIn() {
     if (userSession.isUserSignedIn() || process.env.REACT_APP_OFFLINE) {
       return true;
@@ -99,6 +143,14 @@ export default class App extends Component {
     }
 
     return false;
+  }
+
+  handleSignIn() {
+    userSession.redirectToSignIn();
+  }
+
+  handleSignOut() {
+    userSession.signUserOut(window.location.origin);
   }
 
   async addBookmark(bookmarkData) {
@@ -166,58 +218,6 @@ export default class App extends Component {
 
     this.setState({ bookmarkIds, bookmarks });
   }
-
-  handleSignIn() {
-    userSession.redirectToSignIn();
-  }
-
-  handleSignOut() {
-    userSession.signUserOut(window.location.origin);
-  }
-
-  handleAddBookmark = async formData => {
-    const url = formData.get("url").replace(" ", "");
-    let res;
-
-    console.log("url:", url);
-
-    if (url === "") {
-      console.log("url is empty");
-      return;
-    }
-
-    try {
-      this.setState({ errorMsg: null });
-      const res = await axios.post("/extract", {
-        url
-      });
-      const bookmark = res.data;
-
-      await this.addBookmark(bookmark);
-      console.log("bookmark added:", bookmark);
-    } catch (e) {
-      console.trace("addBookmarkError:", e);
-      this.setState({ errorMsg: "Unknown error" });
-    }
-  };
-
-  handleDeleteBookmark = async id => {
-    const { bookmarks } = this.state;
-
-    const deletedBookmark = bookmarks.find(
-      ({ id: currentId }) => currentId === id
-    );
-    await this.deleteBookmark(id);
-    console.log("bookmark deleted:", deletedBookmark);
-  };
-
-  handleShowAddBookmark = () => {
-    this.setState({ isShowingAddbookmark: true });
-  };
-
-  handleHideAddBookmark = () => {
-    this.setState({ isShowingAddbookmark: false });
-  };
 
   renderBookmarkList() {
     const { bookmarks, isLoaded, isShowingAddbookmark, errorMsg } = this.state;
