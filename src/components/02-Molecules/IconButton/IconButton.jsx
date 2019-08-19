@@ -15,7 +15,7 @@ const Button = styled.button`
 
 function IconButton({ icon, onClick }) {
   return (
-    <Button onClick={onClick}>
+    <Button onClick={onClick} type="button">
       <Icon name={icon} />
     </Button>
   );

@@ -264,7 +264,11 @@ export default class App extends Component {
             <div className="logo-container">
               <Logo className="logo" />
               <h1 className="logo-title">Blink</h1>
-              <button className="button" onClick={this.handleSignIn}>
+              <button
+                type="button"
+                className="button"
+                onClick={this.handleSignIn}
+              >
                 Sign in with Bockstack
               </button>
             </div>
