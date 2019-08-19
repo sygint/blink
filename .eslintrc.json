@@ -9,7 +9,6 @@
   "extends": ["airbnb", "prettier"],
   "plugins": ["json-format"],
   "rules": {
-    "react/prop-types": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "camelcase": "off",
     "no-console": "off",
