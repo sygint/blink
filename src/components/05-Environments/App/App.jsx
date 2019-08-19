@@ -4,7 +4,7 @@ import shortUUID from "short-uuid";
 import axios from "axios";
 
 import bookmarksHelper from "./bookmarkHelpers";
-import __mock__bookmarksHelper from "../../../__mocks__/bookmarkHelpers";
+import mockBookmarksHelper from "../../../__mocks__/bookmarkHelpers";
 import Masthead from "../../04-Ecosystems/Masthead";
 import Main from "../../04-Ecosystems/Main";
 import Content from "../../03-Organisms/Content";
@@ -22,7 +22,7 @@ let bookmarkApi;
 
 if (process.env.REACT_APP_OFFLINE) {
   console.log("*** using offline mode ***");
-  bookmarkApi = __mock__bookmarksHelper();
+  bookmarkApi = mockBookmarksHelper();
 } else {
   bookmarkApi = bookmarksHelper(userSession);
 }
