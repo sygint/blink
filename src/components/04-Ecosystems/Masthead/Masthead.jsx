@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import MainNavbar from "../MainNavbar";
@@ -9,20 +10,20 @@ const Header = styled.header`
   width: 100%;
 `;
 
-export default function Masthead({
-  isSignedIn,
-  handleSignIn,
-  handleSignOut,
-  handleShowAddBookmark
-}) {
+function Masthead({ handleSignOut, handleShowAddBookmark }) {
   return (
     <Header>
       <MainNavbar
-        isSignedIn={isSignedIn}
-        handleSignIn={handleSignIn}
         handleSignOut={handleSignOut}
         handleShowAddBookmark={handleShowAddBookmark}
       />
     </Header>
   );
 }
+
+Masthead.propTypes = {
+  handleSignOut: PropTypes.func.isRequired,
+  handleShowAddBookmark: PropTypes.func.isRequired
+};
+
+export default Masthead;
