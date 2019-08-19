@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import Icon from "../../01-Atoms/Icon";
@@ -12,10 +13,17 @@ const Button = styled.button`
   padding: 0;
 `;
 
-export default function IconButton({ icon, onClick }) {
+function IconButton({ icon, onClick }) {
   return (
     <Button onClick={onClick}>
       <Icon name={icon} />
     </Button>
   );
 }
+
+IconButton.propTypes = {
+  icon: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};
+
+export default IconButton;
