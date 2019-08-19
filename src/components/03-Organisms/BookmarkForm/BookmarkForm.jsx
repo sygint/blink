@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { X as Close } from "react-feather";
 
-export default function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
+function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
   return (
     <form className="form bookmark-form">
       <label htmlFor="url" className="bookmark-form_label">
@@ -31,3 +32,10 @@ export default function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
     </form>
   );
 }
+
+BookmarkForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  handleHideAddBookmarks: PropTypes.func.isRequired
+};
+
+export default BookmarkForm;
