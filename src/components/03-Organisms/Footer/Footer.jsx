@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default function Footer({ isUserSignedIn }) {
+function Footer({ isUserSignedIn }) {
   return (
     <footer className="footer">
       <ul className="attribution">
@@ -30,3 +31,13 @@ export default function Footer({ isUserSignedIn }) {
     </footer>
   );
 }
+
+Footer.propTypes = {
+  isUserSignedIn: PropTypes.bool
+};
+
+Footer.defaultProps = {
+  isUserSignedIn: false
+};
+
+export default Footer;
