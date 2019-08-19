@@ -15,7 +15,7 @@ const Button = styled.button`
 export default function IconButton({ icon, onClick }) {
   return (
     <Button onClick={onClick}>
-      <Icon name={icon} color="#888" size="24" />
+      <Icon name={icon} color="#888" />
     </Button>
   );
 }
