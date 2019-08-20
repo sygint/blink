@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Icon from "../../1-Atoms/Icon";
 
-function Bookmark({ onDeleteBookmark, bookmark }) {
+function Bookmark({ onClickDelete, bookmark }) {
   try {
     const { title, url, id, thumbnail, excerpt, domain, wordCount } = bookmark;
     const scheme = url.substr(0, url.indexOf("://") + 3);
@@ -37,7 +37,7 @@ function Bookmark({ onDeleteBookmark, bookmark }) {
         <div className="bookmark_actions">
           <Icon
             name="Trash2"
-            onClick={() => onDeleteBookmark(id)}
+            onClick={() => onClickDelete(id)}
             className="bookmark_icon"
           />
         </div>
@@ -50,7 +50,7 @@ function Bookmark({ onDeleteBookmark, bookmark }) {
 }
 
 Bookmark.propTypes = {
-  onDeleteBookmark: PropTypes.func.isRequired,
+  onClickDelete: PropTypes.func.isRequired,
   bookmark: PropTypes.shape({
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,

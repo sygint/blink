@@ -234,7 +234,7 @@ export default class App extends Component {
       bookmarks && Array.isArray(bookmarks) && bookmarks.length > 0 ? (
         <BookmarkList
           bookmarks={bookmarks}
-          onDeleteBookmark={this.handleDeleteBookmark}
+          onClickDelete={this.handleDeleteBookmark}
         />
       ) : (
         "no bookmarks"

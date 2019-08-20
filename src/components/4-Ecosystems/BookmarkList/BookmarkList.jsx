@@ -29,13 +29,13 @@ const BookmarkListItem = styled.li`
   position: relative;
 `;
 
-function BookmarkList({ bookmarks, onDeleteBookmark }) {
+function BookmarkList({ bookmarks, onClickDelete }) {
   return (
     <StyledBookmarkList>
       {bookmarks.map(bookmark => {
         return (
           <BookmarkListItem key={bookmark.id}>
-            <Bookmark onDeleteBookmark={onDeleteBookmark} bookmark={bookmark} />
+            <Bookmark onClickDelete={onClickDelete} bookmark={bookmark} />
           </BookmarkListItem>
         );
       })}
@@ -45,7 +45,7 @@ function BookmarkList({ bookmarks, onDeleteBookmark }) {
 
 BookmarkList.propTypes = {
   bookmarks: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onDeleteBookmark: PropTypes.func.isRequired
+  onClickDelete: PropTypes.func.isRequired
 };
 
 export default BookmarkList;
