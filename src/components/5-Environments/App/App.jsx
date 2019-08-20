@@ -9,7 +9,7 @@ import Masthead from "../../4-Ecosystems/Masthead";
 import Main from "../../4-Ecosystems/Main";
 import Content from "../../3-Organisms/Content";
 import Footer from "../../3-Organisms/Footer";
-import BookmarksList from "../../4-Ecosystems/BookmarksList";
+import BookmarkList from "../../4-Ecosystems/BookmarkList";
 import BookmarkForm from "../../3-Organisms/BookmarkForm";
 
 import "../../../assets/styles/index.scss";
@@ -227,9 +227,9 @@ export default class App extends Component {
       return "loading...";
     }
 
-    const bookmarksList =
+    const bookmarkList =
       bookmarks && Array.isArray(bookmarks) && bookmarks.length > 0 ? (
-        <BookmarksList
+        <BookmarkList
           bookmarks={bookmarks}
           onDeleteBookmark={this.handleDeleteBookmark}
         />
@@ -249,7 +249,7 @@ export default class App extends Component {
                 handleHideAddBookmarks={this.handleHideAddBookmark}
               />
             )}
-            {bookmarksList}
+            {bookmarkList}
           </Content>
         </Main>
       </>

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Bookmark from "../../3-Organisms/Bookmark";
 
-function BookmarksList({ bookmarks, onDeleteBookmark }) {
+function BookmarkList({ bookmarks, onDeleteBookmark }) {
   return (
     <ul className="bookmark-list">
       {bookmarks.map(bookmark => {
@@ -17,9 +17,9 @@ function BookmarksList({ bookmarks, onDeleteBookmark }) {
   );
 }
 
-BookmarksList.propTypes = {
+BookmarkList.propTypes = {
   bookmarks: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDeleteBookmark: PropTypes.func.isRequired
 };
 
-export default BookmarksList;
+export default BookmarkList;
