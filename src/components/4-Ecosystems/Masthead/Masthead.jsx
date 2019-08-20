@@ -10,20 +10,17 @@ const Header = styled.header`
   width: 100%;
 `;
 
-function Masthead({ handleSignOut, handleShowAddBookmark }) {
+function Masthead({ onClickSignOut, onClickAdd }) {
   return (
     <Header>
-      <MainNavbar
-        handleSignOut={handleSignOut}
-        handleShowAddBookmark={handleShowAddBookmark}
-      />
+      <MainNavbar onClickSignOut={onClickSignOut} onClickAdd={onClickAdd} />
     </Header>
   );
 }
 
 Masthead.propTypes = {
-  handleSignOut: PropTypes.func.isRequired,
-  handleShowAddBookmark: PropTypes.func.isRequired
+  onClickSignOut: PropTypes.func.isRequired,
+  onClickAdd: PropTypes.func.isRequired
 };
 
 export default Masthead;

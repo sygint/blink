@@ -272,8 +272,8 @@ export default class App extends Component {
               <Masthead
                 isSignedIn={isUserSignedIn}
                 handleSignIn={this.handleSignIn}
-                handleSignOut={this.handleSignOut}
-                handleShowAddBookmark={this.handleShowAddBookmark}
+                onClickSignOut={this.handleSignOut}
+                onClickAdd={this.handleShowAddBookmark}
               />
               {this.renderBookmarkList()}
             </>
