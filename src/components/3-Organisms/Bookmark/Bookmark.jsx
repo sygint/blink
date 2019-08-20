@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Icon from "../../1-Atoms/Icon";
 
-export default function Bookmark({ onDeleteBookmark, bookmark }) {
+function Bookmark({ onDeleteBookmark, bookmark }) {
   try {
     const { title, url, id, thumbnail, excerpt, domain, wordCount } = bookmark;
     const scheme = url.substr(0, url.indexOf("://") + 3);
@@ -47,3 +48,17 @@ export default function Bookmark({ onDeleteBookmark, bookmark }) {
     return null;
   }
 }
+
+Bookmark.propTypes = {
+  onDeleteBookmark: PropTypes.func.isRequired,
+  bookmark: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    excerpt: PropTypes.string.isRequired,
+    domain: PropTypes.string.isRequired,
+    wordCount: PropTypes.number.isRequired
+  }).isRequired
+};
+
+export default Bookmark;
