@@ -1,33 +1,4 @@
 .bookmark {
-  @include for-phone-landscape-up {
-    &-list {
-      display: grid;
-      grid-column-gap: 30px;
-      grid-row-gap: 20px;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr;
-    }
-  }
-
-  @include for-tablet-portrait-up {
-    &-list {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-  }
-
-  &-list {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  &-list_item {
-    border-bottom: 1px solid $third-color;
-    height: 460px;
-    margin: 0 auto 32px;
-    padding-bottom: 16px;
-    position: relative;
-  }
-
   &_thumbnail {
     background-position: center center;
     background-size: cover;
