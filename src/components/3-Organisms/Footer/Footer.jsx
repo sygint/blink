@@ -1,10 +1,21 @@
 import React from "react";
+import styled from "styled-components";
 import PropTypes from "prop-types";
+
+const Container = styled.footer`
+  font-size: 10px;
+  text-align: center;
+`;
+
+const Attribution = styled.ul`
+  list-style: none;
+  padding-left: 0;
+`;
 
 function Footer({ isUserSignedIn }) {
   return (
-    <footer className="footer">
-      <ul className="attribution">
+    <Container>
+      <Attribution>
         <li>
           Agenda icon made by{" "}
           <a href="https://www.freepik.com/" title="Freepik">
@@ -27,8 +38,8 @@ function Footer({ isUserSignedIn }) {
             </a>
           </li>
         )}
-      </ul>
-    </footer>
+      </Attribution>
+    </Container>
   );
 }
 
