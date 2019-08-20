@@ -5,6 +5,7 @@ import axios from "axios";
 
 import bookmarksHelper from "./bookmarkHelpers";
 import mockBookmarksHelper from "../../../__mocks__/bookmarkHelpers";
+import SignIn from "../../2-Molecules/SignIn";
 import Masthead from "../../4-Ecosystems/Masthead";
 import Main from "../../4-Ecosystems/Main";
 import Content from "../../3-Organisms/Content";
@@ -13,7 +14,6 @@ import BookmarkList from "../../4-Ecosystems/BookmarkList";
 import BookmarkForm from "../../3-Organisms/BookmarkForm";
 
 import "../../../assets/styles/index.scss";
-import { ReactComponent as Logo } from "../../../assets/images/agenda.svg";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 const userSession = new UserSession({ appConfig });
@@ -259,37 +259,22 @@ export default class App extends Component {
   render() {
     const isUserSignedIn = this.isUserSignedIn();
 
-    if (!isUserSignedIn) {
-      return (
-        <>
-          <div className="container full">
-            <div className="logo-container">
-              <Logo className="logo" />
-              <h1 className="logo-title">Blink</h1>
-              <button
-                type="button"
-                className="button"
-                onClick={this.handleSignIn}
-              >
-                Sign in with Bockstack
-              </button>
-            </div>
-            <Footer isUserSignedIn={isUserSignedIn} />
-          </div>
-        </>
-      );
-    }
-
     return (
       <>
         <div className="container full">
-          <Masthead
-            isSignedIn={isUserSignedIn}
-            handleSignIn={this.handleSignIn}
-            handleSignOut={this.handleSignOut}
-            handleShowAddBookmark={this.handleShowAddBookmark}
-          />
-          {this.renderBookmarkList()}
+          {!isUserSignedIn ? (
+            <SignIn onClickSignIn={this.handleSignIn} />
+          ) : (
+            <>
+              <Masthead
+                isSignedIn={isUserSignedIn}
+                handleSignIn={this.handleSignIn}
+                handleSignOut={this.handleSignOut}
+                handleShowAddBookmark={this.handleShowAddBookmark}
+              />
+              {this.renderBookmarkList()}
+            </>
+          )}
           <Footer isUserSignedIn={isUserSignedIn} />
         </div>
       </>
