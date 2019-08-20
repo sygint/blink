@@ -12,11 +12,6 @@ $icon-height: $head-height - 9px;
     padding: 0 20px;
   }
 
-  &_branding {
-    display: flex;
-    text-decoration: none;
-  }
-
   &_actions {
     display: flex;
   }
@@ -40,18 +35,5 @@ $icon-height: $head-height - 9px;
     content: "";
     height: 35px;
     margin-right: 10px;
-  }
-}
-
-.branding {
-  &_logo {
-    height: $head-logo-size;
-    margin-right: 10px;
-    width: $head-logo-size;
-  }
-
-  &_text {
-    font-size: 24px;
-    font-weight: 700;
   }
 }

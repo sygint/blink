@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Branding from "../../2-Molecules/Branding";
 import IconButton from "../../2-Molecules/IconButton";
-import { ReactComponent as Logo } from "../../../assets/images/agenda.svg";
 
 function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
   return (
@@ -11,10 +11,7 @@ function MainNavbar({ handleSignOut, handleShowAddBookmark }) {
         <IconButton icon="Menu" />
       </div>
 
-      <a className="navbar_branding" href="/">
-        <Logo className="branding_logo" />
-        <div className="branding_text">Blink</div>
-      </a>
+      <Branding linkTo="/" />
 
       <div className="navbar_actions">
         <IconButton icon="Add" onClick={handleShowAddBookmark} />
