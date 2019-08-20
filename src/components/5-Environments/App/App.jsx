@@ -20,7 +20,10 @@ const userSession = new UserSession({ appConfig });
 
 let bookmarkApi;
 
-if (process.env.REACT_APP_OFFLINE) {
+const offlineMode = process.env.REACT_APP_OFFLINE === "true";
+const buildCache = process.env.REACT_APP_BUILD_CACHE === "true";
+
+if (offlineMode) {
   console.log("*** using offline mode ***");
   bookmarkApi = mockBookmarksHelper();
 } else {
@@ -49,7 +52,7 @@ export default class App extends Component {
     try {
       const { bookmarkIds, bookmarks } = await bookmarkApi.getBookmarks();
 
-      if (process.env.REACT_APP_OFFLINE && process.env.REACT_APP_BUILD_CACHE) {
+      if (offlineMode && buildCache) {
         localStorage.setItem(
           "blink/bookmarkIds.json",
           JSON.stringify(bookmarkIds)
@@ -130,7 +133,7 @@ export default class App extends Component {
   };
 
   isUserSignedIn() {
-    if (userSession.isUserSignedIn() || process.env.REACT_APP_OFFLINE) {
+    if (userSession.isUserSignedIn() || offlineMode) {
       return true;
     }
 
