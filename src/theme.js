@@ -4,8 +4,12 @@ const size = {
 };
 
 export default {
+  dimension: {
+    mastheadHeight: "60px"
+  },
   color: {
-    third: "#ccc"
+    third: "#ccc",
+    icon: "#888"
   },
   breakpoint: {
     mobileLandscape: `(min-width: ${size.mobileLandscape})`,

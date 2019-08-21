@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Icon from "../../1-Atoms/Icon";
 
 const Button = styled.button`
+  align-items: center;
   background: none;
   border: 0;
   cursor: pointer;

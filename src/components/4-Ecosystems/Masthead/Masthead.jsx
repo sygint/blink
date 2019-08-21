@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import MainNavbar from "../MainNavbar";
+import Navbar from "../Navbar";
 
 const Header = styled.header`
   position: fixed;
@@ -13,7 +13,7 @@ const Header = styled.header`
 function Masthead({ onClickSignOut, onClickAdd }) {
   return (
     <Header>
-      <MainNavbar onClickSignOut={onClickSignOut} onClickAdd={onClickAdd} />
+      <Navbar onClickSignOut={onClickSignOut} onClickAdd={onClickAdd} />
     </Header>
   );
 }
