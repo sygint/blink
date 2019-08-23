@@ -2,12 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-const Container = styled.main`
+const StyledMain = styled.main`
   flex-grow: 1;
 `;
 
 function Main({ children }) {
-  return <Container>{children}</Container>;
+  return <StyledMain>{children}</StyledMain>;
 }
 
 Main.propTypes = {
