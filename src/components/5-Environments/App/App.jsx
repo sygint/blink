@@ -5,6 +5,7 @@ import axios from "axios";
 
 import bookmarksHelper from "./bookmarkHelpers";
 import mockBookmarksHelper from "../../../__mocks__/bookmarkHelpers";
+import Container from "../../4-Ecosystems/Container";
 import SignIn from "../../2-Molecules/SignIn";
 import Masthead from "../../4-Ecosystems/Masthead";
 import Main from "../../4-Ecosystems/Main";
@@ -264,7 +265,7 @@ export default class App extends Component {
 
     return (
       <>
-        <div className="container full">
+        <Container>
           {!isUserSignedIn ? (
             <SignIn onClickSignIn={this.handleSignIn} />
           ) : (
@@ -277,7 +278,7 @@ export default class App extends Component {
             </>
           )}
           <Footer isUserSignedIn={isUserSignedIn} />
-        </div>
+        </Container>
       </>
     );
   }
