@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import Icon from "../../1-Atoms/Icon";
 import Domain from "../../2-Molecules/Domain";
+import ReadingTime from "../../2-Molecules/ReadingTime";
 
 const Thumbnail = styled.a`
   background: ${({ image }) => `url(${image})`};
@@ -35,15 +36,6 @@ const Extras = styled.div`
   margin: 8px 0;
 `;
 
-const ReadingTime = styled.span`
-  align-items: center;
-  display: flex;
-`;
-
-const ReadingTimeIcon = styled(Icon)`
-  margin-right: 5px;
-`;
-
 const Excerpt = styled.p`
   margin-top: 0;
   max-height: 3em;
@@ -73,10 +65,7 @@ function Bookmark({ onClickDelete, bookmark }) {
         <Title href={url}>{title}</Title>
         <Extras>
           <Domain url={url} domain={domain} />
-          <ReadingTime>
-            <ReadingTimeIcon name="Clock" size={16} />
-            {Math.round(wordCount / 225)} min
-          </ReadingTime>
+          <ReadingTime wordCount={wordCount} />
         </Extras>
         <Excerpt>{excerpt}</Excerpt>
         <Actions>
