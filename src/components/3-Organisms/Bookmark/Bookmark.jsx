@@ -3,6 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import Icon from "../../1-Atoms/Icon";
+import Domain from "../../2-Molecules/Domain";
 
 const Thumbnail = styled.a`
   background: ${({ image }) => `url(${image})`};
@@ -34,12 +35,6 @@ const Extras = styled.div`
   margin: 8px 0;
 `;
 
-const Domain = styled.a`
-  color: #000;
-  font-weight: 100;
-  text-decoration: none;
-`;
-
 const ReadingTime = styled.span`
   align-items: center;
   display: flex;
@@ -69,7 +64,6 @@ const Delete = styled(Icon)`
 function Bookmark({ onClickDelete, bookmark }) {
   try {
     const { title, url, id, thumbnail, excerpt, domain, wordCount } = bookmark;
-    const scheme = url.substr(0, url.indexOf("://") + 3);
 
     return (
       <>
@@ -78,7 +72,7 @@ function Bookmark({ onClickDelete, bookmark }) {
         </Thumbnail>
         <Title href={url}>{title}</Title>
         <Extras>
-          <Domain href={scheme + domain}>{domain}</Domain>
+          <Domain url={url} domain={domain} />
           <ReadingTime>
             <ReadingTimeIcon name="Clock" size={16} />
             {Math.round(wordCount / 225)} min
