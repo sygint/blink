@@ -1,28 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
-import { ReactComponent as Agenda } from "../../../assets/images/agenda.svg";
-
-const A = styled.a`
-  display: flex;
-  text-decoration: none;
-`;
-
-const Div = styled.div`
-  display: flex;
-`;
-
-const Logo = styled(Agenda)`
-  height: ${({ size }) => `${size}px`};
-  margin-right: 10px;
-  width: ${({ size }) => `${size}px`};
-`;
-
-const Text = styled.div`
-  font-size: 24px;
-  font-weight: 700;
-`;
+import { A, Div, Logo, Text } from "./styles";
 
 function Branding({ linkTo, size = 32 }) {
   let StyledBranding;
