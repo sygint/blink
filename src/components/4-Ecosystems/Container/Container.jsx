@@ -1,15 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
-const StyledDiv = styled.div`
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: space-between;
-  position: relative;
-`;
+import { StyledDiv } from "./styles";
 
 function Container({ children }) {
   return <StyledDiv>{children}</StyledDiv>;
