@@ -1,17 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const StyledA = styled.a`
-  color: #000;
-  font-weight: 100;
-  text-decoration: none;
-`;
+import { A } from "./styles";
 
 function Domain({ url, domain }) {
   const scheme = url.substr(0, url.indexOf("://") + 3);
 
-  return <StyledA href={scheme + domain}>{domain}</StyledA>;
+  return <A href={scheme + domain}>{domain}</A>;
 }
 
 Domain.propTypes = {
