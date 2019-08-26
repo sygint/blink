@@ -1,16 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const StyledFooter = styled.footer`
-  font-size: 10px;
-  text-align: center;
-`;
-
-const Attribution = styled.ul`
-  list-style: none;
-  padding-left: 0;
-`;
+import { StyledFooter, Attribution } from "./styles";
 
 function Footer({ isUserSignedIn }) {
   return (
