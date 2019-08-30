@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Icon from "../../1-Atoms/Icon";
+import IconButton from "../../2-Molecules/IconButton";
 
 export const Thumbnail = styled.a`
   background: ${({ image }) => `url(${image})`};
@@ -41,10 +41,9 @@ export const Excerpt = styled.p`
 
 export const Actions = styled.div`
   bottom: 10px;
+  display: flex;
   position: absolute;
   right: 0;
 `;
 
-export const Delete = styled(Icon)`
-  cursor: pointer;
-`;
+export const StyledIconButton = styled(IconButton)``;

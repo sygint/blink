@@ -4,13 +4,17 @@ import PropTypes from "prop-types";
 import { StyledUl, StyledLi } from "./styles";
 import Bookmark from "../../3-Organisms/Bookmark";
 
-function BookmarkList({ bookmarks, onClickDelete }) {
+function BookmarkList({ bookmarks, onClickArchive, onClickDelete }) {
   return (
     <StyledUl>
       {bookmarks.map(bookmark => {
         return (
           <StyledLi key={bookmark.id}>
-            <Bookmark onClickDelete={onClickDelete} bookmark={bookmark} />
+            <Bookmark
+              bookmark={bookmark}
+              onClickArchive={onClickArchive}
+              onClickDelete={onClickDelete}
+            />
           </StyledLi>
         );
       })}
@@ -20,6 +24,7 @@ function BookmarkList({ bookmarks, onClickDelete }) {
 
 BookmarkList.propTypes = {
   bookmarks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClickArchive: PropTypes.func.isRequired,
   onClickDelete: PropTypes.func.isRequired
 };
 

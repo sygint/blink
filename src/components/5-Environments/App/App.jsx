@@ -8,6 +8,7 @@ import mockBookmarksHelper from "../../../__mocks__/bookmarkHelpers";
 import Container from "../../4-Ecosystems/Container";
 import SignIn from "../../2-Molecules/SignIn";
 import Masthead from "../../4-Ecosystems/Masthead";
+import Sidebar from "../../3-Organisms/Sidebar";
 import Main from "../../4-Ecosystems/Main";
 import Content from "../../3-Organisms/Content";
 import Footer from "../../3-Organisms/Footer";
@@ -38,8 +39,12 @@ export default class App extends Component {
     this.state = {
       bookmarkIds: [],
       bookmarks: [],
+      archivedBookmarkIds: [],
+      archivedBookmarks: [],
       isLoaded: false,
       isShowingAddbookmark: false,
+      isSidebarVisible: false,
+      isShowingArchive: false,
       errorMsg: null
     };
   }
@@ -52,6 +57,10 @@ export default class App extends Component {
     // get bookmarks.json
     try {
       const { bookmarkIds, bookmarks } = await bookmarkApi.getBookmarks();
+      const {
+        archivedBookmarkIds,
+        archivedBookmarks
+      } = await bookmarkApi.getArchivedBookmarks();
 
       if (offlineMode && buildCache) {
         localStorage.setItem(
@@ -69,7 +78,9 @@ export default class App extends Component {
 
       return this.setState({
         bookmarkIds,
+        archivedBookmarkIds,
         bookmarks,
+        archivedBookmarks,
         isLoaded: true
       });
     } catch (e) {
@@ -133,6 +144,31 @@ export default class App extends Component {
     this.setState({ isShowingAddbookmark: false });
   };
 
+  handleToggleSidebar = () => {
+    this.setState(prevState => ({
+      isSidebarVisible: !prevState.isSidebarVisible
+    }));
+  };
+
+  handleShowAllBookmarks = () => {
+    this.setState({ isShowingArchive: false, isSidebarVisible: false });
+  };
+
+  handleShowArchive = () => {
+    this.setState({ isShowingArchive: true, isSidebarVisible: false });
+  };
+
+  handleArchiveBookmark = async id => {
+    const { bookmarks } = this.state;
+
+    const archivedBookmark = bookmarks.find(
+      ({ id: currentId }) => currentId === id
+    );
+
+    await this.archiveBookmark(id);
+    console.log("bookmark archived:", archivedBookmark);
+  };
+
   isUserSignedIn() {
     if (userSession.isUserSignedIn() || offlineMode) {
       return true;
@@ -165,7 +201,7 @@ export default class App extends Component {
     const {
       author,
       content,
-      date_published,
+      date_published: datePublished,
       dek,
       direction,
       domain,
@@ -189,7 +225,7 @@ export default class App extends Component {
     const article = {
       author,
       content,
-      date_published,
+      datePublished,
       dek,
       direction,
       id
@@ -224,17 +260,63 @@ export default class App extends Component {
     this.setState({ bookmarkIds, bookmarks });
   }
 
+  async archiveBookmark(id) {
+    let {
+      bookmarkIds,
+      bookmarks,
+      archivedBookmarkIds,
+      archivedBookmarks
+    } = this.state;
+    const bookmarkToAddToArchive = bookmarks.find(
+      ({ id: currentId }) => currentId === id
+    );
+
+    bookmarkIds = bookmarkIds.filter(currentId => currentId !== id);
+    bookmarks = bookmarks.filter(({ id: currentId }) => currentId !== id);
+
+    archivedBookmarkIds = [id, ...archivedBookmarkIds];
+    archivedBookmarks = [bookmarkToAddToArchive, ...archivedBookmarks];
+
+    await bookmarkApi.saveBookmarkIds(bookmarkIds);
+    await bookmarkApi.saveArchivedBookmarkIds(archivedBookmarkIds);
+
+    console.log("archivedBookmarkIds:", archivedBookmarkIds);
+    console.log("archived bookmarkIndex:", id);
+    console.log("unarchived bookmarks:", bookmarks);
+    console.log("archived bookmarks:", archivedBookmarks);
+
+    this.setState({
+      bookmarkIds,
+      archivedBookmarkIds,
+      bookmarks,
+      archivedBookmarks
+    });
+  }
+
   renderBookmarkList() {
-    const { bookmarks, isLoaded, isShowingAddbookmark, errorMsg } = this.state;
+    const {
+      bookmarks,
+      archivedBookmarks,
+      isLoaded,
+      isShowingAddbookmark,
+      isShowingArchive,
+      isSidebarVisible,
+      errorMsg
+    } = this.state;
 
     if (!isLoaded) {
       return "loading...";
     }
 
+    const bookmarkToShow = isShowingArchive ? archivedBookmarks : bookmarks;
+
     const bookmarkList =
-      bookmarks && Array.isArray(bookmarks) && bookmarks.length > 0 ? (
+      bookmarkToShow &&
+      Array.isArray(bookmarkToShow) &&
+      bookmarkToShow.length > 0 ? (
         <BookmarkList
-          bookmarks={bookmarks}
+          bookmarks={bookmarkToShow}
+          onClickArchive={this.handleArchiveBookmark}
           onClickDelete={this.handleDeleteBookmark}
         />
       ) : (
@@ -246,7 +328,12 @@ export default class App extends Component {
         {errorMsg && errorMsg}
         <Main>
           <Content>
-            <h1>All bookmarks</h1>
+            <Sidebar
+              isVisible={isSidebarVisible}
+              onClickAllBookmarks={this.handleShowAllBookmarks}
+              onClickArchive={this.handleShowArchive}
+            />
+            <h1>{isShowingArchive ? "Archive" : "All bookmarks"}</h1>
             {isShowingAddbookmark && (
               <BookmarkForm
                 onSubmit={this.handleAddBookmark}
@@ -261,6 +348,8 @@ export default class App extends Component {
   }
 
   render() {
+    const { isSidebarVisible } = this.state;
+
     const isUserSignedIn = this.isUserSignedIn();
 
     return (
@@ -273,6 +362,8 @@ export default class App extends Component {
               <Masthead
                 onClickSignOut={this.handleSignOut}
                 onClickAdd={this.handleShowAddBookmark}
+                onClickMenu={this.handleToggleSidebar}
+                isSidebarVisible={isSidebarVisible}
               />
               {this.renderBookmarkList()}
             </>

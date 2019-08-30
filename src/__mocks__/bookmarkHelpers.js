@@ -27,6 +27,18 @@ export default () => {
     return JSON.parse(bookmarkIdsJson);
   }
 
+  function getArchivedBookmarkIds() {
+    const archivedBookmarkIdsJson = localStorage.getItem(
+      `blink/archive/bookmarkIds.json`
+    );
+
+    if (!archivedBookmarkIdsJson) {
+      return [];
+    }
+
+    return JSON.parse(archivedBookmarkIdsJson);
+  }
+
   function getBookmark(id) {
     const bookmarkJson = localStorage.getItem(`blink/bookmarks/${id}.json`);
 
@@ -59,13 +71,29 @@ export default () => {
     return { bookmarkIds, bookmarks };
   }
 
+  function getArchivedBookmarks() {
+    const archivedBookmarkIds = getArchivedBookmarkIds();
+
+    if (!archivedBookmarkIds || archivedBookmarkIds.length === 0) {
+      return { archivedBookmarkIds: [], archivedBookmarks: [] };
+    }
+
+    const archivedBookmarks = archivedBookmarkIds.map(archivedBookmarkId =>
+      getBookmark(archivedBookmarkId)
+    );
+
+    return { archivedBookmarkIds, archivedBookmarks };
+  }
+
   return {
     saveBookmarkIds,
     saveBookmark,
     saveArticle,
     getBookmarkIds,
+    getArchivedBookmarkIds,
     getBookmark,
     getArticle,
-    getBookmarks
+    getBookmarks,
+    getArchivedBookmarks
   };
 };

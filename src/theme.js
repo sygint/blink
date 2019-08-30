@@ -11,7 +11,8 @@ export default {
     third: "#ccc",
     button: "rgb(23, 50, 97)",
     buttonBorder: "rgb(23, 50, 97)", // darken($button-color, 0.5)
-    icon: "#888"
+    icon: "#888",
+    sidebarText: "#444"
   },
   breakpoint: {
     mobileLandscape: `(min-width: ${size.mobileLandscape})`,

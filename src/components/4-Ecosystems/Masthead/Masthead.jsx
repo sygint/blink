@@ -4,17 +4,29 @@ import PropTypes from "prop-types";
 import { Header } from "./styles";
 import Navbar from "../Navbar";
 
-function Masthead({ onClickSignOut, onClickAdd }) {
+function Masthead({
+  onClickSignOut,
+  onClickAdd,
+  onClickMenu,
+  isSidebarVisible
+}) {
   return (
     <Header>
-      <Navbar onClickSignOut={onClickSignOut} onClickAdd={onClickAdd} />
+      <Navbar
+        onClickSignOut={onClickSignOut}
+        onClickAdd={onClickAdd}
+        onClickMenu={onClickMenu}
+        isSidebarVisible={isSidebarVisible}
+      />
     </Header>
   );
 }
 
 Masthead.propTypes = {
   onClickSignOut: PropTypes.func.isRequired,
-  onClickAdd: PropTypes.func.isRequired
+  onClickAdd: PropTypes.func.isRequired,
+  onClickMenu: PropTypes.func.isRequired,
+  isSidebarVisible: PropTypes.bool.isRequired
 };
 
 export default Masthead;

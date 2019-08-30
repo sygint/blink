@@ -1,11 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Thumbnail, Title, Extras, Excerpt, Actions, Delete } from "./styles";
+import {
+  Thumbnail,
+  Title,
+  Extras,
+  Excerpt,
+  Actions,
+  StyledIconButton
+} from "./styles";
 import Domain from "../../2-Molecules/Domain";
 import ReadingTime from "../../2-Molecules/ReadingTime";
 
-function Bookmark({ onClickDelete, bookmark }) {
+function Bookmark({ onClickArchive, onClickDelete, bookmark }) {
   try {
     const { title, url, id, thumbnail, excerpt, domain, wordCount } = bookmark;
 
@@ -21,7 +28,8 @@ function Bookmark({ onClickDelete, bookmark }) {
         </Extras>
         <Excerpt>{excerpt}</Excerpt>
         <Actions>
-          <Delete name="Trash2" onClick={() => onClickDelete(id)} />
+          <StyledIconButton icon="Archive" onClick={() => onClickArchive(id)} />
+          <StyledIconButton icon="Trash2" onClick={() => onClickDelete(id)} />
         </Actions>
       </>
     );
@@ -32,6 +40,7 @@ function Bookmark({ onClickDelete, bookmark }) {
 }
 
 Bookmark.propTypes = {
+  onClickArchive: PropTypes.func.isRequired,
   onClickDelete: PropTypes.func.isRequired,
   bookmark: PropTypes.shape({
     title: PropTypes.string.isRequired,

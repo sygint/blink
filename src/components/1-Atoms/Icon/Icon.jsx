@@ -1,14 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Menu, Plus as Add, LogOut, Clock, Trash2 } from "react-feather";
+import {
+  Menu,
+  ChevronLeft as CloseSidebar,
+  Plus as Add,
+  LogOut,
+  Clock,
+  Trash2,
+  Bookmark,
+  Archive
+} from "react-feather";
 
 function Icon({ name, color, size, className }) {
   const Icons = {
     Menu,
+    CloseSidebar,
     Add,
     LogOut,
     Clock,
-    Trash2
+    Trash2,
+    Bookmark,
+    Archive
   };
 
   const IconComponent = Icons[name];

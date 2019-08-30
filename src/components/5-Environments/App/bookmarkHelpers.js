@@ -3,6 +3,10 @@ export default api => {
     await api.putFile("blink/bookmarkIds.json", JSON.stringify(ids));
   }
 
+  async function saveArchivedBookmarkIds(ids) {
+    await api.putFile("blink/archive/bookmarkIds.json", JSON.stringify(ids));
+  }
+
   async function saveBookmark(bookmark) {
     await api.putFile(
       `blink/bookmarks/${bookmark.id}.json`,
@@ -25,6 +29,18 @@ export default api => {
     }
 
     return JSON.parse(bookmarkIdsJson);
+  }
+
+  async function getArchivedBookmarkIds() {
+    const archivedBookmarkIdsJson = await api.getFile(
+      `blink/archive/bookmarkIds.json`
+    );
+
+    if (!archivedBookmarkIdsJson) {
+      return [];
+    }
+
+    return JSON.parse(archivedBookmarkIdsJson);
   }
 
   async function getBookmark(id) {
@@ -63,13 +79,32 @@ export default api => {
     return { bookmarkIds, bookmarks };
   }
 
+  async function getArchivedBookmarks() {
+    const archivedBookmarkIds = await getArchivedBookmarkIds();
+
+    if (!archivedBookmarkIds || archivedBookmarkIds.length === 0) {
+      return { archivedBookmarkIds: [], archivedBookmarks: [] };
+    }
+
+    const archivedBookmarkPromises = archivedBookmarkIds.map(
+      archivedBookmarkId => getBookmark(archivedBookmarkId)
+    );
+
+    const archivedBookmarks = await Promise.all(archivedBookmarkPromises);
+
+    return { archivedBookmarkIds, archivedBookmarks };
+  }
+
   return {
     saveBookmarkIds,
+    saveArchivedBookmarkIds,
     saveBookmark,
     saveArticle,
     getBookmarkIds,
+    getArchivedBookmarkIds,
     getBookmark,
     getArticle,
-    getBookmarks
+    getBookmarks,
+    getArchivedBookmarks
   };
 };
