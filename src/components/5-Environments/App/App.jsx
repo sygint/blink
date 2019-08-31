@@ -15,7 +15,7 @@ import Footer from "../../3-Organisms/Footer";
 import BookmarkList from "../../4-Ecosystems/BookmarkList";
 import BookmarkForm from "../../3-Organisms/BookmarkForm";
 
-import "../../../assets/styles/index.scss";
+import GlobalStyles from "../../1-Atoms/GlobalStyle";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 const userSession = new UserSession({ appConfig });
@@ -354,6 +354,7 @@ export default class App extends Component {
 
     return (
       <>
+        <GlobalStyles />
         <Container>
           {!isUserSignedIn ? (
             <SignIn onClickSignIn={this.handleSignIn} />
