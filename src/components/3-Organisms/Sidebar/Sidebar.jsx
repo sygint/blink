@@ -3,15 +3,32 @@ import PropTypes from "prop-types";
 
 import { Overlay, StyledSidebar, Group, StyledIcon } from "./styles";
 
-function Sidebar({ isVisible, onClickAllBookmarks, onClickArchive }) {
+function Sidebar({
+  isVisible,
+  onClickAllBookmarks,
+  onClickArchive,
+  handleCloseSidebar
+}) {
   return (
     <>
       <StyledSidebar isVisible={isVisible}>
         <Group>
-          <button type="button" onClick={onClickAllBookmarks}>
+          <button
+            type="button"
+            onClick={() => {
+              handleCloseSidebar();
+              onClickAllBookmarks();
+            }}
+          >
             <StyledIcon name="Bookmark" /> All Bookmarks
           </button>
-          <button type="button" onClick={onClickArchive}>
+          <button
+            type="button"
+            onClick={() => {
+              handleCloseSidebar();
+              onClickArchive();
+            }}
+          >
             <StyledIcon name="Archive" /> Archive
           </button>
         </Group>
@@ -24,7 +41,8 @@ function Sidebar({ isVisible, onClickAllBookmarks, onClickArchive }) {
 Sidebar.propTypes = {
   isVisible: PropTypes.bool,
   onClickAllBookmarks: PropTypes.func.isRequired,
-  onClickArchive: PropTypes.func.isRequired
+  onClickArchive: PropTypes.func.isRequired,
+  handleCloseSidebar: PropTypes.func.isRequired
 };
 
 Sidebar.defaultProps = {

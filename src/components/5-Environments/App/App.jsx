@@ -150,12 +150,16 @@ export default class App extends Component {
     }));
   };
 
+  handleCloseSidebar = () => {
+    this.setState({ isSidebarVisible: false });
+  };
+
   handleShowAllBookmarks = () => {
-    this.setState({ isShowingArchive: false, isSidebarVisible: false });
+    this.setState({ isShowingArchive: false });
   };
 
   handleShowArchive = () => {
-    this.setState({ isShowingArchive: true, isSidebarVisible: false });
+    this.setState({ isShowingArchive: true });
   };
 
   handleArchiveBookmark = async id => {
@@ -367,6 +371,7 @@ export default class App extends Component {
               isVisible={isSidebarVisible}
               onClickAllBookmarks={this.handleShowAllBookmarks}
               onClickArchive={this.handleShowArchive}
+              handleCloseSidebar={this.handleCloseSidebar}
             />
             <h1>{isShowingArchive ? "Archive" : "All bookmarks"}</h1>
             {isShowingAddbookmark && (
