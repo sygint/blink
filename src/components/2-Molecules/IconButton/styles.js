@@ -10,4 +10,10 @@ export const Button = styled.button`
   display: flex;
   margin: 0;
   padding: 0;
+
+  &:focus {
+    background: #eee;
+    border-radius: 3px;
+    outline: 0;
+  }
 `;
