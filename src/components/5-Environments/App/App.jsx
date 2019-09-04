@@ -318,8 +318,12 @@ export default class App extends Component {
     bookmarkIds = [id, ...bookmarkIds];
     bookmarks = [bookmarkToUnarchive, ...bookmarks];
 
-    archivedBookmarkIds = archivedBookmarkIds.filter(currentId => currentId !== id);
-    archivedBookmarks = archivedBookmarks.filter(({ id: currentId }) => currentId !== id);
+    archivedBookmarkIds = archivedBookmarkIds.filter(
+      currentId => currentId !== id
+    );
+    archivedBookmarks = archivedBookmarks.filter(
+      ({ id: currentId }) => currentId !== id
+    );
 
     await bookmarkApi.saveBookmarkIds(bookmarkIds);
     await bookmarkApi.saveArchivedBookmarkIds(archivedBookmarkIds);
@@ -354,21 +358,6 @@ export default class App extends Component {
 
     const bookmarkToShow = isShowingArchive ? archivedBookmarks : bookmarks;
 
-    const bookmarkList =
-      bookmarkToShow &&
-      Array.isArray(bookmarkToShow) &&
-      bookmarkToShow.length > 0 ? (
-        <BookmarkList
-          bookmarks={bookmarkToShow}
-          onClickArchive={this.handleArchiveBookmark}
-          onClickUnarchive={this.handleUnarchiveBookmark}
-          onClickDelete={this.handleDeleteBookmark}
-          isArchived={isShowingArchive}
-        />
-      ) : (
-        "no bookmarks"
-      );
-
     return (
       <>
         {errorMsg && errorMsg}
@@ -386,7 +375,13 @@ export default class App extends Component {
                 handleHideAddBookmarks={this.handleHideAddBookmark}
               />
             )}
-            {bookmarkList}
+            <BookmarkList
+              bookmarks={bookmarkToShow}
+              onClickArchive={this.handleArchiveBookmark}
+              onClickUnarchive={this.handleUnarchiveBookmark}
+              onClickDelete={this.handleDeleteBookmark}
+              isArchived={isShowingArchive}
+            />
           </Content>
         </Main>
       </>

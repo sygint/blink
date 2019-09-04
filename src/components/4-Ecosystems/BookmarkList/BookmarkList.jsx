@@ -11,23 +11,27 @@ function BookmarkList({
   onClickDelete,
   isArchived
 }) {
-  return (
-    <StyledUl>
-      {bookmarks.map(bookmark => {
-        return (
-          <StyledLi key={bookmark.id}>
-            <Bookmark
-              bookmark={bookmark}
-              onClickArchive={onClickArchive}
-              onClickUnarchive={onClickUnarchive}
-              onClickDelete={onClickDelete}
-              isArchived={isArchived}
-            />
-          </StyledLi>
-        );
-      })}
-    </StyledUl>
-  );
+  if (bookmarks && Array.isArray(bookmarks) && bookmarks.length > 0) {
+    return (
+      <StyledUl>
+        {bookmarks.map(bookmark => {
+          return (
+            <StyledLi key={bookmark.id}>
+              <Bookmark
+                bookmark={bookmark}
+                onClickArchive={onClickArchive}
+                onClickUnarchive={onClickUnarchive}
+                onClickDelete={onClickDelete}
+                isArchived={isArchived}
+              />
+            </StyledLi>
+          );
+        })}
+      </StyledUl>
+    );
+  }
+
+  return isArchived ? "No Archived Bookmarks" : "No Bookmarks";
 }
 
 BookmarkList.propTypes = {
