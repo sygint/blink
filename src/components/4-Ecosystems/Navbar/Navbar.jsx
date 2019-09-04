@@ -10,7 +10,7 @@ function Navbar({ onClickSignOut, onClickAdd, onClickMenu, isSidebarVisible }) {
     <StyledNav>
       <NavbarLeft>
         <IconButton
-          icon={isSidebarVisible ? "CloseSidebar" : "Menu"}
+          icon={isSidebarVisible ? "CloseSidebar" : "OpenSidebar"}
           onClick={onClickMenu}
         />
       </NavbarLeft>

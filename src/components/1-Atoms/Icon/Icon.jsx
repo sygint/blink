@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
-  Menu,
+  Menu as OpenSidebar,
   ChevronLeft as CloseSidebar,
   Plus as Add,
   LogOut,
@@ -16,7 +16,7 @@ import theme from "../../../theme";
 
 function Icon({ name, color, size, className }) {
   const Icons = {
-    Menu,
+    OpenSidebar,
     CloseSidebar,
     Add,
     LogOut,
