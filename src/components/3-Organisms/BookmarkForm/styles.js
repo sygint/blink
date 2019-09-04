@@ -5,12 +5,14 @@ export const Form = styled.form`
   border-radius: 4px;
   box-sizing: border-box;
   display: flex;
-  height: $head-height - $spacing * 2;
+  height: ${({ theme: { dimension } }) =>
+    `calc(${dimension.mastheadHeight} - ${dimension.mastheadPadding})`};
   left: 20px;
   padding: 5px 5px 5px 15px;
-  position: absolute;
+  position: fixed;
   right: 59px;
-  top: 10px;
+  top: ${({ theme: { dimension } }) =>
+    `calc(${dimension.mastheadPadding} / 2)`};
   z-index: 510;
 `;
 

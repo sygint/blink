@@ -18,7 +18,10 @@ export const NavbarRight = styled.div`
   > button:last-child::before {
     border-left: 1px solid ${({ theme: { color } }) => color.icon};
     content: "";
-    height: 35px;
+    height: calc(
+      ${({ theme: { dimension } }) =>
+        `${dimension.mastheadHeight} - ${dimension.mastheadPadding}`}
+    );
     margin-left: 5px;
     margin-right: 10px;
   }

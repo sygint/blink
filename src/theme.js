@@ -5,7 +5,8 @@ const size = {
 
 export default {
   dimension: {
-    mastheadHeight: "60px"
+    mastheadHeight: "60px",
+    mastheadPadding: "24px"
   },
   color: {
     third: "#ccc",
