@@ -12,6 +12,8 @@ import {
   PlusSquare as Unarchive
 } from "react-feather";
 
+import theme from "../../../theme";
+
 function Icon({ name, color, size, className }) {
   const Icons = {
     Menu,
@@ -38,7 +40,7 @@ Icon.propTypes = {
 };
 
 Icon.defaultProps = {
-  color: "#888",
+  color: theme.color.icon,
   size: undefined,
   className: undefined
 };
