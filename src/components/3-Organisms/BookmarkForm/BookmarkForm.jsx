@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { X as Close } from "react-feather";
 
-import { Form, Label, Input, Button } from "./styles";
+import { Form, Label, Input, Close } from "./styles";
 
 function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
   return (
@@ -22,9 +21,7 @@ function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
         }}
         placeholder="Add a website https://..."
       />
-      <Button type="submit" onClick={handleHideAddBookmarks}>
-        <Close color="#888" />
-      </Button>
+      <Close onClick={handleHideAddBookmarks} />
     </Form>
   );
 }

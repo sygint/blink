@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import IconButton from "../../2-Molecules/IconButton";
+
 export const Form = styled.form`
   background: #eee;
   border-radius: 4px;
@@ -42,7 +44,7 @@ export const Input = styled.input`
   }
 `;
 
-export const Button = styled.button`
+export const Close = styled(IconButton).attrs(() => ({ icon: "Close" }))`
   background: transparent;
   border: 0;
   padding: 0;
