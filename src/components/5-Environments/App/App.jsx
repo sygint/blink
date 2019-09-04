@@ -278,7 +278,7 @@ export default class App extends Component {
       archivedBookmarkIds,
       archivedBookmarks
     } = this.state;
-    const bookmarkToAddToArchive = bookmarks.find(
+    const bookmarkToArchive = bookmarks.find(
       ({ id: currentId }) => currentId === id
     );
 
@@ -286,7 +286,7 @@ export default class App extends Component {
     bookmarks = bookmarks.filter(({ id: currentId }) => currentId !== id);
 
     archivedBookmarkIds = [id, ...archivedBookmarkIds];
-    archivedBookmarks = [bookmarkToAddToArchive, ...archivedBookmarks];
+    archivedBookmarks = [bookmarkToArchive, ...archivedBookmarks];
 
     await bookmarkApi.saveBookmarkIds(bookmarkIds);
     await bookmarkApi.saveArchivedBookmarkIds(archivedBookmarkIds);
