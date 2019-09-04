@@ -33,7 +33,11 @@ function Sidebar({
           </button>
         </Group>
       </StyledSidebar>
-      <Overlay isVisible={isVisible} />
+      <Overlay
+        role="button"
+        isVisible={isVisible}
+        onClick={handleCloseSidebar}
+      />
     </>
   );
 }
