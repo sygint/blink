@@ -21,8 +21,8 @@ export const Title = styled.h1`
 `;
 
 export const Button = styled.button`
-  background-color: ${({ theme: { color } }) => color.button};
-  border: 0.1rem solid ${({ theme: { color } }) => color.buttonBorder};
+  background-color: ${({ theme }) => theme.color.button};
+  border: 0.1rem solid ${({ theme }) => theme.color.buttonBorder};
   border-radius: 0.4rem;
   color: #fff;
   cursor: pointer;

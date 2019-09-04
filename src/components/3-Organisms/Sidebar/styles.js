@@ -12,7 +12,7 @@ export const Inner = styled.div`
 
 export const StyledSidebar = styled.aside`
   background: #fff;
-  border-right: 1px solid ${({ theme: { color } }) => color.third};
+  border-right: 1px solid ${({ theme }) => theme.color.third};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@ export const StyledSidebar = styled.aside`
   left: ${props => (props.isVisible ? 0 : `-${innerWidth}`)};
   padding: 20px;
   position: fixed;
-  top: ${({ theme: { dimension } }) => dimension.mastheadHeight};
+  top: ${({ theme }) => theme.dimension.mastheadHeight};
   transition: left 250ms ease-in-out 0s;
   z-index: 700;
 
@@ -28,7 +28,7 @@ export const StyledSidebar = styled.aside`
     align-items: center;
     background: none;
     border: 0;
-    color: ${({ theme: { color } }) => color.sidebarText};
+    color: ${({ theme }) => theme.color.sidebarText};
     display: flex;
     font-size: 16px;
     font-weight: bold;
@@ -42,14 +42,14 @@ export const Overlay = styled.div`
   height: 100%;
   left: 0;
   position: fixed;
-  top: ${({ theme: { dimension } }) => dimension.mastheadHeight};
+  top: ${({ theme }) => theme.dimension.mastheadHeight};
   transition: all 500ms ease-in-out 0s;
   width: 100%;
   z-index: ${props => (props.isVisible ? "600" : "-1")};
 `;
 
-export const StyledIcon = styled(Icon).attrs(({ theme: { color } }) => ({
-  color: color.sidebarText
+export const StyledIcon = styled(Icon).attrs(({ theme }) => ({
+  color: theme.color.sidebarText
 }))`
   margin-right: 15px;
 `;

@@ -4,7 +4,7 @@ export const StyledUl = styled.ul`
   list-style: none;
   padding-left: 0;
 
-  @media ${({ theme: { breakpoint } }) => breakpoint.mobileLandscape} {
+  @media ${({ theme }) => theme.breakpoint.mobileLandscape} {
     display: grid;
     grid-column-gap: 30px;
     grid-row-gap: 20px;
@@ -12,13 +12,13 @@ export const StyledUl = styled.ul`
     grid-template-rows: 1fr;
   }
 
-  @media ${({ theme: { breakpoint } }) => breakpoint.tabletPortrait} {
+  @media ${({ theme }) => theme.breakpoint.tabletPortrait} {
     grid-template-columns: 1fr 1fr 1fr;
   }
 `;
 
 export const StyledLi = styled.li`
-  border-bottom: 1px solid ${({ theme: { color } }) => color.third};
+  border-bottom: 1px solid ${({ theme }) => theme.color.third};
   height: 460px;
   margin: 0 auto 32px;
   padding-bottom: 16px;

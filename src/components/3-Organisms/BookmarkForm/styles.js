@@ -7,14 +7,13 @@ export const Form = styled.form`
   border-radius: 4px;
   box-sizing: border-box;
   display: flex;
-  height: ${({ theme: { dimension } }) =>
-    `calc(${dimension.mastheadHeight} - ${dimension.mastheadPadding})`};
+  height: ${({ theme }) =>
+    `calc(${theme.dimension.mastheadHeight} - ${theme.dimension.mastheadPadding})`};
   left: 20px;
   padding: 5px 5px 5px 15px;
   position: fixed;
   right: 59px;
-  top: ${({ theme: { dimension } }) =>
-    `calc(${dimension.mastheadPadding} / 2)`};
+  top: ${({ theme }) => `calc(${theme.dimension.mastheadPadding} / 2)`};
   z-index: 510;
 `;
 
