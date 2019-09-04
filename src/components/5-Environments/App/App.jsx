@@ -169,6 +169,17 @@ export default class App extends Component {
     console.log("bookmark archived:", archivedBookmark);
   };
 
+  handleUnarchiveBookmark = async id => {
+    const { archivedBookmarks } = this.state;
+
+    const bookmark = archivedBookmarks.find(
+      ({ id: currentId }) => currentId === id
+    );
+
+    await this.unarchiveBookmark(id);
+    console.log("bookmark unarchived:", bookmark);
+  };
+
   isUserSignedIn() {
     if (userSession.isUserSignedIn() || offlineMode) {
       return true;
@@ -293,6 +304,39 @@ export default class App extends Component {
     });
   }
 
+  async unarchiveBookmark(id) {
+    let {
+      bookmarkIds,
+      archivedBookmarkIds,
+      bookmarks,
+      archivedBookmarks
+    } = this.state;
+    const bookmarkToUnarchive = archivedBookmarks.find(
+      ({ id: currentId }) => currentId === id
+    );
+
+    bookmarkIds = [id, ...bookmarkIds];
+    bookmarks = [bookmarkToUnarchive, ...bookmarks];
+
+    archivedBookmarkIds = archivedBookmarkIds.filter(currentId => currentId !== id);
+    archivedBookmarks = archivedBookmarks.filter(({ id: currentId }) => currentId !== id);
+
+    await bookmarkApi.saveBookmarkIds(bookmarkIds);
+    await bookmarkApi.saveArchivedBookmarkIds(archivedBookmarkIds);
+
+    console.log("archivedBookmarkIds:", archivedBookmarkIds);
+    console.log("unarchived bookmarkIndex:", id);
+    console.log("unarchived bookmarks:", bookmarks);
+    console.log("archived bookmarks:", archivedBookmarks);
+
+    this.setState({
+      bookmarkIds,
+      archivedBookmarkIds,
+      bookmarks,
+      archivedBookmarks
+    });
+  }
+
   renderBookmarkList() {
     const {
       bookmarks,
@@ -317,7 +361,9 @@ export default class App extends Component {
         <BookmarkList
           bookmarks={bookmarkToShow}
           onClickArchive={this.handleArchiveBookmark}
+          onClickUnarchive={this.handleUnarchiveBookmark}
           onClickDelete={this.handleDeleteBookmark}
+          isArchived={isShowingArchive}
         />
       ) : (
         "no bookmarks"

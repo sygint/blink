@@ -12,7 +12,13 @@ import {
 import Domain from "../../2-Molecules/Domain";
 import ReadingTime from "../../2-Molecules/ReadingTime";
 
-function Bookmark({ onClickArchive, onClickDelete, bookmark }) {
+function Bookmark({
+  onClickArchive,
+  onClickUnarchive,
+  onClickDelete,
+  bookmark,
+  isArchived
+}) {
   try {
     const { title, url, id, thumbnail, excerpt, domain, wordCount } = bookmark;
 
@@ -28,7 +34,18 @@ function Bookmark({ onClickArchive, onClickDelete, bookmark }) {
         </Extras>
         <Excerpt>{excerpt}</Excerpt>
         <Actions>
-          <StyledIconButton icon="Archive" onClick={() => onClickArchive(id)} />
+          {isArchived ? (
+            <StyledIconButton
+              icon="Unarchive"
+              onClick={() => onClickUnarchive(id)}
+            />
+          ) : (
+            <StyledIconButton
+              icon="Archive"
+              onClick={() => onClickArchive(id)}
+            />
+          )}
+
           <StyledIconButton icon="Trash2" onClick={() => onClickDelete(id)} />
         </Actions>
       </>
@@ -41,6 +58,7 @@ function Bookmark({ onClickArchive, onClickDelete, bookmark }) {
 
 Bookmark.propTypes = {
   onClickArchive: PropTypes.func.isRequired,
+  onClickUnarchive: PropTypes.func.isRequired,
   onClickDelete: PropTypes.func.isRequired,
   bookmark: PropTypes.shape({
     title: PropTypes.string.isRequired,
@@ -49,7 +67,8 @@ Bookmark.propTypes = {
     excerpt: PropTypes.string.isRequired,
     domain: PropTypes.string.isRequired,
     wordCount: PropTypes.number.isRequired
-  }).isRequired
+  }).isRequired,
+  isArchived: PropTypes.bool.isRequired
 };
 
 export default Bookmark;

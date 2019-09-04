@@ -8,7 +8,8 @@ import {
   Clock,
   Trash2,
   Bookmark,
-  Archive
+  Archive,
+  PlusSquare as Unarchive
 } from "react-feather";
 
 function Icon({ name, color, size, className }) {
@@ -20,7 +21,8 @@ function Icon({ name, color, size, className }) {
     Clock,
     Trash2,
     Bookmark,
-    Archive
+    Archive,
+    Unarchive
   };
 
   const IconComponent = Icons[name];
