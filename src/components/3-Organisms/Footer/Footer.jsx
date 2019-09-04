@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { StyledFooter, Attribution } from "./styles";
 
-function Footer({ isUserSignedIn }) {
+export default function Footer({ isUserSignedIn }) {
   return (
     <StyledFooter>
       <Attribution>
@@ -41,5 +41,3 @@ Footer.propTypes = {
 Footer.defaultProps = {
   isUserSignedIn: false
 };
-
-export default Footer;

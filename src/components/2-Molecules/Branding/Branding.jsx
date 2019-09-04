@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { A, Div, Logo, Text } from "./styles";
 
-function Branding({ linkTo, size = 32 }) {
+export default function Branding({ linkTo, size = 32 }) {
   let StyledBranding;
 
   if (linkTo) {
@@ -29,5 +29,3 @@ Branding.defaultProps = {
   linkTo: undefined,
   size: 32
 };
-
-export default Branding;

@@ -15,7 +15,7 @@ import {
 
 import theme from "../../../theme";
 
-function Icon({ name, color, size, className }) {
+export default function Icon({ name, color, size, className }) {
   const Icons = {
     OpenSidebar,
     CloseSidebar,
@@ -46,5 +46,3 @@ Icon.defaultProps = {
   size: undefined,
   className: undefined
 };
-
-export default Icon;

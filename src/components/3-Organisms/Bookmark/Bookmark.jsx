@@ -12,7 +12,7 @@ import {
 import Domain from "../../2-Molecules/Domain";
 import ReadingTime from "../../2-Molecules/ReadingTime";
 
-function Bookmark({
+export default function Bookmark({
   onClickArchive,
   onClickUnarchive,
   onClickDelete,
@@ -70,5 +70,3 @@ Bookmark.propTypes = {
   }).isRequired,
   isArchived: PropTypes.bool.isRequired
 };
-
-export default Bookmark;

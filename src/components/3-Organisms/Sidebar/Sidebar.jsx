@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { Overlay, StyledSidebar, Group, StyledIcon } from "./styles";
 
-function Sidebar({
+export default function Sidebar({
   isVisible,
   onClickAllBookmarks,
   onClickArchive,
@@ -52,5 +52,3 @@ Sidebar.propTypes = {
 Sidebar.defaultProps = {
   isVisible: false
 };
-
-export default Sidebar;

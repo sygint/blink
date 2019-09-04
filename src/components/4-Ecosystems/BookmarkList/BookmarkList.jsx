@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { StyledUl, StyledLi } from "./styles";
 import Bookmark from "../../3-Organisms/Bookmark";
 
-function BookmarkList({
+export default function BookmarkList({
   bookmarks,
   onClickArchive,
   onClickUnarchive,
@@ -41,5 +41,3 @@ BookmarkList.propTypes = {
   onClickDelete: PropTypes.func.isRequired,
   isArchived: PropTypes.bool.isRequired
 };
-
-export default BookmarkList;

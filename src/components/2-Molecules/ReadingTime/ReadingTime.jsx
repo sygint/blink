@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { Span, StyledIcon } from "./styles";
 
-function ReadingTime({ wordCount }) {
+export default function ReadingTime({ wordCount }) {
   return (
     <Span>
       <StyledIcon name="Clock" size={16} />
@@ -15,5 +15,3 @@ function ReadingTime({ wordCount }) {
 ReadingTime.propTypes = {
   wordCount: PropTypes.number.isRequired
 };
-
-export default ReadingTime;

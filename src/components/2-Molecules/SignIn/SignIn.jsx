@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { StyledDiv, StyledLogo, Title, Button } from "./styles";
 
-function SignIn({ onClickSignIn }) {
+export default function SignIn({ onClickSignIn }) {
   return (
     <StyledDiv>
       <StyledLogo />
@@ -18,5 +18,3 @@ function SignIn({ onClickSignIn }) {
 SignIn.propTypes = {
   onClickSignIn: PropTypes.func.isRequired
 };
-
-export default SignIn;

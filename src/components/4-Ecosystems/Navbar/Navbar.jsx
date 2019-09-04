@@ -5,7 +5,12 @@ import { StyledNav, NavbarLeft, NavbarRight } from "./styles";
 import Branding from "../../2-Molecules/Branding";
 import IconButton from "../../2-Molecules/IconButton";
 
-function Navbar({ onClickSignOut, onClickAdd, onClickMenu, isSidebarVisible }) {
+export default function Navbar({
+  onClickSignOut,
+  onClickAdd,
+  onClickMenu,
+  isSidebarVisible
+}) {
   return (
     <StyledNav>
       <NavbarLeft>
@@ -31,5 +36,3 @@ Navbar.propTypes = {
   onClickMenu: PropTypes.func.isRequired,
   isSidebarVisible: PropTypes.bool.isRequired
 };
-
-export default Navbar;

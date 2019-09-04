@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Header } from "./styles";
 import Navbar from "../Navbar";
 
-function Masthead({
+export default function Masthead({
   onClickSignOut,
   onClickAdd,
   onClickMenu,
@@ -28,5 +28,3 @@ Masthead.propTypes = {
   onClickMenu: PropTypes.func.isRequired,
   isSidebarVisible: PropTypes.bool.isRequired
 };
-
-export default Masthead;
