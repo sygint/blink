@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import { AppConfig, UserSession } from "blockstack";
+import PropTypes from "prop-types";
 import shortUUID from "short-uuid";
 import axios from "axios";
 
-import bookmarksHelper from "./bookmarkHelpers";
-import mockBookmarksHelper from "../../../__mocks__/bookmarkHelpers";
 import Container from "../../4-Ecosystems/Container";
 import SignIn from "../../2-Molecules/SignIn";
 import Masthead from "../../4-Ecosystems/Masthead";
@@ -17,24 +15,13 @@ import BookmarkForm from "../../3-Organisms/BookmarkForm";
 
 import GlobalStyles from "../../1-Atoms/GlobalStyle";
 
-const appConfig = new AppConfig(["store_write", "publish_data"]);
-const userSession = new UserSession({ appConfig });
-
-let bookmarkApi;
-
-const offlineMode = process.env.REACT_APP_OFFLINE === "true";
 const buildCache = process.env.REACT_APP_BUILD_CACHE === "true";
-
-if (offlineMode) {
-  console.log("*** using offline mode ***");
-  bookmarkApi = mockBookmarksHelper();
-} else {
-  bookmarkApi = bookmarksHelper(userSession);
-}
 
 export default class App extends Component {
   constructor(props) {
     super(props);
+
+    const { bookmarkApi, userSession, offlineMode } = this.props;
 
     this.state = {
       bookmarkIds: [],
@@ -47,12 +34,18 @@ export default class App extends Component {
       isShowingArchive: false,
       errorMsg: null
     };
+
+    this.bookmarkApi = bookmarkApi;
+    this.userSession = userSession;
+    this.offlineMode = offlineMode;
   }
 
   async componentDidMount() {
     if (!this.isUserSignedIn()) {
       return false;
     }
+
+    const { bookmarkApi, offlineMode } = this;
 
     // get bookmarks.json
     try {
@@ -185,6 +178,7 @@ export default class App extends Component {
   };
 
   isUserSignedIn() {
+    const { userSession, offlineMode } = this;
     if (userSession.isUserSignedIn() || offlineMode) {
       return true;
     }
@@ -202,14 +196,15 @@ export default class App extends Component {
   }
 
   handleSignIn() {
-    userSession.redirectToSignIn();
+    this.userSession.redirectToSignIn();
   }
 
   handleSignOut() {
-    userSession.signUserOut(window.location.origin);
+    this.userSession.signUserOut(window.location.origin);
   }
 
   async addBookmark(bookmarkData) {
+    const { bookmarkApi } = this;
     const { bookmarkIds: prevBookmarkIds } = this.state;
     const id = shortUUID.generate();
 
@@ -259,6 +254,7 @@ export default class App extends Component {
   }
 
   async deleteBookmark(id) {
+    const { bookmarkApi, userSession } = this;
     let { bookmarkIds, bookmarks } = this.state;
 
     bookmarkIds = bookmarkIds.filter(currentId => currentId !== id);
@@ -276,6 +272,7 @@ export default class App extends Component {
   }
 
   async archiveBookmark(id) {
+    const { bookmarkApi } = this;
     let {
       bookmarkIds,
       bookmarks,
@@ -309,6 +306,7 @@ export default class App extends Component {
   }
 
   async unarchiveBookmark(id) {
+    const { bookmarkApi } = this;
     let {
       bookmarkIds,
       archivedBookmarkIds,
@@ -421,3 +419,27 @@ export default class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  bookmarkApi: PropTypes.shape({
+    saveBookmarkIds: PropTypes.func.isRequired,
+    saveArchivedBookmarkIds: PropTypes.func.isRequired,
+    saveBookmark: PropTypes.func.isRequired,
+    saveArticle: PropTypes.func.isRequired,
+    getBookmarkIds: PropTypes.func.isRequired,
+    getArchivedBookmarkIds: PropTypes.func.isRequired,
+    getBookmark: PropTypes.func.isRequired,
+    getArticle: PropTypes.func.isRequired,
+    getBookmarks: PropTypes.func.isRequired,
+    getArchivedBookmarks: PropTypes.func.isRequired
+  }).isRequired,
+  userSession: PropTypes.shape({
+    isUserSignedIn: PropTypes.func.isRequired,
+    isSignInPending: PropTypes.func.isRequired,
+    handlePendingSignIn: PropTypes.func.isRequired,
+    redirectToSignIn: PropTypes.func.isRequired,
+    signUserOut: PropTypes.func.isRequired,
+    deleteFile: PropTypes.func.isRequired
+  }).isRequired,
+  offlineMode: PropTypes.bool.isRequired
+};
