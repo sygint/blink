@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from "react";
-import { ThemeProvider } from "styled-components";
 import ReactDOM from "react-dom";
+import { ThemeProvider } from "styled-components";
 
 import theme from "./theme";
 import App from "./components/5-Environments/App";
