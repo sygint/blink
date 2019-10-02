@@ -177,6 +177,14 @@ export default class App extends Component {
     console.log("bookmark unarchived:", bookmark);
   };
 
+  handleSignIn = () => {
+    this.userSession.redirectToSignIn();
+  };
+
+  handleSignOut = () => {
+    this.userSession.signUserOut(window.location.origin);
+  };
+
   isUserSignedIn() {
     const { userSession, offlineMode } = this;
     if (userSession.isUserSignedIn() || offlineMode) {
@@ -193,14 +201,6 @@ export default class App extends Component {
     }
 
     return false;
-  }
-
-  handleSignIn() {
-    this.userSession.redirectToSignIn();
-  }
-
-  handleSignOut() {
-    this.userSession.signUserOut(window.location.origin);
   }
 
   async addBookmark(bookmarkData) {

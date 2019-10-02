@@ -11,6 +11,7 @@ function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
         type="text"
         name="url"
         onKeyDown={event => {
+          event.preventDefault();
           const data = new FormData(event.target.closest("form"));
 
           if (event.key !== "Enter") {
