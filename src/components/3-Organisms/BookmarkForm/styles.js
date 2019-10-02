@@ -37,6 +37,7 @@ export const Input = styled.input`
   flex-grow: 1;
   font-size: 18px;
   height: 100%;
+  width: 100%;
 
   ::placeholder {
     color: lighten($header-icon-color, 15);
