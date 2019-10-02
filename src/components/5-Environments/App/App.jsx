@@ -113,6 +113,7 @@ export default class App extends Component {
 
       await this.addBookmark(bookmark);
       console.log("bookmark added:", bookmark);
+      this.setState({ isShowingAddbookmark: false });
     } catch (e) {
       console.trace("addBookmarkError:", e);
       this.setState({ errorMsg: "Unknown error" });
