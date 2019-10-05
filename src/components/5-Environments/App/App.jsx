@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import shortUUID from "short-uuid";
-import axios from "axios";
 
 import Container from "../../4-Ecosystems/Container";
 import SignIn from "../../2-Molecules/SignIn";
@@ -106,10 +105,14 @@ export default class App extends Component {
 
     try {
       this.setState({ errorMsg: null });
-      const res = await axios.post("/extract", {
-        url
+      const res = await fetch("/extract", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ url })
       });
-      const bookmark = res.data;
+      const bookmark = await res.json();
 
       await this.addBookmark(bookmark);
       console.log("bookmark added:", bookmark);
