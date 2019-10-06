@@ -3,6 +3,8 @@
 # dependencies
 /node_modules
 /.pnp
+/built-lambda
+/src/lambda/extract.js/node_modules
 .pnp.js
 
 # testing
@@ -10,6 +12,7 @@
 
 # production
 /build
+/ignore
 
 # misc
 .DS_Store

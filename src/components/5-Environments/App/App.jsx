@@ -105,7 +105,7 @@ export default class App extends Component {
 
     try {
       this.setState({ errorMsg: null });
-      const res = await fetch("/extract", {
+      const res = await fetch("/.netlify/functions/extract", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
