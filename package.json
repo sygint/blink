@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@postlight/mercury-parser": "^2.2.0",
-    "blockstack": "^19.2.1",
+    "blockstack": "^19.3.0",
     "bufferutil": "^4.0.1",
     "encoding": "^0.1.12",
     "node-fetch": "^2.6.0",
