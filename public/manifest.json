@@ -1,6 +1,7 @@
 {
-  "short_name": "Bookmarks",
-  "name": "Bookmarks",
+  "short_name": "Blink",
+  "name": "Blink",
+  "description": "A decentralized bookmarking service built on blockstack",
   "icons": [
     {
       "src": "favicon.ico",
