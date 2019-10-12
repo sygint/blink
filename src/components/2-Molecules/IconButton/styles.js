@@ -9,7 +9,7 @@ export const Button = styled.button`
   cursor: pointer;
   display: flex;
   margin: 0;
-  padding: 0;
+  padding: 5px;
 
   &:focus {
     background: #eee;

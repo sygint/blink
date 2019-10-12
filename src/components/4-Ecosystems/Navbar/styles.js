@@ -15,14 +15,20 @@ export const NavbarLeft = styled.div``;
 export const NavbarRight = styled.div`
   display: flex;
 
-  > button:last-child::before {
-    border-left: 1px solid ${({ theme }) => theme.color.icon};
-    content: "";
-    height: calc(
-      ${({ theme }) =>
-        `${theme.dimension.mastheadHeight} - ${theme.dimension.mastheadPadding}`}
-    );
-    margin-left: 5px;
-    margin-right: 10px;
+  > button:last-child {
+    position: relative;
+    margin-left: 40px;
+    &::before {
+      border-left: 1px solid ${({ theme }) => theme.color.icon};
+      content: "";
+      height: calc(
+        ${({ theme }) =>
+          `${theme.dimension.mastheadHeight} - ${theme.dimension.mastheadPadding}`}
+      );
+      left: -20px;
+      /* margin-left: 20px;
+      margin-right: 20px; */
+      position: absolute;
+    }
   }
 `;
