@@ -18,9 +18,12 @@ export const StyledUl = styled.ul`
 `;
 
 export const StyledLi = styled.li`
-  border-bottom: 1px solid ${({ theme }) => theme.color.third};
   height: 460px;
   margin: 0 auto 32px;
   padding-bottom: 16px;
   position: relative;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid ${({ theme }) => theme.color.third};
+  }
 `;
