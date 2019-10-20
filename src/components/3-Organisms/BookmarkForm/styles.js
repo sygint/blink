@@ -10,9 +10,8 @@ export const Form = styled.form`
   height: ${({ theme }) =>
     `calc(${theme.dimension.mastheadHeight} - ${theme.dimension.mastheadPadding})`};
   left: 20px;
-  padding: 5px 5px 5px 15px;
   position: fixed;
-  right: 59px;
+  right: 94px;
   top: ${({ theme }) => `calc(${theme.dimension.mastheadPadding} / 2)`};
   z-index: 510;
 `;
@@ -37,6 +36,7 @@ export const Input = styled.input`
   flex-grow: 1;
   font-size: 18px;
   height: 100%;
+  padding: 5px 5px 5px 15px;
   width: 100%;
 
   ::placeholder {
