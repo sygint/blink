@@ -7,6 +7,7 @@ export const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  margin-bottom: 35px;
 `;
 
 export const LogoSection = styled.div`
