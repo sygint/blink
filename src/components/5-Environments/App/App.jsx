@@ -243,7 +243,7 @@ export default class App extends Component {
       url,
       excerpt,
       title,
-      thumbnail,
+      thumbnail: thumbnail || "",
       wordCount,
       domain,
       id
