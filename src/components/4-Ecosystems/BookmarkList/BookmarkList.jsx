@@ -15,8 +15,18 @@ export default function BookmarkList({
     return (
       <StyledUl>
         {bookmarks.map(bookmark => {
+          if (!bookmark) {
+            return null;
+          }
+
+          const { id } = bookmark;
+
+          if (!id) {
+            return null;
+          }
+
           return (
-            <StyledLi key={bookmark.id}>
+            <StyledLi key={id}>
               <Bookmark
                 bookmark={bookmark}
                 onClickArchive={onClickArchive}
