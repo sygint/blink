@@ -11,14 +11,13 @@ function BookmarkForm({ onSubmit, handleHideAddBookmarks }) {
         type="text"
         name="url"
         onKeyDown={event => {
-          event.preventDefault();
-          const data = new FormData(event.target.closest("form"));
+          if (event.key === "Enter") {
+            event.preventDefault();
 
-          if (event.key !== "Enter") {
-            return false;
+            const data = new FormData(event.target.closest("form"));
+
+            onSubmit(data);
           }
-
-          return onSubmit(data);
         }}
         placeholder="Add a website https://..."
       />
