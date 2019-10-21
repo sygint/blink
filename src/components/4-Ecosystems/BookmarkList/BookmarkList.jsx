@@ -31,7 +31,7 @@ export default function BookmarkList({
                 bookmark={bookmark}
                 onClickArchive={onClickArchive}
                 onClickUnarchive={onClickUnarchive}
-                onClickDelete={onClickDelete}
+                onClickDelete={() => onClickDelete({ id, isArchived })}
                 isArchived={isArchived}
               />
             </StyledLi>

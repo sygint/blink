@@ -123,14 +123,27 @@ export default class App extends Component {
     }
   };
 
-  handleDeleteBookmark = async id => {
-    const { bookmarks } = this.state;
+  handleDeleteBookmark = async ({ id, isArchived }) => {
+    const { bookmarks, archivedBookmarks } = this.state;
 
-    const deletedBookmark = bookmarks.find(
+    let bookmarksToSearch;
+
+    if (isArchived) {
+      bookmarksToSearch = archivedBookmarks;
+    } else {
+      bookmarksToSearch = bookmarks;
+    }
+
+    const deletedBookmark = bookmarksToSearch.find(
       ({ id: currentId }) => currentId === id
     );
-    await this.deleteBookmark(id);
-    console.log("bookmark deleted:", deletedBookmark);
+    await this.deleteBookmark({ id, isArchived });
+
+    if (isArchived) {
+      console.log("archived bookmark deleted:", deletedBookmark);
+    } else {
+      console.log("bookmark deleted:", deletedBookmark);
+    }
   };
 
   handleShowAddBookmark = () => {
@@ -257,22 +270,56 @@ export default class App extends Component {
     }));
   }
 
-  async deleteBookmark(id) {
+  async deleteBookmark({ id, isArchived }) {
     const { bookmarkApi, userSession } = this;
-    let { bookmarkIds, bookmarks } = this.state;
+    const {
+      bookmarkIds,
+      bookmarks,
+      archivedBookmarkIds,
+      archivedBookmarks
+    } = this.state;
 
-    bookmarkIds = bookmarkIds.filter(currentId => currentId !== id);
+    let bookmarkIdsToFilter;
+    let bookmarksToFilter;
 
-    bookmarks = bookmarks.filter(({ id: currentId }) => currentId !== id);
+    if (isArchived) {
+      bookmarkIdsToFilter = archivedBookmarkIds;
+      bookmarksToFilter = archivedBookmarks;
+    } else {
+      bookmarkIdsToFilter = bookmarkIds;
+      bookmarksToFilter = bookmarks;
+    }
 
-    await bookmarkApi.saveBookmarkIds(bookmarkIds);
+    const filteredBookmarkIds = bookmarkIdsToFilter.filter(
+      currentId => currentId !== id
+    );
+    const filteredBookmarks = bookmarksToFilter.filter(
+      ({ id: currentId }) => currentId !== id
+    );
+
+    if (isArchived) {
+      await bookmarkApi.saveArchivedBookmarkIds(filteredBookmarkIds);
+    } else {
+      await bookmarkApi.saveBookmarkIds(filteredBookmarkIds);
+    }
+
     await userSession.deleteFile(`blink/bookmarks/${id}.json`);
     await userSession.deleteFile(`blink/articles/${id}.json`);
 
     console.log("deleted bookmarkIndex:", id);
-    console.log("remaining bookmarks:", bookmarks);
+    console.log("remaining bookmarks:", filteredBookmarks);
 
-    this.setState({ bookmarkIds, bookmarks });
+    if (isArchived) {
+      this.setState({
+        archivedBookmarkIds: filteredBookmarkIds,
+        archivedBookmarks: filteredBookmarks
+      });
+    } else {
+      this.setState({
+        bookmarkIds: filteredBookmarkIds,
+        bookmarks: filteredBookmarks
+      });
+    }
   }
 
   async archiveBookmark(id) {
