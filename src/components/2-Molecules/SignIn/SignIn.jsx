@@ -12,7 +12,7 @@ export default function SignIn({ onClickSignIn }) {
           <Title>Blink</Title>
         </LogoSection>
         <Button type="button" onClick={onClickSignIn}>
-          Sign in with Bockstack
+          Sign in with Blockstack
         </Button>
       </StyledDiv>
     </>
