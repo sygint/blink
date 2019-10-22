@@ -20,12 +20,12 @@ export const LogoSection = styled.div`
 
 export const StyledLogo = styled(Logo)`
   height: auto;
-  width: 26vw;
+  width: 26vmin;
 `;
 
 export const Title = styled.h1`
   color: ${({ theme }) => theme.color.main};
-  font-size: 26vw;
+  font-size: 26vmin;
   margin: 0;
 `;
 
@@ -36,7 +36,7 @@ export const Button = styled.button`
   color: #fff;
   cursor: pointer;
   font-family: fira-sans-2, sans-serif;
-  font-size: 1.1rem;
+  font-size: 5vw;
   font-weight: 600;
   letter-spacing: 0.1rem;
   margin: 0 2rem 2rem;
