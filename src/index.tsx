@@ -12,7 +12,7 @@ const offlineMode = process.env.REACT_APP_OFFLINE === "true";
 const { userSession } = blockstack(offlineMode);
 const bookmarkApi = bookmarks(userSession, offlineMode);
 
-window.userSession = userSession;
+// window.userSession = userSession;
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
