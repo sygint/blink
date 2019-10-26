@@ -5,13 +5,29 @@
     "jest": true,
     "node": true
   },
-  "parser": "babel-eslint",
-  "extends": ["airbnb", "prettier"],
-  "plugins": ["json-format"],
+  "parser": "@typescript-eslint/parser",
+  "extends": ["airbnb", "prettier", "plugin:@typescript-eslint/recommended", "plugin:import/typescript"],
+  "plugins": ["json-format", "@typescript-eslint"],
   "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", ".tsx"] }],
     "jsx-a11y/label-has-associated-control": "off",
     "no-console": "off",
     "class-methods-use-this": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-useless-constructor": "error"
+  },
+  "settings": {
+    "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

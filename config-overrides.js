@@ -1,8 +1,8 @@
 module.exports = {
-  webpack: function(config, env) {
+  webpack(config, env) {
     return config;
   },
-  jest: function(config) {
+  jest(config) {
     return config;
   },
   // configFunction is the original react-scripts function that creates the
@@ -11,7 +11,7 @@ module.exports = {
   // create the standard config to start from), and needs to receive back a
   // function that takes the same arguments as the original react-scripts
   // function so that it can be used as a replacement for the original one.
-  devServer: function(configFunction) {
+  devServer(configFunction) {
     return function(proxy, allowedHost) {
       const config = configFunction(proxy, allowedHost);
       // Edit config here - example: set your own certificates.

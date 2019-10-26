@@ -8,11 +8,15 @@ import blockstack from "./api/blockstack";
 import theme from "./theme";
 import App from "./components/5-Environments/App";
 
+type Theme = typeof theme;
+
+declare module "styled-components" {
+  export interface DefaultTheme extends Theme {}
+}
+
 const offlineMode = process.env.REACT_APP_OFFLINE === "true";
 const { userSession } = blockstack(offlineMode);
 const bookmarkApi = bookmarks(userSession, offlineMode);
-
-window.userSession = userSession;
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
