@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 import bookmarkHelpers from "./bookmarkHelpers";
 
 const mockBookmarkIds = ["mock1", "mock2", "mock3"];
@@ -70,7 +72,7 @@ const mockGetFile = jest.fn(file => {
       return JSON.stringify(mockBookmarks[2]);
 
     default:
-      throw Error("unknown file:", file);
+      throw Error(`unknown file: ${file}`);
   }
 });
 
@@ -79,7 +81,15 @@ const mockUserSession = {
   getFile: mockGetFile
 };
 
-const bookmarkApi = bookmarkHelpers(mockUserSession);
+const {
+  saveBookmarkIds,
+  saveBookmark,
+  saveArticle,
+  getBookmarkIds,
+  getBookmark,
+  getArticle,
+  getBookmarks
+} = bookmarkHelpers(mockUserSession);
 
 describe("bookmarkHelpers", () => {
   beforeEach(() => {
@@ -89,7 +99,7 @@ describe("bookmarkHelpers", () => {
 
   describe("saveBookmarkIds()", () => {
     it("should save bookmark ids", async () => {
-      await bookmarkApi.saveBookmarkIds(mockBookmarkIds);
+      await saveBookmarkIds(mockBookmarkIds);
 
       expect(mockPutFile.mock.calls.length).toBe(1);
       expect(mockPutFile).toBeCalledWith(
@@ -101,7 +111,7 @@ describe("bookmarkHelpers", () => {
 
   describe("saveBookmark()", () => {
     it("should save bookmark", async () => {
-      await bookmarkApi.saveBookmark(mockBookmark);
+      await saveBookmark(mockBookmark);
 
       expect(mockPutFile.mock.calls.length).toBe(1);
       expect(mockPutFile).toBeCalledWith(
@@ -113,7 +123,7 @@ describe("bookmarkHelpers", () => {
 
   describe("saveArticle()", () => {
     it("should save article", async () => {
-      await bookmarkApi.saveArticle(mockArticle);
+      await saveArticle(mockArticle);
 
       expect(mockPutFile.mock.calls.length).toBe(1);
       expect(mockPutFile).toBeCalledWith(
@@ -125,7 +135,7 @@ describe("bookmarkHelpers", () => {
 
   describe("getBookmarkIds()", () => {
     it("should get bookmark ids", async () => {
-      const result = await bookmarkApi.getBookmarkIds();
+      const result = await getBookmarkIds();
 
       expect(mockGetFile.mock.calls.length).toBe(1);
       expect(mockGetFile).toBeCalledWith("blink/bookmarkIds.json");
@@ -135,7 +145,7 @@ describe("bookmarkHelpers", () => {
 
   describe("getBookmark()", () => {
     it("should get bookmark", async () => {
-      const result = await bookmarkApi.getBookmark("mock");
+      const result = await getBookmark("mock");
 
       expect(mockGetFile.mock.calls.length).toBe(1);
       expect(mockGetFile).toBeCalledWith("blink/bookmarks/mock.json");
@@ -145,7 +155,7 @@ describe("bookmarkHelpers", () => {
 
   describe("getArticle()", () => {
     it("should get article", async () => {
-      const result = await bookmarkApi.getArticle("mock");
+      const result = await getArticle("mock");
 
       expect(mockGetFile.mock.calls.length).toBe(1);
       expect(mockGetFile).toBeCalledWith("blink/articles/mock.json");
@@ -156,7 +166,7 @@ describe("bookmarkHelpers", () => {
   describe("getBookmarks()", () => {
     it("should get a list of bookmarks", async () => {
       mockGetFile.mockReturnValueOnce(mockBookmarkIdsJson);
-      const result = await bookmarkApi.getBookmarks();
+      const result = await getBookmarks();
 
       expect(result).toEqual({
         bookmarkIds: mockBookmarkIds,
