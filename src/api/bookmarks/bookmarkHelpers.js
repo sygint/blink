@@ -1,28 +1,25 @@
-export default api => {
+export default ({ putFile, getFile }) => {
   async function saveBookmarkIds(ids) {
-    await api.putFile("blink/bookmarkIds.json", JSON.stringify(ids));
+    await putFile("blink/bookmarkIds.json", JSON.stringify(ids));
   }
 
   async function saveArchivedBookmarkIds(ids) {
-    await api.putFile("blink/archive/bookmarkIds.json", JSON.stringify(ids));
+    await putFile("blink/archive/bookmarkIds.json", JSON.stringify(ids));
   }
 
   async function saveBookmark(bookmark) {
-    await api.putFile(
+    await putFile(
       `blink/bookmarks/${bookmark.id}.json`,
       JSON.stringify(bookmark)
     );
   }
 
   async function saveArticle(article) {
-    await api.putFile(
-      `blink/articles/${article.id}.json`,
-      JSON.stringify(article)
-    );
+    await putFile(`blink/articles/${article.id}.json`, JSON.stringify(article));
   }
 
   async function getBookmarkIds() {
-    const bookmarkIdsJson = await api.getFile(`blink/bookmarkIds.json`);
+    const bookmarkIdsJson = await getFile(`blink/bookmarkIds.json`);
 
     if (!bookmarkIdsJson) {
       return [];
@@ -32,7 +29,7 @@ export default api => {
   }
 
   async function getArchivedBookmarkIds() {
-    const archivedBookmarkIdsJson = await api.getFile(
+    const archivedBookmarkIdsJson = await getFile(
       `blink/archive/bookmarkIds.json`
     );
 
@@ -44,7 +41,7 @@ export default api => {
   }
 
   async function getBookmark(id) {
-    const bookmarkJson = await api.getFile(`blink/bookmarks/${id}.json`);
+    const bookmarkJson = await getFile(`blink/bookmarks/${id}.json`);
 
     if (!bookmarkJson) {
       return null;
@@ -54,7 +51,7 @@ export default api => {
   }
 
   async function getArticle(id) {
-    const articleJson = await api.getFile(`blink/articles/${id}.json`);
+    const articleJson = await getFile(`blink/articles/${id}.json`);
 
     if (!articleJson) {
       return null;
