@@ -1,4 +1,14 @@
 export default ({ putFile, getFile }) => {
+  async function getData(filename, fallback = null) {
+    const fileData = await getFile(`blink/${filename}.json`);
+
+    if (!fileData) {
+      return fallback;
+    }
+
+    return JSON.parse(fileData);
+  }
+
   async function saveBookmarkIds(ids) {
     await putFile("blink/bookmarkIds.json", JSON.stringify(ids));
   }
@@ -20,13 +30,7 @@ export default ({ putFile, getFile }) => {
 
   async function getBookmarkIds(isArchive) {
     const filename = isArchive ? "archivedBookmarkIds" : "bookmarkIds";
-    const bookmarkIdsJson = await getFile(`blink/${filename}.json`);
-
-    if (!bookmarkIdsJson) {
-      return [];
-    }
-
-    return JSON.parse(bookmarkIdsJson);
+    return getData(filename, []);
   }
 
   async function getArchivedBookmarkIds() {
@@ -34,23 +38,11 @@ export default ({ putFile, getFile }) => {
   }
 
   async function getBookmark(id) {
-    const bookmarkJson = await getFile(`blink/bookmarks/${id}.json`);
-
-    if (!bookmarkJson) {
-      return null;
-    }
-
-    return JSON.parse(bookmarkJson);
+    return getData(`bookmarks/${id}`);
   }
 
   async function getArticle(id) {
-    const articleJson = await getFile(`blink/articles/${id}.json`);
-
-    if (!articleJson) {
-      return null;
-    }
-
-    return JSON.parse(articleJson);
+    return getData(`articles/${id}`);
   }
 
   async function getBookmarks() {

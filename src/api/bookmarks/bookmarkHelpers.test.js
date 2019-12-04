@@ -1,6 +1,10 @@
 import bookmarkHelpers from "./bookmarkHelpers";
 
 const mockBookmarkIds = ["mock1", "mock2", "mock3"];
+const mockData = {
+  "blink/bookmarkIds.json": mockBookmarkIds
+};
+
 const mockBookmarkIdsJson = JSON.stringify(mockBookmarkIds);
 const mockBookmark = {
   url: "http://example.com",
@@ -51,9 +55,6 @@ const mockBookmarks = [
 const mockPutFile = jest.fn();
 const mockGetFile = jest.fn(file => {
   switch (file) {
-    case "blink/bookmarkIds.json":
-      return mockBookmarkIdsJson;
-
     case "blink/bookmarks/mock.json":
       return mockBookmarkJson;
 
@@ -70,7 +71,7 @@ const mockGetFile = jest.fn(file => {
       return JSON.stringify(mockBookmarks[2]);
 
     default:
-      throw Error("unknown file:", file);
+      return JSON.stringify(mockData[file]);
   }
 });
 
