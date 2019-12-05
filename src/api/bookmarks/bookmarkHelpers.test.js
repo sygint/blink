@@ -9,13 +9,6 @@ const mockBookmark = {
   wordCount: 25,
   id: "1234567890"
 };
-const mockData = {
-  "blink/bookmarkIds.json": mockBookmarkIds,
-  "blink/bookmarks/mock.json": mockBookmark
-};
-
-const mockBookmarkIdsJson = JSON.stringify(mockBookmarkIds);
-const mockBookmarkJson = JSON.stringify(mockBookmark);
 const mockArticle = {
   author: "Mock Author",
   content: "mock content",
@@ -25,6 +18,14 @@ const mockArticle = {
   domain: "example.com",
   id: "1234567890"
 };
+const mockData = {
+  "blink/bookmarkIds.json": mockBookmarkIds,
+  "blink/bookmarks/mock.json": mockBookmark,
+  "blink/articles/mock.json": mockArticle
+};
+
+const mockBookmarkIdsJson = JSON.stringify(mockBookmarkIds);
+const mockBookmarkJson = JSON.stringify(mockBookmark);
 const mockArticleJson = JSON.stringify(mockArticle);
 const mockBookmarks = [
   {
@@ -56,9 +57,6 @@ const mockBookmarks = [
 const mockPutFile = jest.fn();
 const mockGetFile = jest.fn(file => {
   switch (file) {
-    case "blink/articles/mock.json":
-      return mockArticleJson;
-
     case "blink/bookmarks/mock1.json":
       return JSON.stringify(mockBookmarks[0]);
 
@@ -79,7 +77,7 @@ const mockUserSession = {
 };
 
 const bookmarkApi = bookmarkHelpers(mockUserSession);
-const { getBookmarkIds, getBookmark } = bookmarkApi;
+const { getBookmarkIds, getBookmark, getArticle } = bookmarkApi;
 
 describe("bookmarkHelpers", () => {
   beforeEach(() => {
@@ -137,11 +135,7 @@ describe("bookmarkHelpers", () => {
 
   describe("getArticle()", () => {
     it("should get article", async () => {
-      const result = await bookmarkApi.getArticle("mock");
-
-      expect(mockGetFile.mock.calls.length).toBe(1);
-      expect(mockGetFile).toBeCalledWith("blink/articles/mock.json");
-      expect(result).toEqual(mockArticle);
+      expect(await getArticle("mock")).toEqual(mockArticle);
     });
   });
 
