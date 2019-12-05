@@ -81,6 +81,7 @@ const mockUserSession = {
 };
 
 const bookmarkApi = bookmarkHelpers(mockUserSession);
+const { getBookmarkIds } = bookmarkApi;
 
 describe("bookmarkHelpers", () => {
   beforeEach(() => {
@@ -126,11 +127,7 @@ describe("bookmarkHelpers", () => {
 
   describe("getBookmarkIds()", () => {
     it("should get bookmark ids", async () => {
-      const result = await bookmarkApi.getBookmarkIds();
-
-      expect(mockGetFile.mock.calls.length).toBe(1);
-      expect(mockGetFile).toBeCalledWith("blink/bookmarkIds.json");
-      expect(result).toEqual(mockBookmarkIds);
+      expect(await getBookmarkIds()).toEqual(mockBookmarkIds);
     });
   });
 
