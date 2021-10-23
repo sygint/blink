@@ -12,7 +12,9 @@
     "prettify": "prettier \"src/**/*.{js,jsx,json,scss}\" --write",
     "server": "nodemon server",
     "start": "react-app-rewired start",
-    "test": "react-app-rewired test --coverage --watch"
+    "test": "react-app-rewired test --coverage --watch",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "husky": {
     "hooks": {
@@ -61,7 +63,8 @@
     "react-scripts": "3.1.0",
     "short-uuid": "^3.1.1",
     "styled-components": "^4.3.2",
-    "utf-8-validate": "^5.0.2"
+    "utf-8-validate": "^5.0.2",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "cz-conventional-changelog": "^3.0.2",
@@ -86,5 +89,6 @@
     "stylelint-config-sass-guidelines": "^6.0.0",
     "stylelint-config-standard": "^18.3.0",
     "stylelint-scss": "^3.9.3"
-  }
+  },
+  "snyk": true
 }
